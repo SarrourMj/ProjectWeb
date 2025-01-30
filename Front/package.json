@@ -22,6 +22,7 @@
     "@angular/router": "^16.0.0",
     "angular-feather": "^6.5.0",
     "apexcharts": "^3.40.0",
+    "flexy-admin-angular-lite": "file:",
     "hammerjs": "^2.0.8",
     "ng-apexcharts": "^1.7.6",
     "rxjs": "~7.8.0",
@@ -30,7 +31,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.0.1",
-    "@angular/cli": "~16.0.1",
+    "@angular/cli": "^16.2.16",
     "@angular/compiler-cli": "^16.0.0",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.6.0",
@@ -39,7 +40,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "node-sass": "^8.0.0",
+    "sass": "^1.83.4",
     "typescript": "~5.0.4"
   }
 }
