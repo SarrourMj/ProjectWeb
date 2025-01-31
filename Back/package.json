@@ -1,4 +1,18 @@
 {
+<<<<<<< HEAD
+  "name": "back",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "back": "file:"
+=======
   "name": "api",
   "version": "0.0.1",
   "description": "",
@@ -77,5 +91,6 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+>>>>>>> af9d3ce01fdf2110119f40702babfa6f2d08d677
   }
 }
