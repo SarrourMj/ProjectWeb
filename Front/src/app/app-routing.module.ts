@@ -18,6 +18,8 @@ import { TooltipsComponent } from './components/tooltips/tooltips.component';
 import { ProductComponent } from './dashboard/dashboard-components/product/product.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FullComponent } from './layouts/full/full.component';
+import { HomeComponent } from './components/home/home.component';
+
 
 const routes: Routes = [
   {
@@ -25,7 +27,7 @@ const routes: Routes = [
     component:FullComponent,
     children: [
       {path:"", redirectTo:"/home", pathMatch:"full"},
-      {path:"home", component:DashboardComponent},
+      {path:"home", component:HomeComponent},
       {path:"alerts", component:AlertsComponent},
       {path:"forms", component:FormsComponent},
       {path:"table", component:ProductComponent},

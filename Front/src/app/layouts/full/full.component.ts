@@ -32,7 +32,7 @@ export class FullComponent {
     {
       link: "/home",
       icon: "home",
-      menu: "Dashboard",
+      menu: "Home",
     },
     {
       link: "/button",
