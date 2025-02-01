@@ -1,5 +1,5 @@
 import { Column } from 'typeorm';
-import { IsString, IsNotEmpty, IsEmail, IsArray, ValidateNested } from 'class-validator';
+import { IsString, IsNotEmpty, IsEmail, IsArray, ValidateNested, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
 import { Course } from './../../course/entities/course.entity';
 
@@ -27,5 +27,8 @@ export class CreateUserDto {
   @ValidateNested({ each: true })
   @Type(() => Course)
   courses: Course[];
-}
 
+  @IsOptional()
+  @IsString()
+  image?: string;
+}

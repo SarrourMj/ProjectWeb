@@ -24,4 +24,7 @@ export class User {
 
   @Column("simple-array", { default: "" })
   badges: string[];
+
+  @Column({ nullable: true })
+  image?: string;
 }

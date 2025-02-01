@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsEmail, IsArray, IsOptional } from 'class-validator';
+import { IsString, IsNotEmpty, IsEmail, IsArray, IsOptional, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 import { Course } from './../../course/entities/course.entity';
 
@@ -27,4 +27,8 @@ export class UpdateUserDto {
   @IsString({ each: true })
   @IsOptional()
   badges?: string[];
+
+  @IsOptional()
+  @IsString()
+  image?: string;
 }
