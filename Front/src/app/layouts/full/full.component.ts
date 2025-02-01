@@ -33,11 +33,7 @@ export class FullComponent {
     {
       link: "/home",
       icon: "home",
-<<<<<<< HEAD
       menu: "Home",
-=======
-      menu: "home",
->>>>>>> 463ac9d07a6788ec7a0ed812085311fe60380602
     },
     
     {
