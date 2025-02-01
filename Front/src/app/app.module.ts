@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FullComponent } from './layouts/full/full.component';
-import { DemoFlexyModule } from './demo-flexy-module'
+import { DemoFlexyModule } from './demo-LearnSphere'
 
 // Modules
 import { DashboardModule } from './dashboard/dashboard.module';
