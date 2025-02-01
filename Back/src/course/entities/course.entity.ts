@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany } from 'typeorm';
 import { Chapter } from '../../chapter/entities/chapter.entity';
+import { User } from './../../user/entities/user.entity';
 
 @Entity('course')
 export class Course {
@@ -29,4 +30,7 @@ export class Course {
         onDelete: 'CASCADE', // Delete chapters when the course is deleted
     })
     chapters: Chapter[];
+
+    @ManyToMany(() => User, user => user.courses)
+    users: User[];
 }

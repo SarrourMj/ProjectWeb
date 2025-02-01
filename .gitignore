@@ -10,6 +10,8 @@
 Front/.angular
 Front/node_modules
 Back/node_modules
+Back/dist
+Back/.env
 npm-debug.log
 yarn-error.log
 
