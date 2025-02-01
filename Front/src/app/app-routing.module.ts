@@ -15,25 +15,12 @@ const routes: Routes = [
     component:FullComponent,
     children: [
       {path:"", redirectTo:"/home", pathMatch:"full"},
-<<<<<<< HEAD
       {path:"home", component:HomeComponent},
-      {path:"alerts", component:AlertsComponent},
-      {path:"forms", component:FormsComponent},
-      {path:"table", component:ProductComponent},
-      {path:"grid-list", component:GridListComponent},
-      {path:"menu", component:MenuComponent},
-      {path:"tabs", component:TabsComponent},
-      {path:"expansion", component:ExpansionComponent},
-      {path:"chips", component:ChipsComponent},
-      {path:"progress", component:ProgressComponent},
-=======
-      {path:"home", component:DashboardComponent},
    
       
 
       {path:"mycourses", component:MycoursesComponent},
      
->>>>>>> 463ac9d07a6788ec7a0ed812085311fe60380602
       {path:"toolbar", component:ToolbarComponent},
      
       {path:"tooltip", component:TooltipsComponent},
