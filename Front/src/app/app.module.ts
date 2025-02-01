@@ -7,17 +7,19 @@ import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FullComponent } from './layouts/full/full.component';
+import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { DemoFlexyModule } from './demo-flexy-module'
 
 // Modules
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ComponentsModule } from './components/components.module';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FullComponent
+    UserLayoutComponent,
+    AdminLayoutComponent
   ],
   imports: [
     BrowserModule,
