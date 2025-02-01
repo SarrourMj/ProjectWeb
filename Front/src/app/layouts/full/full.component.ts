@@ -29,91 +29,31 @@ export class FullComponent {
   routerActive: string = "activelink";
 
   sidebarMenu: sidebarMenu[] = [
+
     {
       link: "/home",
       icon: "home",
-      menu: "Dashboard",
+      menu: "home",
     },
+    
     {
-      link: "/button",
-      icon: "disc",
-      menu: "Buttons",
-    },
-    {
-      link: "/forms",
-      icon: "layout",
-      menu: "Forms",
-    },
-    {
-      link: "/alerts",
-      icon: "info",
-      menu: "Alerts",
-    },
-    {
-      link: "/grid-list",
-      icon: "file-text",
-      menu: "Grid List",
-    },
-    {
-      link: "/menu",
-      icon: "menu",
-      menu: "Menus",
-    },
-    {
-      link: "/table",
-      icon: "grid",
-      menu: "Tables",
-    },
-    {
-      link: "/expansion",
-      icon: "divide-circle",
-      menu: "Expansion Panel",
-    },
-    {
-      link: "/chips",
-      icon: "award",
-      menu: "Chips",
-    },
-    {
-      link: "/tabs",
+      link: "/mycourses",
       icon: "list",
-      menu: "Tabs",
+      menu: "My courses",
     },
-    {
-      link: "/progress",
-      icon: "bar-chart-2",
-      menu: "Progress Bar",
-    },
+    
     {
       link: "/toolbar",
-      icon: "voicemail",
-      menu: "Toolbar",
+      icon: "star",
+      menu: "My badges",
     },
-    {
-      link: "/progress-snipper",
-      icon: "loader",
-      menu: "Progress Snipper",
-    },
+  
     {
       link: "/tooltip",
       icon: "bell",
-      menu: "Tooltip",
+      menu: "Notifications",
     },
-    {
-      link: "/snackbar",
-      icon: "slack",
-      menu: "Snackbar",
-    },
-    {
-      link: "/slider",
-      icon: "sliders",
-      menu: "Slider",
-    },
-    {
-      link: "/slide-toggle",
-      icon: "layers",
-      menu: "Slide Toggle",
-    },
+  
   ]
 
 }
