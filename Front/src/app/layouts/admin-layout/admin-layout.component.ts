@@ -11,10 +11,10 @@ interface sidebarMenu {
 
 @Component({
   selector: 'app-full',
-  templateUrl: './full.component.html',
-  styleUrls: ['./full.component.scss']
+  templateUrl: './admin-layout.component.html',
+  styleUrls: ['./admin-layout.component.scss']
 })
-export class FullComponent {
+export class AdminLayoutComponent {
 
   search: boolean = false;
 
@@ -31,25 +31,25 @@ export class FullComponent {
   sidebarMenu: sidebarMenu[] = [
 
     {
-      link: "/home",
+      link: "/admin/dashboard",
       icon: "home",
-      menu: "Home",
+      menu: "Dashboard",
     },
     
     {
-      link: "/mycourses",
+      link: "/admin/coursemanagement",
       icon: "list",
-      menu: "My courses",
+      menu: "Course management",
     },
     
     {
-      link: "/toolbar",
+      link: "/admin/usermanagement",
       icon: "star",
-      menu: "My badges",
+      menu: "User management",
     },
   
     {
-      link: "/tooltip",
+      link: "/admin/tooltip",
       icon: "bell",
       menu: "Notifications",
     },
