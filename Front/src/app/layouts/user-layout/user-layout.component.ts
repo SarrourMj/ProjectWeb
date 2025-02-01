@@ -33,7 +33,7 @@ export class UserLayoutComponent {
     {
       link: "/user/home",
       icon: "home",
-      menu: "home",
+      menu: "Home",
     },
     
     {

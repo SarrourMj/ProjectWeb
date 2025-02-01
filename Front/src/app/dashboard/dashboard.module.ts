@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DemoFlexyModule } from '../demo-flexy-module'
+import { DemoFlexyModule } from '../demo-LearnSphere'
 import { DashboardComponent } from './dashboard.component';
 import { SalesComponent } from './dashboard-components/sales/sales.component';
 import { ActivityComponent } from './dashboard-components/activity/activity.component';
