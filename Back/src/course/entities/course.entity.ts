@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm';
 import { Chapter } from '../../chapter/entities/chapter.entity';
+import { User } from './../../user/entities/user.entity';
 
 @Entity('course')
 export class Course {
@@ -11,13 +12,22 @@ export class Course {
         unique: true,
     })
     title: string;
-
+    @Column({
+        length: 400,
+        unique: true,
+    })
+    Description: string;
     @Column({
         length: 100,
         nullable: true, // Optional certificate
     })
     certificate: string; // Can be a URL or a badge name
     
+    @Column({
+        length: 100,
+        nullable: true, // Optional image
+    })
+    background_image: string; // Can be a URL 
     @Column({
         length: 50,
     })
@@ -41,4 +51,7 @@ export class Course {
 
 
     chapters: Chapter[];
+
+    @ManyToMany(() => User, user => user.courses)
+    users: User[];
 }
