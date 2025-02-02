@@ -6,10 +6,11 @@ import { AppService } from './app.service';
 import { CourseModule } from './course/course.module';
 import { ChapterModule } from './chapter/chapter.module';
 import { UserModule } from './user/user.module';
-import { AdminModule } from './admin/admin.module';
 import { User } from './user/entities/user.entity';
+import { Role } from './user/entities/role.entity';
 import { Course } from './course/entities/course.entity';
 import { Chapter } from './chapter/entities/chapter.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import { Chapter } from './chapter/entities/chapter.entity';
         username: configService.get<string>('DATABASE_USERNAME'),
         password: configService.get<string>('DATABASE_PASSWORD'),
         database: configService.get<string>('DATABASE_NAME'),
-        entities: [User,Course,Chapter],
+        entities: [User, Role, Course, Chapter],
         synchronize: true, // Set to false in production
       }),
       inject: [ConfigService],
@@ -33,7 +34,7 @@ import { Chapter } from './chapter/entities/chapter.entity';
     CourseModule,
     ChapterModule,
     UserModule,
-    AdminModule,
+    AuthModule,
   ],
   controllers: [AppController],
 })
