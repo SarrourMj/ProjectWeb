@@ -8,7 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { HomeComponent } from './components/home/home.component'; 
-
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 
 
@@ -28,6 +28,7 @@ const routes: Routes = [
       {path:"toolbar", component:ToolbarComponent},
      
       {path:"tooltip", component:TooltipsComponent},
+      {path:"editprofile", component:EditProfileComponent}
     ]
   },
   {
@@ -38,7 +39,9 @@ const routes: Routes = [
       { path: "dashboard", component: DashboardComponent },
       {path:"coursemanagement", component:ToolbarComponent},  
       {path:"usermanagement", component:ToolbarComponent},
-      {path:"tooltip", component:ToolbarComponent}  ]
+      {path:"tooltip", component:ToolbarComponent},
+      {path:"editprofile", component:EditProfileComponent}
+    ]
   },
   { path: "**", redirectTo: "/user/home", pathMatch: "full" },
 ];

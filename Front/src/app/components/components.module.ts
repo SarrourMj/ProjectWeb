@@ -8,8 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TooltipsComponent } from './tooltips/tooltips.component'
 import { MenuComponent } from './menu/menu.component';
-
-
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -19,14 +18,15 @@ import { MenuComponent } from './menu/menu.component';
     MycoursesComponent,
     MenuComponent,
     TooltipsComponent,
+    EditProfileComponent,
     FormsModule
   ],
   exports: [
 
     MycoursesComponent,
-  
     ToolbarComponent,
     MenuComponent,
+    EditProfileComponent,
     
   ]
 })
