@@ -17,7 +17,7 @@ export class Course {
         nullable: true, // Optional certificate
     })
     certificate: string; // Can be a URL or a badge name
-
+    
     @Column({
         length: 50,
     })
@@ -28,5 +28,17 @@ export class Course {
         cascade: true, // Automatically save/update chapters when the course is saved/updated
         onDelete: 'CASCADE', // Delete chapters when the course is deleted
     })
+    @Column()
+    content: string;
+    @Column()
+    slug: string;
+    @Column({type:'timestamp', default: () =>'CURRENT_TIMESTAMP'})
+    createdOn: Date;
+    @Column({type:'timestamp', default: () =>'CURRENT_TIMESTAMP'})
+    modifiedOn: Date;
+    @Column()
+    mainImageUrl: string;
+
+
     chapters: Chapter[];
 }
