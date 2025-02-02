@@ -1,0 +1,79 @@
+<div class="container mt-5">
+  <div class="card shadow-lg p-5 profile-card">
+    <h2 class="mb-4 text-center">Edit Profile</h2>
+
+    <!-- Tabs Navigation -->
+    <ul class="nav nav-tabs justify-content-center mb-4">
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeTab === 'account'" 
+           (click)="setActiveTab('account')">
+          Account
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeTab === 'password'" 
+           (click)="setActiveTab('password')">
+          Change Password
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeTab === 'settings'" 
+           (click)="setActiveTab('settings')">
+          My Settings
+        </a>
+      </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      <!-- Account Settings -->
+      <div *ngIf="activeTab === 'account'">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" class="form-control modern-input" placeholder="John Doe">
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" class="form-control modern-input" placeholder="john@example.com">
+        </div>
+      </div>
+
+      <!-- Password Settings -->
+      <div *ngIf="activeTab === 'password'">
+        <div class="form-group">
+          <label>Current Password</label>
+          <input type="password" class="form-control modern-input">
+        </div>
+
+        <div class="form-group">
+          <label>New Password</label>
+          <input type="password" class="form-control modern-input">
+        </div>
+      </div>
+
+      <!-- User Settings -->
+      <div *ngIf="activeTab === 'settings'">
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="notifications">
+          <label class="form-check-label" for="notifications">
+            Receive Email Notifications
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>Theme Preference</label>
+          <select class="form-control modern-input">
+            <option>Light Theme</option>
+            <option>Dark Theme</option>
+            <option>System Default</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn btn-primary mt-4 modern-btn" (click)="onSubmit()">
+        Save Changes
+      </button>
+    </div>
+  </div>
+</div>
