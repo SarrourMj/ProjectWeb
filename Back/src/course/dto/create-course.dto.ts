@@ -5,7 +5,10 @@ import { CreateChapterDto } from './../../chapter/dto/create-chapter.dto';
 export class CreateCourseDto {
     @IsString()
     @IsNotEmpty()
-    title: string;
+    title: string; 
+
+    content:string;
+    mainImageUrl: string;
 
     @IsString()
     @IsOptional()

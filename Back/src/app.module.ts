@@ -36,6 +36,5 @@ import { Chapter } from './chapter/entities/chapter.entity';
     AdminModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
