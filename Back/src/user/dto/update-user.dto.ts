@@ -1,6 +1,7 @@
 import { IsString, IsNotEmpty, IsEmail, IsArray, IsOptional, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 import { Course } from './../../course/entities/course.entity';
+import { Role } from './../../user/entities/role.entity';
 
 export class UpdateUserDto {
   @IsString()
@@ -16,10 +17,22 @@ export class UpdateUserDto {
   password?: string;
 
   @IsOptional()
+  @IsString()
+  image?: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => Role)
+  @IsOptional()
+  roles?: Role[];
+
+  // Student-specific properties
+  @IsOptional()
   score?: number;
 
   @IsArray()
   @IsOptional()
+  @ValidateNested({ each: true })
   @Type(() => Course)
   courses?: Course[];
 
@@ -27,8 +40,4 @@ export class UpdateUserDto {
   @IsString({ each: true })
   @IsOptional()
   badges?: string[];
-
-  @IsOptional()
-  @IsString()
-  image?: string;
 }

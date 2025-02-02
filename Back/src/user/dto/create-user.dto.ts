@@ -2,6 +2,7 @@ import { Column } from 'typeorm';
 import { IsString, IsNotEmpty, IsEmail, IsArray, ValidateNested, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
 import { Course } from './../../course/entities/course.entity';
+import { Role } from './../../user/entities/role.entity';
 
 export class CreateUserDto {
   @IsString()
@@ -16,19 +17,27 @@ export class CreateUserDto {
   @IsNotEmpty()
   password: string;
 
-  @Column({ default: 0 })
-  score: number;
-
-  @IsArray()
-  @IsString({ each: true })
-  badges: string[];
-
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => Course)
-  courses: Course[];
-
   @IsOptional()
   @IsString()
   image?: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => Role)
+  roles: Role[];
+
+  // Student-specific properties
+  @IsOptional()
+  score?: number;
+
+  @IsArray()
+  @IsOptional()
+  @ValidateNested({ each: true })
+  @Type(() => Course)
+  courses?: Course[];
+
+  @IsArray()
+  @IsString({ each: true })
+  @IsOptional()
+  badges?: string[];
 }
