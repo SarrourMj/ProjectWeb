@@ -8,41 +8,43 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
+const config_1 = require("@nestjs/config");
+const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const course_module_1 = require("./course/course.module");
 const chapter_module_1 = require("./chapter/chapter.module");
 const user_module_1 = require("./user/user.module");
 const admin_module_1 = require("./admin/admin.module");
-const typeorm_1 = require("@nestjs/typeorm");
-const config_1 = require("@nestjs/config");
+const user_entity_1 = require("./user/entities/user.entity");
+const course_entity_1 = require("./course/entities/course.entity");
+const chapter_entity_1 = require("./chapter/entities/chapter.entity");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
+            }),
+            typeorm_1.TypeOrmModule.forRootAsync({
+                imports: [config_1.ConfigModule],
+                useFactory: (configService) => ({
+                    type: 'postgres',
+                    host: configService.get('DATABASE_HOST'),
+                    port: configService.get('DATABASE_PORT'),
+                    username: configService.get('DATABASE_USERNAME'),
+                    password: configService.get('DATABASE_PASSWORD'),
+                    database: configService.get('DATABASE_NAME'),
+                    entities: [user_entity_1.User, course_entity_1.Course, chapter_entity_1.Chapter],
+                    synchronize: true,
+                }),
+                inject: [config_1.ConfigService],
+            }),
             course_module_1.CourseModule,
             chapter_module_1.ChapterModule,
             user_module_1.UserModule,
             admin_module_1.AdminModule,
-            config_1.ConfigModule.forRoot({
-                isGlobal: true,
-                envFilePath: '.env',
-            }),
-            typeorm_1.TypeOrmModule.forRootAsync({
-                imports: [config_1.ConfigModule],
-                inject: [config_1.ConfigService],
-                useFactory: (configService) => ({
-                    type: 'postgres',
-                    host: configService.get('DB_HOST'),
-                    port: configService.get('DB_PORT'),
-                    username: configService.get('DB_USERNAME'),
-                    password: configService.get('DB_PASSWORD'),
-                    database: configService.get('DB_DATABASE'),
-                    synchronize: configService.get('DB_SYNCHRONIZE'),
-                    entities: [__dirname + '/**/*.entity{.ts,.js}'],
-                }),
-            }),
         ],
         controllers: [app_controller_1.AppController],
     })

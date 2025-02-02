@@ -74,7 +74,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], CourseController.prototype, "remove", null);
 exports.CourseController = CourseController = __decorate([
-    (0, common_1.Controller)('course'),
+    (0, common_1.Controller)('courses'),
     __metadata("design:paramtypes", [course_service_1.CourseService])
 ], CourseController);
 //# sourceMappingURL=course.controller.js.map

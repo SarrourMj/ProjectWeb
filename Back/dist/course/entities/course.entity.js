@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Course = void 0;
 const typeorm_1 = require("typeorm");
 const chapter_entity_1 = require("../../chapter/entities/chapter.entity");
+const user_entity_1 = require("./../../user/entities/user.entity");
 let Course = class Course {
 };
 exports.Course = Course;
@@ -28,11 +29,25 @@ __decorate([
 ], Course.prototype, "title", void 0);
 __decorate([
     (0, typeorm_1.Column)({
+        length: 400,
+        unique: true,
+    }),
+    __metadata("design:type", String)
+], Course.prototype, "description", void 0);
+__decorate([
+    (0, typeorm_1.Column)({
         length: 100,
         nullable: true,
     }),
     __metadata("design:type", String)
 ], Course.prototype, "certificate", void 0);
+__decorate([
+    (0, typeorm_1.Column)({
+        length: 100,
+        nullable: true,
+    }),
+    __metadata("design:type", String)
+], Course.prototype, "background_image", void 0);
 __decorate([
     (0, typeorm_1.Column)({
         length: 50,
@@ -44,6 +59,9 @@ __decorate([
         cascade: true,
         onDelete: 'CASCADE',
     }),
+    __metadata("design:type", Array)
+], Course.prototype, "chapters", void 0);
+__decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Course.prototype, "content", void 0);
@@ -63,6 +81,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Course.prototype, "mainImageUrl", void 0);
+__decorate([
+    (0, typeorm_1.ManyToMany)(() => user_entity_1.User, user => user.courses),
+    __metadata("design:type", Array)
+], Course.prototype, "users", void 0);
 exports.Course = Course = __decorate([
     (0, typeorm_1.Entity)('course')
 ], Course);

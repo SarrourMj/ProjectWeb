@@ -9,6 +9,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TooltipsComponent } from './tooltips/tooltips.component'
 import { MenuComponent } from './menu/menu.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { CoursesComponent } from './courses/courses.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -22,7 +24,6 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     FormsModule
   ],
   exports: [
-
     MycoursesComponent,
     ToolbarComponent,
     MenuComponent,

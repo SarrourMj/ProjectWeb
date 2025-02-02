@@ -16,7 +16,7 @@ export class Course {
         length: 400,
         unique: true,
     })
-    Description: string;
+    description: string;
     @Column({
         length: 100,
         nullable: true, // Optional certificate
@@ -38,6 +38,7 @@ export class Course {
         cascade: true, // Automatically save/update chapters when the course is saved/updated
         onDelete: 'CASCADE', // Delete chapters when the course is deleted
     })
+    chapters: Chapter[];
     @Column()
     content: string;
     @Column()
@@ -48,9 +49,6 @@ export class Course {
     modifiedOn: Date;
     @Column()
     mainImageUrl: string;
-
-
-    chapters: Chapter[];
 
     @ManyToMany(() => User, user => user.courses)
     users: User[];

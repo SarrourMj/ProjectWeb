@@ -1,5 +1,10 @@
-import { CreateUserDto } from './create-user.dto';
-declare const UpdateUserDto_base: import("@nestjs/mapped-types").MappedType<Partial<CreateUserDto>>;
-export declare class UpdateUserDto extends UpdateUserDto_base {
+import { Course } from './../../course/entities/course.entity';
+export declare class UpdateUserDto {
+    username?: string;
+    email?: string;
+    password?: string;
+    score?: number;
+    courses?: Course[];
+    badges?: string[];
+    image?: string;
 }
-export {};

@@ -7,22 +7,20 @@ import { TooltipsComponent } from './components/tooltips/tooltips.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
-import { HomeComponent } from './components/home/home.component'; 
+import { CoursesComponent } from './components/courses/courses.component'; 
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
-
+import { CourseDetailComponent } from './coursedetail/coursedetail.component';
 
 
 const routes: Routes = [
   
-  {
+  { 
     path: "user",
     component: UserLayoutComponent,
     children: [
-      {path:"", redirectTo:"/home", pathMatch:"full"},
-      {path:"home", component:HomeComponent},
-   
-      
-
+      {path:"", redirectTo:"/user/courses", pathMatch:"full"},
+      {path:"courses", component:CoursesComponent},
+      { path:"courses/:id", component: CourseDetailComponent},
       {path:"mycourses", component:MycoursesComponent},
      
       {path:"toolbar", component:ToolbarComponent},
@@ -43,7 +41,7 @@ const routes: Routes = [
       {path:"editprofile", component:EditProfileComponent}
     ]
   },
-  { path: "**", redirectTo: "/user/home", pathMatch: "full" },
+  { path: "**", redirectTo: "/user/courses", pathMatch: "full" },
 ];
 
 @NgModule({
