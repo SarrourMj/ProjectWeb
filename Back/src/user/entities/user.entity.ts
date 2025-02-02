@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 import { Course } from './../../course/entities/course.entity';
 import { Role } from './role.entity';
 
@@ -19,9 +19,8 @@ export class User {
   @Column({ nullable: true })
   image?: string;
 
-  @ManyToMany(() => Role, role => role.users)
-  @JoinTable()
-  roles: Role[];
+  @ManyToOne(() => Role, role => role.users)
+  role: Role;
 
   // Student-specific properties
   @Column({ nullable: true })

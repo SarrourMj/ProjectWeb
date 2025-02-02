@@ -21,23 +21,22 @@ export class CreateUserDto {
   @IsString()
   image?: string;
 
-  @IsArray()
-  @ValidateNested({ each: true })
+  @ValidateNested()
   @Type(() => Role)
-  roles: Role[];
+  role: Role;
 
   // Student-specific properties
   @IsOptional()
   score?: number;
 
-  @IsArray()
   @IsOptional()
+  @IsArray()
   @ValidateNested({ each: true })
   @Type(() => Course)
   courses?: Course[];
 
+  @IsOptional()
   @IsArray()
   @IsString({ each: true })
-  @IsOptional()
   badges?: string[];
 }
