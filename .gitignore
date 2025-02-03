@@ -21,8 +21,9 @@ yarn-error.log
 .classpath
 .c9/
 *.launch
-.settings/
-*.sublime-workspace
+.settings/ة+
+*.sublime-workspace 
+
 
 # Visual Studio Code
 .vscode/*
@@ -43,4 +44,5 @@ testem.log
 
 # System files
 .DS_Store
+
 Thumbs.db
