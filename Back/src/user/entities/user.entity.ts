@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 import { Course } from './../../course/entities/course.entity';
+import { Role } from './role.entity';
 
 @Entity('user')
 export class User {
@@ -14,17 +15,21 @@ export class User {
 
   @Column()
   password: string;
-  
-  @Column()
-  score: number;
-
-  @ManyToMany(() => Course)
-  @JoinTable()
-  courses: Course[];
-
-  @Column("simple-array", { default: "" })
-  badges: string[];
 
   @Column({ nullable: true })
   image?: string;
+
+  @ManyToOne(() => Role, role => role.users)
+  role: Role;
+
+  // Student-specific properties
+  @Column({ nullable: true })
+  score?: number;
+
+  @ManyToMany(() => Course, { nullable: true })
+  @JoinTable()
+  courses?: Course[];
+
+  @Column("simple-array", { default: "", nullable: true })
+  badges?: string[];
 }

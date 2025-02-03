@@ -15,17 +15,21 @@ import { DemoFlexyModule } from './demo-LearnSphere'
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ComponentsModule } from './components/components.module';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 
-import { HomeComponent } from './components/home/home.component';
+import { CoursesComponent } from './components/courses/courses.component';
+import { CourseDetailComponent } from './coursedetail/coursedetail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserLayoutComponent,
     AdminLayoutComponent,
-    HomeComponent
+    CoursesComponent,
+    CourseDetailComponent
     ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
