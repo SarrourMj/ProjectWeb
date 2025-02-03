@@ -51,19 +51,25 @@
         </button>
         <mat-menu #menu="matMenu" class="profile-dropdown">
           <div class="p-16 mb-4">
-            <button mat-menu-item class="fs-16" routerLink="/user/editprofile">Edit Profile</button>
-            <button mat-menu-item class="fs-16">Account</button>
-            <button mat-menu-item class="fs-16">Change Password</button>
-            <button mat-menu-item class="fs-16">My Settings</button>
+            <button mat-menu-item class="fs-16" [routerLink]="['/user/editprofile']" [queryParams]="{ tab: 'account' }">
+              Account
+            </button>
+            <button mat-menu-item class="fs-16" [routerLink]="['/user/editprofile']" [queryParams]="{ tab: 'password' }">
+              Change Password
+            </button>
+            <button mat-menu-item class="fs-16" [routerLink]="['/user/editprofile']" [queryParams]="{ tab: 'settings' }">
+              My Settings
+            </button>
           </div>
-
+        
           <hr>
-
+        
           <div class="p-16">
             <button mat-flat-button color="accent" class="w-100 text-white">Logout</button>
           </div>
-
         </mat-menu>
+        
+
       </div>
     </mat-toolbar>
 

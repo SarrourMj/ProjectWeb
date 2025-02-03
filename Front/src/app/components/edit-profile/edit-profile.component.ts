@@ -1,5 +1,5 @@
-// edit-profile.component.ts
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,15 +9,23 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule]
 })
-export class EditProfileComponent {
-  activeTab: string = 'account';
+export class EditProfileComponent implements OnInit {
+
+  activeTab: string = 'account';  // Default to 'account'
+
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
+  ngOnInit() {
+    // Watch for changes in the query parameter and update the tab
+    this.route.queryParams.subscribe(params => {
+      if (params['tab']) {
+        this.activeTab = params['tab'];
+      }
+    });
+  }
 
   setActiveTab(tab: string) {
     this.activeTab = tab;
-  }
-
-  onSubmit() {
-    // Handle form submission
-    console.log('Profile updated');
+    this.router.navigate([], { queryParams: { tab }, queryParamsHandling: 'merge' });
   }
 }

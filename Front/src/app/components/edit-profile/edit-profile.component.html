@@ -1,79 +1,40 @@
 <div class="edit-profile-container">
-  <div class="profile-card shadow-lg">
-    <h2 class="text-center">Edit Profile</h2>
+  <div class="profile-card">
+    <h2>Edit Profile</h2>
 
-    <!-- Modern Tabs -->
+    <!-- Tabs Navigation -->
     <div class="profile-tabs">
-      <button 
-        class="tab-btn" 
-        [class.active]="activeTab === 'account'" 
-        (click)="setActiveTab('account')">
-        Account
-      </button>
-      <button 
-        class="tab-btn" 
-        [class.active]="activeTab === 'password'" 
-        (click)="setActiveTab('password')">
-        Change Password
-      </button>
-      <button 
-        class="tab-btn" 
-        [class.active]="activeTab === 'settings'" 
-        (click)="setActiveTab('settings')">
-        My Settings
-      </button>
+      <button class="tab-btn" [class.active]="activeTab === 'account'" (click)="setActiveTab('account')">Account</button>
+      <button class="tab-btn" [class.active]="activeTab === 'password'" (click)="setActiveTab('password')">Change Password</button>
+      <button class="tab-btn" [class.active]="activeTab === 'settings'" (click)="setActiveTab('settings')">My Settings</button>
     </div>
 
     <!-- Tab Content -->
-    <div class="tab-content">
-      <!-- Account Settings -->
-      <div *ngIf="activeTab === 'account'">
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" class="modern-input" placeholder="John Doe">
-        </div>
-
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" class="modern-input" placeholder="john@example.com">
-        </div>
-      </div>
-
-      <!-- Password Settings -->
-      <div *ngIf="activeTab === 'password'">
-        <div class="form-group">
-          <label>Current Password</label>
-          <input type="password" class="modern-input">
-        </div>
-
-        <div class="form-group">
-          <label>New Password</label>
-          <input type="password" class="modern-input">
-        </div>
-      </div>
-
-      <!-- User Settings -->
-      <div *ngIf="activeTab === 'settings'">
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="notifications">
-          <label class="form-check-label" for="notifications">
-            Receive Email Notifications
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label>Theme Preference</label>
-          <select class="modern-input">
-            <option>Light Theme</option>
-            <option>Dark Theme</option>
-            <option>System Default</option>
-          </select>
-        </div>
-      </div>
-
-      <button class="modern-btn" (click)="onSubmit()">
-        Save Changes
-      </button>
+    <div *ngIf="activeTab === 'account'">
+      <label>Full Name</label>
+      <input type="text" class="modern-input" placeholder="John Doe">
+      
+      <label>Email</label>
+      <input type="email" class="modern-input" placeholder="john@example.com">
     </div>
+
+    <div *ngIf="activeTab === 'password'">
+      <label>Current Password</label>
+      <input type="password" class="modern-input">
+
+      <label>New Password</label>
+      <input type="password" class="modern-input">
+    </div>
+
+    <div *ngIf="activeTab === 'settings'">
+      <label>Theme Preference</label>
+      <select class="modern-input">
+        <option>Light</option>
+        <option>Dark</option>
+        <option>System Default</option>
+      </select>
+    </div>
+
+    <button class="modern-btn">Save Changes</button>
   </div>
 </div>
