@@ -65,7 +65,7 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:returntype", void 0)
 ], CourseController.prototype, "remove", null);
 exports.CourseController = CourseController = tslib_1.__decorate([
-    (0, common_1.Controller)('courses'),
+    (0, common_1.Controller)('course'),
     tslib_1.__metadata("design:paramtypes", [course_service_1.CourseService])
 ], CourseController);
 //# sourceMappingURL=course.controller.js.map
