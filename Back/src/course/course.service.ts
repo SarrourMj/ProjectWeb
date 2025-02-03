@@ -102,10 +102,12 @@ export class CourseService {
   }
 
   async remove(id: number) {
-    const result = await this.courseRepo.delete(id);
-    if (result.affected === 0) {
-      throw new BadRequestException(`Course with ID ${id} not found`);
+    const course = await this.courseRepo.findOne({ where: { id } });
+    if (course) {
+      await this.courseRepo.remove(course);
+    } else {
+      throw new BadRequestException('Course Not Found');
     }
-    return { message: 'Course deleted successfully' };
+    return { success: true, course };
   }
 }

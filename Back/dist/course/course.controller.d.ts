@@ -13,6 +13,7 @@ export declare class CourseController {
     findOne(id: string): Promise<import("./entities/course.entity").Course>;
     update(id: string, updateCourseDto: UpdateCourseDto): Promise<import("typeorm").UpdateResult>;
     remove(id: string): Promise<{
-        message: string;
+        success: boolean;
+        course: import("./entities/course.entity").Course;
     }>;
 }

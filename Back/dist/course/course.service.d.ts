@@ -16,6 +16,7 @@ export declare class CourseService {
     findOne(id: number): Promise<Course>;
     update(id: number, updateCourseDto: UpdateCourseDto): Promise<import("typeorm").UpdateResult>;
     remove(id: number): Promise<{
-        message: string;
+        success: boolean;
+        course: Course;
     }>;
 }
