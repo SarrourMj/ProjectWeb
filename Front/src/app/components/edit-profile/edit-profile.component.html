@@ -1,0 +1,40 @@
+<div class="edit-profile-container">
+  <div class="profile-card">
+    <h2>Edit Profile</h2>
+
+    <!-- Tabs Navigation -->
+    <div class="profile-tabs">
+      <button class="tab-btn" [class.active]="activeTab === 'account'" (click)="setActiveTab('account')">Account</button>
+      <button class="tab-btn" [class.active]="activeTab === 'password'" (click)="setActiveTab('password')">Change Password</button>
+      <button class="tab-btn" [class.active]="activeTab === 'settings'" (click)="setActiveTab('settings')">My Settings</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div *ngIf="activeTab === 'account'">
+      <label>Full Name</label>
+      <input type="text" class="modern-input" placeholder="John Doe">
+      
+      <label>Email</label>
+      <input type="email" class="modern-input" placeholder="john@example.com">
+    </div>
+
+    <div *ngIf="activeTab === 'password'">
+      <label>Current Password</label>
+      <input type="password" class="modern-input">
+
+      <label>New Password</label>
+      <input type="password" class="modern-input">
+    </div>
+
+    <div *ngIf="activeTab === 'settings'">
+      <label>Theme Preference</label>
+      <select class="modern-input">
+        <option>Light</option>
+        <option>Dark</option>
+        <option>System Default</option>
+      </select>
+    </div>
+
+    <button class="modern-btn">Save Changes</button>
+  </div>
+</div>

@@ -9,12 +9,13 @@ const app_controller_1 = require("./app.controller");
 const course_module_1 = require("./course/course.module");
 const chapter_module_1 = require("./chapter/chapter.module");
 const user_module_1 = require("./user/user.module");
-const admin_module_1 = require("./admin/admin.module");
 const user_entity_1 = require("./user/entities/user.entity");
+const role_entity_1 = require("./user/entities/role.entity");
 const course_entity_1 = require("./course/entities/course.entity");
 const chapter_entity_1 = require("./chapter/entities/chapter.entity");
 const category_entity_1 = require("./category/entities/category.entity");
 const category_module_1 = require("./category/category.module");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -33,7 +34,7 @@ exports.AppModule = AppModule = tslib_1.__decorate([
                     username: configService.get('DATABASE_USERNAME'),
                     password: configService.get('DATABASE_PASSWORD'),
                     database: configService.get('DATABASE_NAME'),
-                    entities: [user_entity_1.User, course_entity_1.Course, chapter_entity_1.Chapter, category_entity_1.Category],
+                    entities: [user_entity_1.User, course_entity_1.Course, chapter_entity_1.Chapter, category_entity_1.Category, role_entity_1.Role],
                     synchronize: true,
                 }),
                 inject: [config_1.ConfigService],
@@ -41,8 +42,8 @@ exports.AppModule = AppModule = tslib_1.__decorate([
             course_module_1.CourseModule,
             chapter_module_1.ChapterModule,
             user_module_1.UserModule,
-            admin_module_1.AdminModule,
             category_module_1.CategoryModule,
+            auth_module_1.AuthModule,
         ],
         controllers: [app_controller_1.AppController],
     })

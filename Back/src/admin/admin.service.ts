@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAdminDto } from './dto/create-admin.dto';
-import { UpdateAdminDto } from './dto/update-admin.dto';
+//import { CreateAdminDto } from './dto/create-admin.dto';
+//import { UpdateAdminDto } from './dto/update-admin.dto';
 
 @Injectable()
 export class AdminService {
-  create(_createAdminDto: CreateAdminDto) {
+ /* create(_createAdminDto: CreateAdminDto) {
     return 'This action adds a new admin';
   }
 
@@ -22,5 +22,5 @@ export class AdminService {
 
   remove(id: number) {
     return `This action removes a #${id} admin`;
-  }
+  }*/
 }

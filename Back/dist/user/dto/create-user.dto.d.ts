@@ -1,10 +1,12 @@
 import { Course } from './../../course/entities/course.entity';
+import { Role } from './../../user/entities/role.entity';
 export declare class CreateUserDto {
     username: string;
     email: string;
     password: string;
-    score: number;
-    badges: string[];
-    courses: Course[];
     image?: string;
+    role: Role;
+    score?: number;
+    courses?: Course[];
+    badges?: string[];
 }

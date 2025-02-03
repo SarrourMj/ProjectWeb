@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f6f9;
+}
+
+/* 🔹 Bigger & More Spacious Container */
+.edit-profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  padding: 40px;
+}
+
+/* 🔹 Larger Profile Card */
+.profile-card {
+  width: 700px;  /* Increased width */
+  background: white;
+  padding: 50px;  /* More padding for spacious feel */
+  border-radius: 16px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* 🔹 Title */
+h2 {
+  font-weight: 700;
+  color: #222;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* 🔹 Bigger Tabs */
+.profile-tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 16px;  /* Larger buttons */
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  background: #f1f3f5;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+  background: #fb9678;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* 🔹 Input Fields - Bigger & Spaced Out */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.modern-input {
+  width: 100%;
+  padding: 14px;  /* Bigger input fields */
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  transition: 0.3s ease;
+}
+
+.modern-input:focus {
+  border-color: #fb9678;
+  box-shadow: 0px 0px 12px rgba(0, 123, 255, 0.3);
+}
+
+/* 🔹 Save Button - Bigger & More Spacious */
+.modern-btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  background: #fb9678;
+  border: none;
+  border-radius: 10px;
+  transition: 0.3s ease;
+  margin-top: 30px;
+
+}
+
+.modern-btn:hover {
+  background: #0056b3;
+}
+
+/* 🔹 Smooth Clicks */
+button, input, select {
+  transition: 0.2s ease-in-out;
+}

@@ -31,9 +31,9 @@ export class UserLayoutComponent {
   sidebarMenu: sidebarMenu[] = [
 
     {
-      link: "/user/home",
+      link: "/user/courses",
       icon: "home",
-      menu: "Home",
+      menu: "Courses",
     },
     
     {

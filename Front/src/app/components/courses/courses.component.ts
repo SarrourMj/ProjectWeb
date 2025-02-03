@@ -4,10 +4,10 @@ import { Course } from '../../models/course.model';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './courses.component.html',
+  styleUrls: ['./courses.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class CoursesComponent implements OnInit {
   courses: Course[] = [];
   filteredCourses: Course[] = [];
   searchQuery: string = '';
@@ -15,14 +15,22 @@ export class HomeComponent implements OnInit {
   constructor(private courseService: CourseService) {}
 
   ngOnInit(): void {
-    this.courses = this.courseService.getCourses();
-    this.filteredCourses = this.courses;
+    this.courseService.getCourses().subscribe({
+      next: (data) => {
+        this.courses = data;
+        this.filteredCourses = data; // Initialize filteredCourses with all courses
+        console.log('Courses loaded in component:', this.courses);
+      },
+      error: (error) => {
+        console.error('Error loading courses in component:', error);
+      }
+    });
   }
-
   filterCourses(): void {
     this.filteredCourses = this.courses.filter(course =>
       course.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
       course.description.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
+ 
 }
