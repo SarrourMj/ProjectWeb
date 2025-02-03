@@ -4,7 +4,7 @@ import { UpdateChapterDto } from './dto/update-chapter.dto';
 
 @Injectable()
 export class ChapterService {
-  create(createChapterDto: CreateChapterDto) {
+  create(_createChapterDto: CreateChapterDto) {
     return 'This action adds a new chapter';
   }
 
@@ -16,7 +16,7 @@ export class ChapterService {
     return `This action returns a #${id} chapter`;
   }
 
-  update(id: number, updateChapterDto: UpdateChapterDto) {
+  update(id: number, _updateChapterDto: UpdateChapterDto) {
     return `This action updates a #${id} chapter`;
   }
 

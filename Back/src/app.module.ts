@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { CourseModule } from './course/course.module';
 import { ChapterModule } from './chapter/chapter.module';
 import { UserModule } from './user/user.module';
@@ -10,6 +9,9 @@ import { AdminModule } from './admin/admin.module';
 import { User } from './user/entities/user.entity';
 import { Course } from './course/entities/course.entity';
 import { Chapter } from './chapter/entities/chapter.entity';
+import { Category } from './category/entities/category.entity';
+import { CategoryModule } from './category/category.module';
+
 
 @Module({
   imports: [
@@ -25,8 +27,8 @@ import { Chapter } from './chapter/entities/chapter.entity';
         username: configService.get<string>('DATABASE_USERNAME'),
         password: configService.get<string>('DATABASE_PASSWORD'),
         database: configService.get<string>('DATABASE_NAME'),
-        entities: [User,Course,Chapter],
-        synchronize: true, // Set to false in production
+        entities: [User,Course,Chapter, Category],
+        synchronize: true,
       }),
       inject: [ConfigService],
     }),
@@ -34,6 +36,7 @@ import { Chapter } from './chapter/entities/chapter.entity';
     ChapterModule,
     UserModule,
     AdminModule,
+    CategoryModule,
   ],
   controllers: [AppController],
 })

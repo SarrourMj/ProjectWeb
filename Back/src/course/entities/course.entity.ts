@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, ManyToOne, JoinColumn } from 'typeorm';
+import { Category } from '../../category/entities/category.entity';
 import { Chapter } from '../../chapter/entities/chapter.entity';
 import { User } from './../../user/entities/user.entity';
 
@@ -12,32 +13,26 @@ export class Course {
         unique: true,
     })
     title: string;
-    @Column({
-        length: 400,
-        unique: true,
-    })
-    Description: string;
+   
     @Column({
         length: 100,
-        nullable: true, // Optional certificate
+        nullable: true, 
     })
-    certificate: string; // Can be a URL or a badge name
+    certificate: string; 
     
     @Column({
         length: 100,
-        nullable: true, // Optional image
+        nullable: true,
     })
-    background_image: string; // Can be a URL 
-    @Column({
-        length: 50,
-    })
-    category: string; // Simple string for category
+    background_image: string;
 
-    // Strong aggregation with Chapter (One-to-Many)
+
     @OneToMany(() => Chapter, chapter => chapter.course, {
         cascade: true, // Automatically save/update chapters when the course is saved/updated
         onDelete: 'CASCADE', // Delete chapters when the course is deleted
-    })
+
+    })       chapters: Chapter[];
+
     @Column()
     content: string;
     @Column()
@@ -49,9 +44,15 @@ export class Course {
     @Column()
     mainImageUrl: string;
 
-
-    chapters: Chapter[];
+    @Column()
+    categoriesId: number;
 
     @ManyToMany(() => User, user => user.courses)
     users: User[];
+
+    @ManyToOne(() => Category, category => category.course, { eager: true} )
+    @JoinColumn({
+        name: 'categoriesId',
+      })
+    category: Category;
 }

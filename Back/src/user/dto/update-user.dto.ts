@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsEmail, IsArray, IsOptional, ValidateNested } from 'class-validator';
+import { IsString, IsEmail, IsArray, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
 import { Course } from './../../course/entities/course.entity';
 

@@ -27,13 +27,9 @@
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/typeorm": "^11.0.0",
     "back": "file:",
-<<<<<<< HEAD
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
-=======
-    "class-validator": "^0.14.1",
     "dotenv": "^16.4.7",
->>>>>>> d818c9a3e8e0032219d5ecf38c0db9acc6549b4d
     "mapped-types": "^0.0.1",
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.2",
@@ -46,7 +42,7 @@
     "@nestjs/testing": "^11.0.1",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.10.7",
+    "@types/node": "^22.13.0",
     "@types/supertest": "^6.0.2",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",

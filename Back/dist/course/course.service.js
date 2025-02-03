@@ -1,18 +1,7 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CourseService = void 0;
+const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
 const course_entity_1 = require("./entities/course.entity");
 const typeorm_1 = require("@nestjs/typeorm");
@@ -23,14 +12,36 @@ let CourseService = class CourseService {
     }
     async create(createCourseDto) {
         console.log('Received DTO:', createCourseDto);
-        if (!createCourseDto || !createCourseDto.title) {
+        if (!createCourseDto || !createCourseDto.title || !createCourseDto.categoriesId) {
             throw new common_1.BadRequestException('Invalid course data');
         }
         const slug = createCourseDto.title.split(" ").join('_').toLowerCase();
         return await this.repo.insert({ ...createCourseDto, slug });
     }
-    async findAll() {
-        return await this.repo.find();
+    async findAll(query) {
+        console.log('Query Parameters:', query);
+        const myQuery = this.repo
+            .createQueryBuilder('course')
+            .leftJoinAndSelect('course.category', 'category');
+        if (query && Object.keys(query).length > 0) {
+            const queryKeys = Object.keys(query);
+            if (queryKeys.includes('slug')) {
+                myQuery.where('course.slug LIKE :slug', { slug: `%${query['slug']}%` });
+            }
+            if (queryKeys.includes('sort')) {
+                const sortOrder = query['sort']?.toUpperCase();
+                if (sortOrder === 'ASC' || sortOrder === 'DESC') {
+                    myQuery.orderBy('course.title', sortOrder);
+                }
+                else {
+                    throw new Error('Invalid sort order. Use "asc" or "desc".');
+                }
+            }
+            if (queryKeys.includes('category')) {
+                myQuery.andWhere('category.title = :cat', { cat: query['category'] });
+            }
+        }
+        return await myQuery.getMany();
     }
     async findOne(id) {
         const c = await this.repo.findOne({ where: { id } });
@@ -51,9 +62,9 @@ let CourseService = class CourseService {
     }
 };
 exports.CourseService = CourseService;
-exports.CourseService = CourseService = __decorate([
+exports.CourseService = CourseService = tslib_1.__decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(course_entity_1.Course)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    tslib_1.__param(0, (0, typeorm_1.InjectRepository)(course_entity_1.Course)),
+    tslib_1.__metadata("design:paramtypes", [typeorm_2.Repository])
 ], CourseService);
 //# sourceMappingURL=course.service.js.map

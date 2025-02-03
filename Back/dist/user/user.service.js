@@ -1,32 +1,45 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
+const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
+const typeorm_2 = require("typeorm");
+const user_entity_1 = require("./entities/user.entity");
 let UserService = class UserService {
-    create(createUserDto) {
-        return 'This action adds a new user';
+    constructor(userRepository) {
+        this.userRepository = userRepository;
     }
-    findAll() {
-        return `This action returns all user`;
+    async create(createUserDto) {
+        const user = this.userRepository.create(createUserDto);
+        return this.userRepository.save(user);
     }
-    findOne(id) {
-        return `This action returns a #${id} user`;
+    async findAll() {
+        return this.userRepository.find();
     }
-    update(id, updateUserDto) {
-        return `This action updates a #${id} user`;
+    async findOne(id) {
+        const user = await this.userRepository.findOne({ where: { id } });
+        if (!user) {
+            throw new Error('User not found');
+        }
+        return user;
     }
-    remove(id) {
-        return `This action removes a #${id} user`;
+    async update(id, updateUserDto) {
+        await this.userRepository.update(id, updateUserDto);
+        const user = await this.userRepository.findOne({ where: { id } });
+        if (!user) {
+            throw new Error('User not found');
+        }
+        return user;
+    }
+    async remove(id) {
+        await this.userRepository.delete(id);
     }
 };
 exports.UserService = UserService;
-exports.UserService = UserService = __decorate([
-    (0, common_1.Injectable)()
+exports.UserService = UserService = tslib_1.__decorate([
+    (0, common_1.Injectable)(),
+    tslib_1.__param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
+    tslib_1.__metadata("design:paramtypes", [typeorm_2.Repository])
 ], UserService);
 //# sourceMappingURL=user.service.js.map
