@@ -1,8 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable,JoinColumn } from 'typeorm';
 import { Course } from './../../course/entities/course.entity';
 import { Role } from './role.entity';
+import { Certificate } from './../../certificate/entities/certificate.entity';
 
-@Entity('user')
+@Entity('users')//changed 'user' to 'users' to avoid conflict in postgres with the database user : postgres
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -20,6 +21,7 @@ export class User {
   image?: string;
 
   @ManyToOne(() => Role, role => role.users)
+  @JoinColumn({ name: 'roleid' })
   role: Role;
 
   // Student-specific properties
@@ -27,9 +29,30 @@ export class User {
   score?: number;
 
   @ManyToMany(() => Course, { nullable: true })
-  @JoinTable()
-  courses?: Course[];
+@JoinTable({
+    name: 'user_courses_course', // Custom join table name
+    joinColumn: {
+        name: 'userid', // Column name for the user ID
+        referencedColumnName: 'id', // Primary key of the User entity
+    },
+    inverseJoinColumn: {
+        name: 'courseid', // Column name for the course ID
+        referencedColumnName: 'id', // Primary key of the Course entity
+    },
+})
+courses?: Course[];
 
-  @Column("simple-array", { default: "", nullable: true })
-  badges?: string[];
+@ManyToMany(() => Certificate, (certificate) => certificate.users, { nullable: true, onDelete: 'CASCADE' })
+@JoinTable({
+    name: 'user_certificates_certificate', // Custom join table name
+    joinColumn: {
+        name: 'userid', // Column name for the user ID
+        referencedColumnName: 'id', // Primary key of the User entity
+    },
+    inverseJoinColumn: {
+        name: 'certificateid', // Column name for the certificate ID
+        referencedColumnName: 'id', // Primary key of the Certificate entity
+    },
+})
+certificates: Certificate[];
 }

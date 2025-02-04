@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
+import { Course } from './../course/entities/course.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
@@ -10,6 +11,8 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    @InjectRepository(Course)
+    private readonly courseRepository: Repository<Course>,
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
@@ -22,7 +25,7 @@ export class UserService {
   }
 
   async findOne(id: number): Promise<User> {
-    const user = await this.userRepository.findOne({ where: { id } });
+    const user = await this.userRepository.findOne({ where: { id }, relations: ['courses'] });
     if (!user) {
       throw new Error('User not found');
     }
@@ -31,7 +34,7 @@ export class UserService {
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     await this.userRepository.update(id, updateUserDto);
-    const user = await this.userRepository.findOne({ where: { id } });
+    const user = await this.userRepository.findOne({ where: { id }, relations: ['courses'] });
     if (!user) {
       throw new Error('User not found');
     }
@@ -40,5 +43,31 @@ export class UserService {
 
   async remove(id: number): Promise<void> {
     await this.userRepository.delete(id);
+  }
+
+  async enrollCourse(userId: number, courseId: number): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { id: userId }, relations: ['courses'] });
+    const course = await this.courseRepository.findOne({ where: { id: courseId } });
+
+    if (!user || !course) {
+      throw new Error('User or Course not found');
+    }
+
+    if (!user.courses) {
+      user.courses = [];
+    }
+
+    user.courses.push(course);
+    return this.userRepository.save(user);
+  }
+
+  async getUserCourses(userId: number): Promise<Course[]> {
+    const user = await this.userRepository.findOne({ where: { id: userId }, relations: ['courses'] });
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    return user.courses || [];
   }
 }

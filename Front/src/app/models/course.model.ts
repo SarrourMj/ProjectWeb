@@ -1,11 +1,11 @@
+import { Category } from './category.model';
 import { Chapter } from './chapter.model';
 export interface Course {
   id: number;
   title: string;
-  //description: string;
   certificate: string | null;
   background_image: string | null;
-  category: string;
+  category: Category;
   content: string;
   slug: string;
   createdOn: string;

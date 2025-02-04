@@ -89,7 +89,8 @@ export class CourseService {
   async findOne(id: number) {
     const course = await this.courseRepo.findOne({
       where: { id },
-      relations: ['chapters'], // Include chapters in the response
+      relations: ['chapters','category'],
+      
     });
     if (!course) {
       throw new BadRequestException('Course Not Found');
