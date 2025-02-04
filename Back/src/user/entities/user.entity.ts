@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTabl
 import { Course } from './../../course/entities/course.entity';
 import { Role } from './role.entity';
 
-@Entity('user')
+@Entity('users')//changed 'user' to 'users' to avoid conflict in postgres with the database user : postgres
 export class User {
   @PrimaryGeneratedColumn()
   id: number;

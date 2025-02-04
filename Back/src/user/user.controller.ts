@@ -2,6 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entities/user.entity';
+import { Course } from 'src/course/entities/course.entity';
 
 @Controller('user')
 export class UserController {
@@ -30,5 +32,17 @@ export class UserController {
   @Delete(':id')
   remove(@Param('id') id: number) {
     return this.userService.remove(id);
+  }
+  @Post(':userId/enroll/:courseId')
+  async enrollCourse(
+    @Param('userId') userId: number,
+    @Param('courseId') courseId: number
+  ): Promise<User> {
+    return this.userService.enrollCourse(userId, courseId);
+  }
+
+  @Get(':userId/courses')
+  async getUserCourses(@Param('userId') userId: number): Promise<Course[]> {
+    return this.userService.getUserCourses(userId);
   }
 }
