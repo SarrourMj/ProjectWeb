@@ -1,1 +1,46 @@
-<p>coursedetail works!</p>
+<div *ngIf="course" class="course-container">
+    
+    
+    <h2>{{ course.title }}</h2>
+    <p>Category :{{ course.category.title }}</p>
+    <p>{{ course.content }}</p>
+    
+
+    <button class="enroll-button">Enroll</button>
+  
+    <h3>Chapters</h3>
+    
+    <div class="chapter-list">
+      <div *ngFor="let chapter of course.chapters" class="chapter-card">
+        <div class="chapter-header" (click)="toggleChapter(chapter)">
+          <h4>{{ chapter.title }}</h4>
+          <button class="toggle-button">
+            {{ expandedChapters.has(chapter.id) ? '▲' : '▼' }}
+          </button>
+        </div>
+  
+        <div *ngIf="expandedChapters.has(chapter.id)" class="chapter-content">
+          <p>{{ chapter.content }}</p>
+  
+          <div *ngIf="chapter.questions && chapter.questions.length > 0">
+            <h5>Questions</h5>
+            <div *ngFor="let question of chapter.questions" class="question-box">
+              <p><strong>{{ question.question }}</strong></p>
+              <input
+                type="text"
+                [(ngModel)]="userAnswers[chapter.id][question.question]"
+                placeholder="Enter your answer"
+              />
+              <button (click)="validateAnswer(chapter.id, question)">
+                Submit
+              </button>
+              <p *ngIf="feedback[chapter.id][question.question]">
+                {{ feedback[chapter.id][question.question] }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

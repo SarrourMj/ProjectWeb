@@ -6,7 +6,7 @@ import { UpdateCourseDto } from './dto/update-course.dto';
 
 
 
-@Controller('course')
+@Controller('courses')
 export class CourseController {
   constructor(private readonly courseService: CourseService) {}
 
