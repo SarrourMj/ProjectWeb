@@ -48,6 +48,7 @@ export class CourseDetailComponent implements OnInit {
         });
       });
     }
+    
   }
 
   validateAnswer(chapterId: number, question: Question): void {
@@ -56,5 +57,15 @@ export class CourseDetailComponent implements OnInit {
 
     this.feedback[chapterId][question.question] =
       userAnswer === correctAnswer ? '✅ Correct!' : '❌ Incorrect. Try again.';
+  }
+  enrollInCourse(): void {
+    const userId = 1; // Replace with the actual user ID
+    if (this.course) {
+      this.courseService.enrollUserCourse(userId, this.course.id).subscribe(() => {
+        console.log('User enrolled in course successfully');
+      }, (error) => {
+        console.error('Error enrolling user in course:', error);
+      });
+    }
   }
 }

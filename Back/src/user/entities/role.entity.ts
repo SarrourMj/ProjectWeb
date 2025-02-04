@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { User } from './user.entity';
 
-@Entity()
+@Entity('roles')//added the entity decorator to create a table in the database
 export class Role {
   @PrimaryGeneratedColumn()
   id: number;
