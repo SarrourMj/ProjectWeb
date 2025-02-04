@@ -11,12 +11,8 @@ import { MessageService } from "primeng/api";
   styleUrls: ['./Admincourse.component.scss']
 })
 export class AdminCourseComponent implements OnInit {
-  // @ts-ignore
-  @ViewChild('dt1', { static: false }) dt1: Table;
-  // @ts-ignore
-  @ViewChild('search') search: HTMLInputElement;
 
-  loading: boolean = true;
+
   courses: Course[] = [];
   filteredCourses: Course[] = [];
   searchQuery: string = '';

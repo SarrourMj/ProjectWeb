@@ -9,7 +9,7 @@ import { Chapter } from "src/app/models/chapter.model";
   providedIn: 'root'
 })
 export class ApiService {
-  private URL = 'http://localhost:3000/api'; // Update with your NestJS API URL
+  private URL = 'http://localhost:3000'; // Update with your NestJS API URL
 
   constructor(private http: HttpClient) {}
 

@@ -19,6 +19,7 @@ export class NewComponent implements OnInit {
   selectedCategoryId?: number;
   categories: Category[] = [];
   mainImagePath = '';
+  certificateImagePath = '';
 
   constructor(
     private apiService: ApiService,
@@ -62,28 +63,6 @@ export class NewComponent implements OnInit {
     chapter.questions.splice(index, 1);
   }
 
-  onFileSelected(event: any): void {
-    const file: File = event.files[0];
-    if (file) {
-      this.apiService.uploadImage(file).subscribe({
-        next: (response: any) => {
-          this.mainImagePath = response.path;
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Image uploaded successfully'
-          });
-        },
-        error: () => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Image upload failed'
-          });
-        }
-      });
-    }
-  }
 
   createCourse(form: NgForm): void {
     if (form.invalid || !this.selectedCategoryId) return;
@@ -123,5 +102,32 @@ export class NewComponent implements OnInit {
     this.chapters = [this.createNewChapter()];
     this.selectedCategoryId = undefined;
     this.mainImagePath = '';
+  }
+
+  onFileSelected(event: any, type: 'mainImage' | 'certificateImage'): void {
+    const file: File = event.files[0];
+    if (file) {
+      this.apiService.uploadImage(file).subscribe({
+        next: (response: any) => {
+          if (type === 'mainImage') {
+            this.mainImagePath = response.path;
+          } else {
+            this.certificateImagePath = response.path;
+          }
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Image uploaded successfully'
+          });
+        },
+        error: () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Image upload failed'
+          });
+        }
+      });
+    }
   }
 }

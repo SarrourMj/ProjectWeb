@@ -39,7 +39,7 @@ const routes: Routes = [
       { path: "", redirectTo: "/admin/dashboard", pathMatch: "full" },
       { path: "dashboard", component: DashboardComponent },
       {path:"coursemanagement", children:[ 
-        {path:" ", component:AdminCourseComponent},
+        {path:"", component:AdminCourseComponent},
 
         
         {path:"Create", component: NewComponent},
