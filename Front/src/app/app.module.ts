@@ -29,6 +29,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MessageService } from 'primeng/api';
 import {NewComponent} from './components/AdminCourse/New/New.component';
 import { AdminCourseComponent } from './components/AdminCourse/AdminCourse.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { AdminCourseComponent } from './components/AdminCourse/AdminCourse.compo
     FooterComponent,
     AdminCourseComponent,
     NewComponent
+   
     ],
   imports: [
     FileUploadModule,
@@ -57,8 +60,8 @@ import { AdminCourseComponent } from './components/AdminCourse/AdminCourse.compo
     TableModule,
     ToastModule,
     InputTextModule,
-    ReactiveFormsModule
-  
+    ReactiveFormsModule,
+    LoginComponent
   ],
   
   providers: [MessageService],

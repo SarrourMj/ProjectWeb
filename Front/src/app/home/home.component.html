@@ -1,0 +1,124 @@
+<!-- <mat-toolbar color="primary">
+  <div class="toolbar-container">
+    <img src="assets/logo.png" alt="Logo" class="logo">
+    <span class="spacer"></span>
+    <button mat-raised-button class="btn-nav">Sign In</button>
+  </div>
+</mat-toolbar> -->
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <mat-toolbar color="primary">
+      <div class="toolbar-content">
+        <span class="ms-16 fw-medium fs-26">CourseQuest</span>
+        <span class="menu-items">
+          <a href="#">Home</a>
+          <a href="#">About us</a>
+        </span>
+        <button mat-raised-button (click)="goToLogin()" color="primary">login</button>
+        <button mat-raised-button color="primary">sign up</button>
+      </div>
+    </mat-toolbar>
+    <div class="hero-content">
+      <h1>Unlock Your Potential in the Tech Industry</h1>
+      <p>Explore World-Class Training Tailored for Aspiring Tech Professionals</p>
+      <p>Join our community of innovators and get free access to courses specifically designed to enhance your 
+        skills in software engineering and data science. Whether you're starting out or looking to upgrade your skills, 
+        our expert-led tutorials, hands-on projects, 
+        and interactive webinars will equip you with the knowledge you need to excel in the global job market.</p>
+      <div class="hero-buttons">
+        <button mat-raised-button color="primary">sign up for Free</button>
+        
+      </div>
+    </div>
+  </section>
+  
+  <section class="info-section">
+    <img src="https://manara.tech/hubfs/Screenshot-1.png" alt="Expert Discussion">
+    <div>
+      <h2>Find Out from Global Experts if You’re Ready</h2>
+      <p>Get Assessed & Validated by Experts from Silicon Valley and Review Your Resume with a Professional</p>
+    </div>
+  </section>
+  
+  <section class="testimonials-section">
+    <h2>Testimonials</h2>
+    <div class="teste-cards">
+  
+      <div class="testimonial-card" *ngFor="let testimonial of testimonials">
+        <img src="{{ testimonial.photo }}" alt="{{ testimonial.name }}" class="testimonial-photo">
+        <blockquote>
+          "{{ testimonial.quote }}"
+        </blockquote>
+        <p class="testimonial-name">{{ testimonial.name }}</p>
+        <p class="testimonial-info">{{ testimonial.role }}, {{ testimonial.experience }} Years of Experience</p>
+      </div>
+    </div>
+  
+  </section>
+  
+  
+  <section class="team-section">
+    <h2>Meet Our team</h2>
+    <div class="teste-cards">
+  
+      <div class="team-card" *ngFor="let member of team">
+        <div class="card-header">
+          <img src="{{member.photo}}" alt="{{member.name}}" class="profile-img">
+        </div>
+        <div class="card-body">
+          <h3>{{member.name}}</h3>
+          <p>{{member.role}}</p>
+          <div class="social-links">
+            <a href="{{member.twitter}}" *ngIf="member.twitter"><i class="fab fa-twitter"></i></a>
+            <a href="{{member.linkedin}}" *ngIf="member.linkedin"><i class="fab fa-linkedin-in"></i></a>
+            <a href="{{member.facebook}}" *ngIf="member.facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-block">
+        <img src="assets/logo.png" alt="Logo" class="footer-logo">
+        <p>Discover software developers and Diversify the global tech sector </p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>For Talent</h4>
+          <ul>
+            <li><a href="#">Sign up for CourseQuest</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>For Companies</h4>
+          <ul>
+            <li><a href="#">Feature your Content</a></li>
+            <li><a href="#">Develop your Team</a></li>
+            <li><a href="#">Other Solutions</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>About CourseQuest</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Social Media</h4>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 CourseQuest | <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+    </div>
+  </footer>

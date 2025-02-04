@@ -13,10 +13,20 @@ import { CourseDetailComponent } from './coursedetail/coursedetail.component';
 import { AdminCourseComponent } from './components/AdminCourse/AdminCourse.component';
 import { NewComponent } from './components/AdminCourse/New/New.component';
 import { EditComponent } from './components/AdminCourse/edit/edit.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
   
+  { 
+    path: "home",
+    component: HomeComponent
+  },
+  {
+    path :"login", 
+    component : LoginComponent
+  },
   { 
     path: "user",
     component: UserLayoutComponent,
