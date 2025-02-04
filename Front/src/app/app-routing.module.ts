@@ -10,10 +10,23 @@ import { UserLayoutComponent } from './layouts/user-layout/user-layout.component
 import { CoursesComponent } from './components/courses/courses.component'; 
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { CourseDetailComponent } from './coursedetail/coursedetail.component';
+import { AdminCourseComponent } from './components/AdminCourse/AdminCourse.component';
+import { NewComponent } from './components/AdminCourse/New/New.component';
+import { EditComponent } from './components/AdminCourse/edit/edit.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
   
+  { 
+    path: "home",
+    component: HomeComponent
+  },
+  {
+    path :"login", 
+    component : LoginComponent
+  },
   { 
     path: "user",
     component: UserLayoutComponent,
@@ -35,8 +48,17 @@ const routes: Routes = [
     children: [
       { path: "", redirectTo: "/admin/dashboard", pathMatch: "full" },
       { path: "dashboard", component: DashboardComponent },
-      {path:"coursemanagement", component:ToolbarComponent},  
-      {path:"usermanagement", component:ToolbarComponent},
+      {path:"coursemanagement", children:[ 
+        {path:"", component:AdminCourseComponent},
+
+        
+        {path:"Create", component: NewComponent},
+        {path:"Edit", component: EditComponent},
+
+
+
+      ]
+      },
       {path:"tooltip", component:ToolbarComponent},
       {path:"editprofile", component:EditProfileComponent}
     ]

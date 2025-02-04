@@ -15,4 +15,11 @@
     top: 0;
     z-index: 1;
   }
+  .dropdown-options {
+    padding-left: 32px; // Indent the dropdown options
+    list-style-type: none; // Remove bullet points
   
+    .sidebar-menu {
+      padding-left: 16px; // Add padding for better alignment
+    }
+  }
