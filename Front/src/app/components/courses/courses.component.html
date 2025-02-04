@@ -1,5 +1,9 @@
 <div class="search-container">
   <input type="text" [(ngModel)]="searchQuery" (input)="filterCourses()" placeholder="Search courses..." class="search-input" />
+  <select [(ngModel)]="selectedCategory" (change)="filterCourses()" class="search-input category-select">
+    <option value="">All Categories</option>
+    <option *ngFor="let category of categories" [value]="category.title">{{ category.title }}</option>
+  </select>
 </div>
 
 <div class="course-list">
