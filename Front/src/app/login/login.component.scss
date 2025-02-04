@@ -1,0 +1,72 @@
+/* Global styles */
+html, body {
+    height: 100%; /* Ensures the full height of the viewport */
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f4f4f4; /* Optional: Sets a background color for the entire page */
+  }
+  
+  /* Centering and styling the login container */
+  .login-container {
+    
+    width: 100%; /* Allows container to be responsive */
+    max-width: 600px; /* Increases width from 300px to 400px */
+    margin: auto;
+    padding: 30px; /* Increases padding for better spacing */
+    box-shadow: 0 4px 8px rgb(178 27 27 / 60%); /* Subtle shadow for depth */
+    border-radius: 8px;
+    background: #fff;
+    display: flex; /* Ensures flex properties for centering */
+    flex-direction: column;
+    position: relative;  /* Adjusts position without removing from document flow */
+  top: 160px;           /* Moves down from its original position */
+  left: 20px;    /* Aligns children elements (form groups) vertically */
+  }
+  
+  .form-group {
+    margin-bottom: 20px; /* Slightly more space between form fields */
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px; /* Increases spacing below label for clarity */
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 12px; /* More padding for better text visibility */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px; /* More padding for a better click area */
+    border: none;
+    background-color: #fb9678; /* Maintains the same button color */
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px; /* More margin to separate it from input fields */
+  }
+  
+  button:disabled {
+    background-color: #fb9678; /* Dulls the button when disabled for better UX */
+  }
+  .register-link {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .register-link a {
+    color: #fb9678; /* Styling link color to match your button */
+    text-decoration: none; /* Removes underline */
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline; /* Adds underline on hover for better interaction */
+  }

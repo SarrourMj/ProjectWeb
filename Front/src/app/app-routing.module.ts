@@ -10,10 +10,20 @@ import { UserLayoutComponent } from './layouts/user-layout/user-layout.component
 import { CoursesComponent } from './components/courses/courses.component'; 
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { CourseDetailComponent } from './coursedetail/coursedetail.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
   
+  { 
+    path: "home",
+    component: HomeComponent
+  },
+  {
+    path :"login", 
+    component : LoginComponent
+  },
   { 
     path: "user",
     component: UserLayoutComponent,

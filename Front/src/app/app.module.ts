@@ -19,6 +19,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // I
 
 import { CoursesComponent } from './components/courses/courses.component';
 import { CourseDetailComponent } from './coursedetail/coursedetail.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { CourseDetailComponent } from './coursedetail/coursedetail.component';
     UserLayoutComponent,
     AdminLayoutComponent,
     CoursesComponent,
-    CourseDetailComponent
+    CourseDetailComponent,
+   
     ],
   imports: [
     HttpClientModule,
@@ -37,7 +40,8 @@ import { CourseDetailComponent } from './coursedetail/coursedetail.component';
     DemoFlexyModule,
     DashboardModule,
     ComponentsModule,
-    FormsModule
+    FormsModule, 
+    LoginComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
