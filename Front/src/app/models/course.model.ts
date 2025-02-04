@@ -2,7 +2,7 @@ import { Chapter } from './chapter.model';
 export interface Course {
   id: number;
   title: string;
-  description: string;
+  //description: string;
   certificate: string | null;
   background_image: string | null;
   category: string;

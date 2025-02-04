@@ -29,7 +29,7 @@ export class CoursesComponent implements OnInit {
   filterCourses(): void {
     this.filteredCourses = this.courses.filter(course =>
       course.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-      course.description.toLowerCase().includes(this.searchQuery.toLowerCase())
+      course.content.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
  

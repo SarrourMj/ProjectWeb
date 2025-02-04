@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,16 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // I
 
 import { CoursesComponent } from './components/courses/courses.component';
 import { CourseDetailComponent } from './coursedetail/coursedetail.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { InputNumberModule } from 'primeng/inputnumber'; // Import InputNumberModule
+import { DropdownModule } from 'primeng/dropdown'; // Import DropdownModule
+import { FileUploadModule } from 'primeng/fileupload'; // Import FileUploadModule
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { InputTextModule } from 'primeng/inputtext';
+import { MessageService } from 'primeng/api';
+import {NewComponent} from './components/AdminCourse/New/New.component';
+import { AdminCourseComponent } from './components/AdminCourse/AdminCourse.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +36,15 @@ import { CourseDetailComponent } from './coursedetail/coursedetail.component';
     UserLayoutComponent,
     AdminLayoutComponent,
     CoursesComponent,
-    CourseDetailComponent
+    CourseDetailComponent,
+    FooterComponent,
+    AdminCourseComponent,
+    NewComponent
     ],
   imports: [
+    FileUploadModule,
+    DropdownModule,
+    InputNumberModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
@@ -37,9 +53,15 @@ import { CourseDetailComponent } from './coursedetail/coursedetail.component';
     DemoFlexyModule,
     DashboardModule,
     ComponentsModule,
-    FormsModule
+    FormsModule,
+    TableModule,
+    ToastModule,
+    InputTextModule,
+    ReactiveFormsModule
+  
   ],
-  providers: [],
+  
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

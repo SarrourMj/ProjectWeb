@@ -10,6 +10,7 @@ import { TooltipsComponent } from './tooltips/tooltips.component'
 import { MenuComponent } from './menu/menu.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CoursesComponent } from './courses/courses.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,8 @@ import { CoursesComponent } from './courses/courses.component';
     MenuComponent,
     EditProfileComponent,
     
+  ],
+  declarations: [
   ]
 })
 export class ComponentsModule { }

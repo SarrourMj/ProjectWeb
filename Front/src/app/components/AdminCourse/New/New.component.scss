@@ -1,0 +1,168 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.course-form {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group p-dropdown,
+.form-group p-fileUpload,
+.form-group p-inputNumber {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+/* Button Styles */
+button {
+  margin-right: 0.5rem;
+}
+
+.p-button-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.p-button-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.p-button-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.p-button-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.p-button-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.p-button-warning:hover {
+  background-color: #e0a800;
+  border-color: #d39e00;
+}
+
+.p-button-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.p-button-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.p-button-info {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.p-button-info:hover {
+  background-color: #138496;
+  border-color: #117a8b;
+}
+
+/* Chapters Section */
+.chapters-section {
+  margin-top: 2rem;
+}
+
+.chapter-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.chapter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.chapter-header h4 {
+  margin: 0;
+}
+
+.questions-section {
+  margin-top: 1rem;
+}
+
+.question-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.question-card .form-group {
+  margin-bottom: 1rem;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .course-form {
+    padding: 1rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group p-dropdown,
+  .form-group p-fileUpload,
+  .form-group p-inputNumber {
+    font-size: 0.9rem;
+  }
+
+  .chapter-card {
+    padding: 0.5rem;
+  }
+
+  .question-card {
+    padding: 0.5rem;
+  }
+}

@@ -8,7 +8,7 @@ import { Course } from '../models/course.model';
   template: `
     <div *ngIf="course">
       <h2>{{ course.title }}</h2>
-      <p>{{ course.description }}</p>
+      <p>{{ course.content }}</p>
       <h3>Chapters</h3>
     </div>
   `,

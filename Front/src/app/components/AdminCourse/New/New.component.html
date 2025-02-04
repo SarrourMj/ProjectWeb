@@ -1,0 +1,160 @@
+<form #myForm="ngForm" (ngSubmit)="createCourse(myForm)" class="course-form">
+  <div class="form-group">
+    <label>Title</label>
+    <input 
+      type="text" 
+      name="title" 
+      [(ngModel)]="course.title" 
+      required 
+      pInputText
+    >
+  </div>
+
+  <div class="form-group">
+    <label>Category</label>
+    <p-dropdown 
+      [options]="categories" 
+      [(ngModel)]="selectedCategoryId" 
+      name="category" 
+      optionLabel="title" 
+      optionValue="id"
+      placeholder="Select a category"
+    ></p-dropdown>
+  </div>
+
+  <div class="form-group">
+    <label>Content</label>
+    <textarea 
+      name="content" 
+      [(ngModel)]="course.content" 
+      required 
+      pInputTextarea
+      rows="5"
+    ></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Course Image</label>
+    <p-fileUpload 
+      name="mainImage" 
+      (onSelect)="onFileSelected($event)"
+      [showUploadButton]="false"
+      [showCancelButton]="false"
+      accept="image/*"
+      chooseLabel="Select Image"
+    ></p-fileUpload>
+  </div>
+
+  <div class="chapters-section">
+    <h3>Chapters</h3>
+    
+    <div *ngFor="let chapter of chapters; let i = index" class="chapter-card p-card">
+      <div class="chapter-header">
+        <h4>Chapter {{i + 1}}</h4>
+        <button 
+          pButton 
+          icon="pi pi-times" 
+          class="p-button-danger" 
+          (click)="removeChapter(i)"
+          *ngIf="chapters.length > 1"
+        ></button>
+      </div>
+
+      <div class="form-group">
+        <input 
+          type="text" 
+          [name]="'chapterTitle' + i" 
+          [(ngModel)]="chapter.title" 
+          required 
+          pInputText
+          placeholder="Chapter Title"
+        >
+      </div>
+
+      <div class="form-group">
+        <textarea 
+          [name]="'chapterContent' + i" 
+          [(ngModel)]="chapter.content" 
+          required 
+          pInputTextarea
+          rows="3"
+          placeholder="Chapter Content"
+        ></textarea>
+      </div>
+
+      <div class="questions-section">
+        <h5>Questions</h5>
+        
+        <div *ngFor="let question of chapter.questions; let j = index" class="question-card">
+          <div class="form-group">
+            <input 
+              type="text" 
+              [name]="'question' + i + j" 
+              [(ngModel)]="question.question" 
+              required 
+              pInputText
+              placeholder="Question"
+            >
+          </div>
+          
+          <div class="form-group">
+            <input 
+              type="text" 
+              [name]="'answer' + i + j" 
+              [(ngModel)]="question.answer" 
+              required 
+              pInputText
+              placeholder="Answer"
+            >
+          </div>
+          
+          <button 
+            pButton 
+            icon="pi pi-trash" 
+            class="p-button-warning" 
+            (click)="removeQuestion(chapter, j)"
+            *ngIf="chapter.questions.length > 0"
+          ></button>
+        </div>
+        
+        <button 
+          pButton 
+          type="button" 
+          icon="pi pi-plus" 
+          class="p-button-secondary" 
+          (click)="addQuestion(chapter)"
+          label="Add Question"
+        ></button>
+      </div>
+
+      <div class="form-group">
+        <label>Score (optional)</label>
+        <p-inputNumber 
+          [name]="'chapterScore' + i" 
+          [(ngModel)]="chapter.score" 
+          mode="decimal"
+          [min]="0"
+        ></p-inputNumber>
+      </div>
+    </div>
+
+    <button 
+      pButton 
+      type="button" 
+      icon="pi pi-plus" 
+      class="p-button-info" 
+      (click)="addChapter()"
+      label="Add Chapter"
+    ></button>
+  </div>
+
+  <div class="form-actions">
+    <button 
+      pButton 
+      type="submit" 
+      class="p-button-success" 
+      label="Create Course"
+      [disabled]="myForm.invalid"
+    ></button>
+  </div>
+</form>
