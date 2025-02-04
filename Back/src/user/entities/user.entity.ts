@@ -30,7 +30,7 @@ export class User {
 
   @ManyToMany(() => Course, { nullable: true })
 @JoinTable({
-    name: 'user_courses', // Custom join table name
+    name: 'user_courses_course', // Custom join table name
     joinColumn: {
         name: 'userid', // Column name for the user ID
         referencedColumnName: 'id', // Primary key of the User entity
