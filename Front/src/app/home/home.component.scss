@@ -1,0 +1,325 @@
+.toolbar-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 50px;
+    /* Adjust size as necessary */
+  }
+  
+  .spacer {
+    flex: 1;
+  }
+  .hero-section {
+    background-color: #fafafa; /* Light peach background */
+    color: #333;
+    text-align: center;
+    height: 35rem;
+  
+  }
+  
+  .mat-toolbar {
+    display: flex;
+    justify-content: space-between; /* Aligns children to the left, right, and center respectively */
+    align-items: center; /* Centers items vertically */
+    padding: 0 10px;
+    margin: 0;
+    width: 100%; /* Ensures the toolbar stretches to full width */
+    box-sizing: border-box; /* Optional: Adjusts the padding for visual spacing */
+  }
+  
+  .toolbar-content {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Ensures the div takes full width of the toolbar */
+    justify-content: space-between; /* Separates site name, navigation, and login button */
+  }
+  .ms-16 {
+    margin-left: 16px; }
+  
+  .fw-medium {
+    font-weight: 500; /* Medium font weight */
+  }
+  
+  .fs-26 {
+    font-size: 26px; /* 26px font size for the site name */
+  }
+  
+  button.mat-raised-button {
+    margin-left: auto; /* Pushes the button to the right */
+  }
+  
+  .logo {
+    height: 50px; /* Logo size */
+  }
+  
+  .menu-items {
+    display: flex;
+    justify-content: center; /* Centers the navigation links */
+    flex-grow: 1; /* Allows the navigation links to take up any extra space */
+  }
+  
+  .menu-items a {
+    margin: 0 10px; /* Horizontal spacing between links */
+    text-decoration: none; /* Removes underline from links */
+    color: inherit; /* Inherits the text color from the parent element */
+    font-size: 16px; /* Sets a specific font size */
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+    margin-top: 20px;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: #666;
+  }
+  .hero-content{
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  
+  .hero-buttons button {
+    margin: 10px;
+  }
+  
+  .tab-btn {
+    flex: 1;
+    margin-top: 2rem;
+    padding: 16px;
+    /* Larger buttons */
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    background: #f1f3f5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #fb9678;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+  
+  }
+  
+  
+  .hero {
+    background-color: #0a0a0a;
+    padding: 50px;
+    text-align: center;
+  }
+  
+  .info-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #f5f5f5;
+    align-items: center;
+  
+  }
+  
+  .info-section img {
+    width: 30%;
+  }
+  
+  .testimonials mat-card {
+    margin: 10px;
+  }
+  
+  .team {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+  
+  .team img {
+    height: 100px;
+    /* Adjust size as necessary */
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #222;
+    color: #fff;
+  }
+  
+  
+  .site-footer {
+    background-color: #f8f9fa;
+    color: #333;
+    font-size: 14px;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+  }
+  
+  .footer-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .footer-logo {
+    width: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .footer-links {
+    display: flex;
+  }
+  
+  .footer-column {
+    margin-right: 20px;
+  }
+  
+  .footer-column h4 {
+    color: #007bff;
+  }
+  
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-column ul li a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .social-icons a {
+    color: #333;
+    margin-right: 10px;
+  }
+  
+  .social-icons i {
+    font-size: 16px;
+    /* Adjust size as needed */
+  }
+  
+  .team-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    margin:2rem;
+  
+  }
+  
+  .team-card {
+    width: 200px;
+    /* Adjust based on your design preference */
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .card-header {
+    background-color: #6a5acd;
+    /* Adjust the color as needed */
+    padding: 20px;
+  }
+  
+  .profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 5px solid white;
+    /* Creates border around image */
+  }
+  
+  .card-body h3 {
+    margin: 10px 0 5px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .card-body p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .social-links {
+    font-size: 16px;
+  }
+  
+  .social-links a {
+    color: #6a5acd;
+    /* Same as header color for consistency */
+    margin: 0 5px;
+  }
+  
+  .teste-cards {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .testimonials-section {
+  
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .testimonials-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .testimonial-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 400px;
+  }
+  
+  .testimonial-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #ddd;
+    margin: 0 auto 10px;
+  }
+  
+  blockquote {
+    font-style: italic;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  .testimonial-name {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .testimonial-info {
+    color: #666;
+    font-size: 14px;
+  }
