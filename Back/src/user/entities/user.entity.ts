@@ -63,4 +63,13 @@ courses?: Course[];
     },
 })
 certificates: Certificate[];
+@BeforeInsert()
+  async setDefaultRole() {
+    // If no role is assigned, set the default role ID to 1
+    if (!this.role) {
+      const defaultRole = new Role();
+      defaultRole.id = 1; // Assuming the default role ID is 1
+      this.role = defaultRole;
+    }
+  }
 }
