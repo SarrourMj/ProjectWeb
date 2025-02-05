@@ -34,10 +34,11 @@ import { LoginComponent } from './login/login.component';
 import { MycoursesComponent } from './components/mycourses/mycourses.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
-    
+    SignupComponent,
     AppComponent,
     UserLayoutComponent,
     AdminLayoutComponent,

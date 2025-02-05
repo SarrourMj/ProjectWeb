@@ -1,24 +1,24 @@
 <div class="signup-container">
     <div><b>Welcome to CourseQuest!</b></div>
-    <form (FormGroup)="signupForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
       <div>
         <label for="name">Username</label>
-        <input id="name" formControlName="name" type="text" required />
-        <small *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched">Nom requis</small>
+        <input id="username" formControlName="username" type="text" required />
+        <small *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched">Username Required</small>
       </div>
   
       <div>
         <label for="email">E-mail</label>
-        <input id="email" formControlName="email" type="email" required />
-        <small *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">Email invalide</small>
+        <input id="email" formControlName="email" type="email" required minlength="6" />
+        <small *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">Invalid Email </small>
       </div>
   
       <div>
         <label for="password">Password</label>
         <input id="password" formControlName="password" type="password" required />
-        <small *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">Mot de passe requis</small>
+        <small *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">Password must be at least 6 characters long.</small>
       </div>
 
-      <button type="submit" [disabled]="signupForm.invalid">S'inscrire</button>
+      <button type="submit" [disabled]="signupForm.invalid">Sign-Up</button>
     </form>
   </div>

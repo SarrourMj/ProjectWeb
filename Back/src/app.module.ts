@@ -16,7 +16,6 @@ import { ProtectedModule } from './protected/protected.module';
 // import { AdminModule } from './admin/admin.module'; // Ensure this module exists or correct the path
 import { CertificateModule } from './certificate/certificate.module';
 import { Certificate } from './certificate/entities/certificate.entity';
-
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -32,6 +31,7 @@ import { Certificate } from './certificate/entities/certificate.entity';
         password: configService.get<string>('DATABASE_PASSWORD'),
         database: configService.get<string>('DATABASE_NAME'),
         entities: [User,Course,Chapter, Category,Role,Certificate],
+        autoLoadEntities: true,
         synchronize: true,
       }),
       inject: [ConfigService],
@@ -45,5 +45,6 @@ import { Certificate } from './certificate/entities/certificate.entity';
     CertificateModule,
   ],
   controllers: [AppController],
+  providers: [],
 })
 export class AppModule {}

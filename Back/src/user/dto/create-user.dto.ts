@@ -1,5 +1,5 @@
 //import { Column } from 'typeorm';
-import { IsString, IsNotEmpty, IsEmail, ValidateNested, IsOptional } from 'class-validator';
+import { IsString, IsNotEmpty, IsEmail, ValidateNested, IsOptional, MinLength } from 'class-validator';
 import { Type } from 'class-transformer';
 import { Role } from './../../user/entities/role.entity';
 
@@ -14,6 +14,7 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
+  @MinLength(6)
   password: string;
 
   @IsOptional()

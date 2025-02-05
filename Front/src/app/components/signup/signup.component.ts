@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SignupService } from '../../services/signup.service';
 
 @Component({
   selector: 'app-signup',
@@ -9,18 +10,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SignupComponent {
   signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private signupService: SignupService) {
     this.signupForm = this.fb.group({
-      name: ['', Validators.required],
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
   onSubmit() {
     if (this.signupForm.valid) {
-      console.log('Form Submitted', this.signupForm.value);
-      // Envoyer les données au backend ici
+      this.signupService.signup(this.signupForm.value).subscribe({
+        next: (response) => console.log('Signup successful', response),
+        error: (err) => console.error('Signup error', err),
+      });
     }
   }
 }
