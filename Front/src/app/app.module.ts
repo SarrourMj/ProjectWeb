@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,18 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // I
 
 import { CoursesComponent } from './components/courses/courses.component';
 import { CourseDetailComponent } from './coursedetail/coursedetail.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { InputNumberModule } from 'primeng/inputnumber'; // Import InputNumberModule
+import { DropdownModule } from 'primeng/dropdown'; // Import DropdownModule
+import { FileUploadModule } from 'primeng/fileupload'; // Import FileUploadModule
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { InputTextModule } from 'primeng/inputtext';
+import { MessageService } from 'primeng/api';
+import {NewComponent} from './components/AdminCourse/New/New.component';
+import { AdminCourseComponent } from './components/AdminCourse/AdminCourse.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 import { MycoursesComponent } from './components/mycourses/mycourses.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -30,9 +42,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserLayoutComponent,
     AdminLayoutComponent,
     CoursesComponent,
-    CourseDetailComponent
+    CourseDetailComponent,
+    FooterComponent,
+    AdminCourseComponent,
+    NewComponent
+   
     ],
   imports: [
+    FileUploadModule,
+    DropdownModule,
+    InputNumberModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
@@ -42,9 +61,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     DashboardModule,
     ComponentsModule,
     FormsModule,
-    ReactiveFormsModule
+    TableModule,
+    ToastModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    LoginComponent
   ],
-  providers: [],
+  
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne,JoinColumn } from 'typeorm';
 import { Course } from './../../course/entities/course.entity';
 
 @Entity('chapter')
@@ -24,5 +24,7 @@ export class Chapter {
     @ManyToOne(() => Course, course => course.chapters, {
         onDelete: 'CASCADE', // Delete chapter if the course is deleted
     })
+    @JoinColumn({ name: 'courseid' })
+    
     course: Course;
 }

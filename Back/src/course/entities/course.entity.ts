@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, ManyToOne,JoinColumn } from 'typeorm';
 import { Category } from '../../category/entities/category.entity';
 import { Chapter } from '../../chapter/entities/chapter.entity';
 import { User } from './../../user/entities/user.entity';
@@ -38,16 +38,19 @@ export class Course {
     @Column()
     slug: string;
     @Column({type:'timestamp', default: () =>'CURRENT_TIMESTAMP'})
-    createdOn: Date;
+    createdon: Date;
     @Column({type:'timestamp', default: () =>'CURRENT_TIMESTAMP'})
     modifiedOn: Date;
-    @Column()
-    mainImageUrl: string;
+    @Column({nullable:true})
+    mainimageurl: string;
 
 
     @ManyToMany(() => User, user => user.courses)
+    
     users: User[];
 
     @ManyToOne(() => Category, category => category.course, { eager: true} )
+      @JoinColumn({ name: 'categoryid' })
+    
     category: Category;
 }
