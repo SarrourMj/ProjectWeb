@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { DemoFlexyModule } from './demo-LearnSphere'
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http'; // Import the HTTP_INTERCEPTORS token
 
 // Modules
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -34,6 +34,8 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { CategoryComponent } from './components/category/category.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog'; // Import ConfirmDialogModule
+import { AuthInterceptor } from './interceptors/auth.interceptor'; // Import the interceptor
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './components/signup/signup.component';
 
@@ -79,7 +81,7 @@ import { SignupComponent } from './components/signup/signup.component';
     
   ],
   
-  providers: [MessageService],
+  providers: [MessageService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,24 +13,24 @@
     <h3>Chapters</h3>
     <div class="chapter-list">
       <div *ngFor="let chapter of course.chapters" class="chapter-card" id="chapter-{{ chapter.id }}">
-        <!-- Chapter Header with Toggle Button -->
         <div class="chapter-header" (click)="toggleChapter(chapter)">
-            <div class="chapter-title-wrapper">
-              <h4>{{ chapter.title }}</h4>
-              <span class="chapter-score" *ngIf="chapter.score !== undefined">
-                Score: {{ chapter.score }}
-              </span>
-            </div>
-            <button class="toggle-button" [class.expanded]="expandedChapters.has(chapter.id)">
-              <i class="fas fa-chevron-down"></i>
-            </button>
+          <div class="chapter-title-wrapper">
+            <h4>{{ chapter.title }}</h4>
+            <span class="chapter-score">{{ chapter.score }} points</span> <!-- Add chapter score here -->
+
+            <span *ngIf="chapter.completed" class="completion-indicator">✅</span>
+
+          </div>
+          <button class="toggle-button" [class.expanded]="expandedChapters.has(chapter.id)">
+            <i class="fas fa-chevron-down"></i>
+          </button>
         </div>
-  
+      
         <!-- Animated Chapter Content -->
         <div [@slideInOut]="expandedChapters.has(chapter.id) ? 'expanded' : 'collapsed'" 
              class="chapter-content">
           <p>{{ chapter.content }}</p>
-  
+      
           <div *ngIf="chapter.questions && chapter.questions.length > 0">
             <h5>Questions</h5>
             <div *ngFor="let question of chapter.questions" class="question-box">
@@ -52,3 +52,4 @@
       </div>
     </div>
   </div>
+  

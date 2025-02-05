@@ -17,60 +17,59 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CategoryComponent } from './components/category/category.component';
 import { MyCertificatesComponent } from './components/mycertificates/mycertificates.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { UserGuard } from './guards/user.guard';
+
 
 
 const routes: Routes = [
-  
   { 
     path: "home",
     component: HomeComponent
   },
   {
-    path :"login", 
-    component : LoginComponent
+    path: "login", 
+    component: LoginComponent
   },
   {
-    path :"signup", 
-    component : SignupComponent
+    path: "signup", 
+    component: SignupComponent
   },
   { 
     path: "user",
     component: UserLayoutComponent,
+    canActivate: [AuthGuard], // ✅ Protect user routes
     children: [
-      {path:"", redirectTo:"/user/courses", pathMatch:"full"},
-      {path:"courses", component:CoursesComponent},
-      { path:"courses/:id", component: CourseDetailComponent},
-      {path:"mycourses", component:MycoursesComponent},
-      
-      {path:"toolbar", component:ToolbarComponent},
-     
-      {path:"mycertificates", component:MyCertificatesComponent},
-      {path:"editprofile", component:EditProfileComponent}
-
+      { path: "", redirectTo: "/user/courses", pathMatch: "full" },
+      { path: "courses", component: CoursesComponent },
+      { path: "courses/:id", component: CourseDetailComponent },
+      { path: "mycourses", component: MycoursesComponent },
+      { path: "toolbar", component: ToolbarComponent },
+      { path: "mycertificates", component: MyCertificatesComponent },
+      { path: "editprofile", component: EditProfileComponent }
     ]
   },
   {
     path: "admin",
     component: AdminLayoutComponent,
+    canActivate: [AuthGuard], // ✅ Protect admin routes
     children: [
       { path: "", redirectTo: "/admin/dashboard", pathMatch: "full" },
       { path: "dashboard", component: DashboardComponent },
-      {path:"coursemanagement", children:[ 
-        {path:"", component:AdminCourseComponent},
-        {path:"Create", component: NewComponent},
-        {path:"Category", component: CategoryComponent},
-        {path:"Edit", component: EditComponent},
-
-
-
-      ]
-      },
-      {path:"tooltip", component:ToolbarComponent},
-      {path:"editprofile", component:EditProfileComponent}
+      { path: "coursemanagement", children: [
+        { path: "", component: AdminCourseComponent },
+        { path: "Create", component: NewComponent },
+        { path: "Category", component: CategoryComponent },
+        { path: "Edit", component: EditComponent },
+      ]},
+      { path: "tooltip", component: ToolbarComponent },
+      { path: "editprofile", component: EditProfileComponent }
     ]
   },
   { path: "**", redirectTo: "/user/courses", pathMatch: "full" },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

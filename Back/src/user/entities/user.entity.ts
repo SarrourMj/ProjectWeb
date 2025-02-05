@@ -3,7 +3,7 @@ import * as bcrypt from 'bcrypt';
 import { Course } from './../../course/entities/course.entity';
 import { Role } from './role.entity';
 import { Certificate } from './../../certificate/entities/certificate.entity';
-
+import {Chapter} from './../../chapter/entities/chapter.entity'
 @Entity('users')//changed 'user' to 'users' to avoid conflict in postgres with the database user : postgres
 export class User {
   @PrimaryGeneratedColumn()
@@ -24,9 +24,21 @@ export class User {
   @ManyToOne(() => Role, role => role.users)
   @JoinColumn({ name: 'roleid' })
   role: Role;
-
+  @ManyToMany(() => Chapter, { nullable: true })
+  @JoinTable({
+    name: 'user_chapters_chapter', 
+    joinColumn: {
+        name: 'userid', 
+        referencedColumnName: 'id', 
+    },
+    inverseJoinColumn: {
+        name: 'chapterid', 
+        referencedColumnName: 'id', 
+    },
+  })
+  chapters?: Chapter[];
   // Student-specific properties
-  @Column({ nullable: true })
+  @Column({ nullable: true ,type: 'int',default:0})
   score?: number;
 
   @ManyToMany(() => Course, { nullable: true })

@@ -6,6 +6,7 @@ import { Course } from '../models/course.model';
 import { Chapter } from '../models/chapter.model';
 import { Question } from '../models/chapter.model';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -55,23 +56,32 @@ export class CourseDetailComponent implements OnInit {
     this.courseService.getCourseById(id).subscribe((data) => {
       this.course = data;
       this.initializeAnswerStorage();
-      this.checkEnrollmentStatus(); // Check if the user is enrolled
+      this.checkEnrollmentStatus();
+
+      // Fetch completed chapters and update isComplete
+      this.courseService.getCompletedChapters(user.id).subscribe(
+        (completedChapters) => {
+          this.updateChapterCompletionStatus(completedChapters);
+        },
+        (error) => {
+          console.error('Error fetching completed chapters:', error);
+        }
+      );
     });
   }
 
-  // In your component.ts
-toggleChapter(chapter: Chapter): void {
-  if (this.expandedChapters.has(chapter.id)) {
-    this.expandedChapters.delete(chapter.id);
-  } else {
-    this.expandedChapters.add(chapter.id);
-    // Optional: Scroll to chapter if needed
-    setTimeout(() => {
-      const element = document.getElementById(`chapter-${chapter.id}`);
-      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 300);
+  toggleChapter(chapter: Chapter): void {
+    if (this.expandedChapters.has(chapter.id)) {
+      this.expandedChapters.delete(chapter.id);
+    } else {
+      this.expandedChapters.add(chapter.id);
+      // Optional: Scroll to chapter if needed
+      setTimeout(() => {
+        const element = document.getElementById(`chapter-${chapter.id}`);
+        element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
   }
-}
 
   initializeAnswerStorage(): void {
     if (this.course) {
@@ -89,9 +99,48 @@ toggleChapter(chapter: Chapter): void {
   validateAnswer(chapterId: number, question: Question): void {
     const userAnswer = this.userAnswers[chapterId][question.question].trim().toLowerCase();
     const correctAnswer = question.answer.trim().toLowerCase();
+  
+    if (userAnswer === correctAnswer) {
+      // Provide feedback for correct answer
+      this.feedback[chapterId][question.question] = '✅ Correct!';
+  
+      
+      this.courseService.completeUserChapter(this.userId!, chapterId).subscribe(
+        () => {
+          console.log('User completed this chapter successfully');
+          // Optionally, update the UI to reflect the completed chapter
+          this.updateChapterCompletionStatus([{ id: chapterId } as Chapter]);
+          const chapter = this.course?.chapters.find(chap => chap.id === chapterId);
+          if (chapter) {
+            this.courseService.incrementUserScore(this.userId!, chapter.score).subscribe(
+              () => {
+                console.log('User score incremented successfully');
+              },
+              (error) => {
+                console.error('Error incrementing user score:', error);
+              }
+            );
+          }
+        },
+        (error) => {
+          console.error('Error completing chapter:', error);
+        }
+      );
+    } else {
+      // Provide feedback for incorrect answer
+      this.feedback[chapterId][question.question] = '❌ Incorrect. Try again.';
+    }
+  }
 
-    this.feedback[chapterId][question.question] =
-      userAnswer === correctAnswer ? '✅ Correct!' : '❌ Incorrect. Try again.';
+  updateChapterCompletionStatus(completedChapters: Chapter[]): void {
+    if (this.course) {
+      completedChapters.forEach(completedChapter => {
+        const chapter = this.course!.chapters.find(chap => chap.id === completedChapter.id);
+        if (chapter) {
+          chapter.completed = true; // Add a `completed` property to your Chapter model
+        }
+      });
+    }
   }
 
   enrollInCourse(): void {
@@ -106,8 +155,9 @@ toggleChapter(chapter: Chapter): void {
   }
 
   checkEnrollmentStatus(): void {
+    const userId = this.userId!; // Replace with the actual user ID
     if (this.course) {
-      this.mycoursesService.getEnrolledCourses(this.userId!).subscribe((courses) => {
+      this.mycoursesService.getEnrolledCourses(userId).subscribe((courses) => {
         // Check if the current course is in the list of enrolled courses
         this.isEnrolled = courses.some((course) => course.id === this.course!.id);
       }, (error) => {
@@ -115,4 +165,4 @@ toggleChapter(chapter: Chapter): void {
       });
     }
   }
-}
+  }

@@ -1,5 +1,6 @@
 // user.model.ts
 import { Course } from './course.model'; // Adjust the import path as necessary
+import { Chapter} from './chapter.model'
 export interface Role {
     id: number;
     name: string;
@@ -15,6 +16,7 @@ export interface Role {
     score?: number;
     courses?: Course[];
     badges?: string[];
+    chapters?:Chapter[];
   }
   
   // For create/update operations
