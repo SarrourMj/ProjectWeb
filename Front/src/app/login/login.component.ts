@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule here
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,7 +19,10 @@ export class LoginComponent {
     password: new FormControl('', Validators.required)
   });
 
-  constructor() { }
+  constructor(private router: Router) { }
+    goToLogin(): void {
+      this.router.navigate(['/login']);
+    }
 
   onSubmit(): void {
     if (this.loginForm.valid) {

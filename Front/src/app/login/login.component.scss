@@ -1,3 +1,55 @@
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between; /* Aligns children to the left, right, and center respectively */
+  align-items: center; /* Centers items vertically */
+  padding: 0 10px;
+  margin: 0;
+  width: 100%; /* Ensures the toolbar stretches to full width */
+  box-sizing: border-box; /* Optional: Adjusts the padding for visual spacing */
+}
+
+.toolbar-content {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Ensures the div takes full width of the toolbar */
+  justify-content: space-between; /* Separates site name, navigation, and login button */
+}
+
+.ms-16 {
+  margin-left: 16px;
+}
+
+.fw-medium {
+  font-weight: 500; /* Medium font weight */
+}
+
+.fs-26 {
+  font-size: 26px; /* 26px font size for the site name */
+}
+
+button.mat-raised-button {
+  margin-left: auto; 
+  padding: 6px 12px; /* Adjusted padding to be more typical for buttons */
+  background-color: #fb9678 !important; /* Ensures this color takes precedence */
+  color: #090909; /* Set text color to white for better readability */
+}
+
+.logo {
+  height: 50px; /* Logo size */
+}
+
+.menu-items {
+  display: flex;
+  justify-content: center; /* Centers the navigation links */
+  flex-grow: 1; /* Allows the navigation links to take up any extra space */
+}
+
+.menu-items a {
+  margin: 0 10px; /* Horizontal spacing between links */
+  text-decoration: none; /* Removes underline from links */
+  color: inherit; /* Inherits the text color from the parent element */
+  font-size: 16px; /* Sets a specific font size */
+}
 /* Global styles */
 html, body {
     height: 100%; /* Ensures the full height of the viewport */
@@ -22,8 +74,8 @@ html, body {
     display: flex; /* Ensures flex properties for centering */
     flex-direction: column;
     position: relative;  /* Adjusts position without removing from document flow */
-  top: 160px;           /* Moves down from its original position */
-  left: 20px;    /* Aligns children elements (form groups) vertically */
+    top: 7%;           /* Moves down from its original position */
+    left: 20px;    /* Aligns children elements (form groups) vertically */
   }
   
   .form-group {
@@ -44,14 +96,14 @@ html, body {
   }
   
   button {
-    width: 100%;
+    width: 90px;
     padding: 12px; /* More padding for a better click area */
     border: none;
     background-color: #fb9678; /* Maintains the same button color */
     color: white;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 20px; /* More margin to separate it from input fields */
+    margin-top: 2px; /* More margin to separate it from input fields */
   }
   
   button:disabled {
@@ -70,3 +122,56 @@ html, body {
   .register-link a:hover {
     text-decoration: underline; /* Adds underline on hover for better interaction */
   }
+  .site-footer {
+    background-color: rgb(197 64 23 / 15%) !important;
+    color: #333;
+    font-size: 16px;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0; /* Make sure the footer is at the bottom of the view */
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+  }
+  
+  .footer-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .footer-links {
+    display: flex;
+  }
+  
+  .footer-column {
+    margin-right: 20px;
+  }
+  
+  .footer-column h4 {
+    color: #007bff;
+  }
+  
+  .footer-column ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  .social-icons a {
+    color: #333; /* Icon color */
+    margin-right: 10px; /* Spacing between icons */
+    font-size: 28px; /* Increased icon size for visibility */
+  }
+  
+  .social-icons a:hover {
+    color: #0056b3; /* Color when hovered over */
+    transform: scale(1.1); /* Slight scale on hover for effect */
+  }
+  
