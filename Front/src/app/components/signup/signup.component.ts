@@ -23,7 +23,7 @@ export class SignupComponent {
     if (this.signupForm.valid) {
       this.signupService.signup(this.signupForm.value).subscribe({
         next: (response) => {console.log('Signup successful', response);
-          this.router.navigate(['/courses']);
+          this.router.navigate(['/login']);
         },
         error: (err) => console.error('Signup error', err),
       });
