@@ -10,9 +10,9 @@ export class MycoursesService {
 
   constructor(private http: HttpClient) {}
 
-  getEnrolledCourses(): Observable<Course[]> {
+  getEnrolledCourses(userId:number): Observable<Course[]> {
     
-    return this.http.get<Course[]>(`${this.apiUrl}/user/1/courses`);
+    return this.http.get<Course[]>(`${this.apiUrl}/user/${userId}/courses`);
   }
   
   

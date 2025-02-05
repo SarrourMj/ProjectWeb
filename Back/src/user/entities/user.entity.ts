@@ -42,8 +42,7 @@ export class User {
   score?: number;
 
   @ManyToMany(() => Course, { nullable: true })
-@JoinTable({
-    name: 'user_courses_course', // Custom join table name
+@JoinTable({ // Custom join table name
     joinColumn: {
         name: 'userid', // Column name for the user ID
         referencedColumnName: 'id', // Primary key of the User entity
@@ -75,4 +74,13 @@ courses?: Course[];
     },
 })
 certificates: Certificate[];
+@BeforeInsert()
+  async setDefaultRole() {
+    // If no role is assigned, set the default role ID to 1
+    if (!this.role) {
+      const defaultRole = new Role();
+      defaultRole.id = 1; // Assuming the default role ID is 1
+      this.role = defaultRole;
+    }
+  }
 }

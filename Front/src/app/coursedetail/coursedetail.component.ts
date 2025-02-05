@@ -6,6 +6,7 @@ import { Course } from '../models/course.model';
 import { Chapter } from '../models/chapter.model';
 import { Question } from '../models/chapter.model';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-course-detail',
@@ -28,6 +29,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ]
 })
 export class CourseDetailComponent implements OnInit {
+  userId: number | null = null; // Store user ID
   course: Course | undefined;
   expandedChapters = new Set<number>();
   userAnswers: { [chapterId: number]: { [question: string]: string } } = {};
@@ -37,10 +39,18 @@ export class CourseDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private courseService: CourseService,
-    private mycoursesService: MycoursesService // Inject the service
+    private mycoursesService: MycoursesService, // Inject the service
+    private authService: AuthService // Inject AuthService
+
   ) {}
 
   ngOnInit(): void {
+    const user = this.authService.getUser(); // Get user from AuthService
+    if (user && user.id) {
+      this.userId = user.id;
+    } else {
+      console.error('User not found or not logged in');
+    }
     const id = +this.route.snapshot.paramMap.get('id')!;
     this.courseService.getCourseById(id).subscribe((data) => {
       this.course = data;
@@ -134,9 +144,8 @@ export class CourseDetailComponent implements OnInit {
   }
 
   enrollInCourse(): void {
-    const userId = 1; // Replace with the actual user ID
     if (this.course) {
-      this.courseService.enrollUserCourse(userId, this.course.id).subscribe(() => {
+      this.courseService.enrollUserCourse(this.userId!, this.course.id).subscribe(() => {
         console.log('User enrolled in course successfully');
         this.isEnrolled = true; // Update enrollment status
       }, (error) => {
@@ -146,9 +155,8 @@ export class CourseDetailComponent implements OnInit {
   }
 
   checkEnrollmentStatus(): void {
-    const userId = 1; // Replace with the actual user ID
     if (this.course) {
-      this.mycoursesService.getEnrolledCourses().subscribe((courses) => {
+      this.mycoursesService.getEnrolledCourses(this.userId!).subscribe((courses) => {
         // Check if the current course is in the list of enrolled courses
         this.isEnrolled = courses.some((course) => course.id === this.course!.id);
       }, (error) => {
