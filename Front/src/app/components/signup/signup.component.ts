@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
   signupForm: FormGroup;
-
+goToLogin(): void {
+  this.router.navigate(['/login']);
+}
   constructor(private fb: FormBuilder, private signupService: SignupService, private router: Router) {
     this.signupForm = this.fb.group({
       username: ['', Validators.required],
