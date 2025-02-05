@@ -31,6 +31,8 @@ import {NewComponent} from './components/AdminCourse/New/New.component';
 import { AdminCourseComponent } from './components/AdminCourse/AdminCourse.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { CategoryComponent } from './components/category/category.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog'; // Import ConfirmDialogModule
 
 @NgModule({
   declarations: [
@@ -41,10 +43,12 @@ import { LoginComponent } from './login/login.component';
     CourseDetailComponent,
     FooterComponent,
     AdminCourseComponent,
-    NewComponent
+    NewComponent,
+    CategoryComponent,
    
     ],
   imports: [
+    ConfirmDialogModule,
     FileUploadModule,
     DropdownModule,
     InputNumberModule,

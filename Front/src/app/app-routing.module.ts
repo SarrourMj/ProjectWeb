@@ -15,6 +15,7 @@ import { NewComponent } from './components/AdminCourse/New/New.component';
 import { EditComponent } from './components/AdminCourse/edit/edit.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { CategoryComponent } from './components/category/category.component';
 
 
 const routes: Routes = [
@@ -50,9 +51,8 @@ const routes: Routes = [
       { path: "dashboard", component: DashboardComponent },
       {path:"coursemanagement", children:[ 
         {path:"", component:AdminCourseComponent},
-
-        
         {path:"Create", component: NewComponent},
+        {path:"Category", component: CategoryComponent},
         {path:"Edit", component: EditComponent},
 
 

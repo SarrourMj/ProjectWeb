@@ -35,4 +35,8 @@ export class CourseController {
   remove(@Param('id') id: string) {
     return this.courseService.remove(+id);
   }
+  @Post('upload')
+  uploadFile(@Body() file: any) {
+    console.log(file);
+  }
 }

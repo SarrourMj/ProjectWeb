@@ -23,21 +23,15 @@ export class ApiService {
   }
 
   createCourse(courseData: Partial<Course>): Observable<Course> {
-    return this.http.post<Course>(`${this.URL}/courses`, courseData, {
-      withCredentials: true
-    });
+    return this.http.post<Course>(`${this.URL}/courses`, courseData);
   }
 
   updateCourse(id: number, courseData: Partial<Course>): Observable<Course> {
-    return this.http.patch<Course>(`${this.URL}/courses/${id}`, courseData, {
-      withCredentials: true
-    });
+    return this.http.patch<Course>(`${this.URL}/courses/${id}`, courseData);
   }
 
   deleteCourse(id: number): Observable<{ success: boolean }> {
-    return this.http.delete<{ success: boolean }>(`${this.URL}/courses/${id}`, {
-      withCredentials: true
-    });
+    return this.http.delete<{ success: boolean }>(`${this.URL}/courses/${id}`);
   }
 
   // CATEGORY METHODS
@@ -46,9 +40,7 @@ export class ApiService {
   }
 
   createCategory(categoryData: Partial<Category>): Observable<Category> {
-    return this.http.post<Category>(`${this.URL}/categories`, categoryData, {
-      withCredentials: true
-    });
+    return this.http.post<Category>(`${this.URL}/categories`, categoryData);
   }
   uploadImage(file: File): Observable<any> {
 
@@ -56,20 +48,16 @@ export class ApiService {
 
     formData.append('file', file);
 
-    return this.http.post<any>('/api/upload', formData);
+    return this.http.post<any>(`${this.URL}/courses/upload`, formData);
 
   }
 
   updateCategory(id: number, categoryData: Partial<Category>): Observable<Category> {
-    return this.http.patch<Category>(`${this.URL}/categories/${id}`, categoryData, {
-      withCredentials: true
-    });
+    return this.http.patch<Category>(`${this.URL}/categories/${id}`, categoryData);
   }
 
   deleteCategory(id: number): Observable<{ success: boolean }> {
-    return this.http.delete<{ success: boolean }>(`${this.URL}/categories/${id}`, {
-      withCredentials: true
-    });
+    return this.http.delete<{ success: boolean }>(`${this.URL}/categories/${id}`);
   }
 
   // CHAPTER METHODS
@@ -78,20 +66,14 @@ export class ApiService {
   }
 
   createChapter(courseId: number, chapterData: Partial<Chapter>): Observable<Chapter> {
-    return this.http.post<Chapter>(`${this.URL}/courses/${courseId}/chapters`, chapterData, {
-      withCredentials: true
-    });
+    return this.http.post<Chapter>(`${this.URL}/courses/${courseId}/chapters`, chapterData);
   }
 
   updateChapter(chapterId: number, chapterData: Partial<Chapter>): Observable<Chapter> {
-    return this.http.patch<Chapter>(`${this.URL}/chapters/${chapterId}`, chapterData, {
-      withCredentials: true
-    });
+    return this.http.patch<Chapter>(`${this.URL}/chapters/${chapterId}`, chapterData);
   }
 
   deleteChapter(chapterId: number): Observable<{ success: boolean }> {
-    return this.http.delete<{ success: boolean }>(`${this.URL}/chapters/${chapterId}`, {
-      withCredentials: true
-    });
+    return this.http.delete<{ success: boolean }>(`${this.URL}/chapters/${chapterId}`);
   }
 }

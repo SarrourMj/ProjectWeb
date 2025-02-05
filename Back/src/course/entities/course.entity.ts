@@ -41,7 +41,7 @@ export class Course {
     createdon: Date;
     @Column({type:'timestamp', default: () =>'CURRENT_TIMESTAMP'})
     modifiedOn: Date;
-    @Column()
+    @Column({nullable: true})
     mainimageurl: string;
 
 

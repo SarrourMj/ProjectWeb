@@ -34,8 +34,6 @@ export class CourseService {
     });
   }
   createCourse(courseData: Partial<CourseForm>): Observable<CourseForm> {
-    return this.http.post<CourseForm>(`${this.apiUrl}/courses`, courseData, {
-      withCredentials: true
-    });
+    return this.http.post<CourseForm>(`${this.apiUrl}/courses`, courseData);
   }
 }
