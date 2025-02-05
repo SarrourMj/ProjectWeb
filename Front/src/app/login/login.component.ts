@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule]
+  imports: [CommonModule,ReactiveFormsModule,MatToolbarModule]
 })
 export class LoginComponent {
   loginForm = new FormGroup({
