@@ -163,36 +163,53 @@ body {
 /* Button Styling */
 .p-button {
   transition: all 0.3s ease;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  transition: 0.3s ease;
+  margin-top: 2rem;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 12px rgba(52, 152, 219, 0.3);
+  }
 
   &.p-button-primary {
+    width: 80%;
     background-color: #3498db;
     border-color: #3498db;
 
     &:hover {
-      background-color: #2980b9;
+      background-color:linear-gradient(135deg, #2980b9, #3498db); 
       border-color: #2980b9;
     }
   }
 
   &.p-button-secondary {
+    width: 100%;
+
     background-color: #fb9678; /* Orange */
     border-color: #fb9678;
 
     &:hover {
-      background-color: #fa8565;
+      background-color:linear-gradient(135deg, #fa8565, #fa8565); 
       border-color: #fa8565;
     }
   }
 
-  &.p-button-danger {
+  /*&.p-button-danger {
+    width: 80%;
     background-color: #e74c3c;
     border-color: #e74c3c;
 
     &:hover {
-      background-color: #c0392b;
+      background-color: linear-gradient(135deg, #c0392b, #c0392b);
       border-color: #c0392b;
     }
-  }
+  }*/
 }
 
 /* Chapters Section */

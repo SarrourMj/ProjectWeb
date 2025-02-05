@@ -38,9 +38,9 @@ export class AdminLayoutComponent {
     
 
     {
-      link: "/admin/dashboard",
+      link: "/admin/coursemanagement",
       icon: "star",
-      menu: "Dashboard",
+      menu: "All Courses",
     },
     
     {
