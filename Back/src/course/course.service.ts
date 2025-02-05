@@ -101,7 +101,7 @@ export class CourseService {
   async update(id: number, updateCourseDto: UpdateCourseDto) {
     return await this.courseRepo.update(id, updateCourseDto);
   }
-
+  
   async remove(id: number) {
     const course = await this.courseRepo.findOne({ where: { id } });
     if (course) {

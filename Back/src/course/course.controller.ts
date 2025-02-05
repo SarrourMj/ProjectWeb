@@ -20,6 +20,7 @@ export class CourseController {
   findAll(@Query() query:{ slug?: string; sort?: string; category?: string }) {
     return this.courseService.findAll(query);
   }
+  
 
   @Get(':id')
   findOne(@Param('id') id: string) {
