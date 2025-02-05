@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-
+import { User } from 'angular-feather/icons';
 interface sidebarMenu {
   link: string;
   icon: string;
@@ -15,7 +15,7 @@ interface sidebarMenu {
   styleUrls: ['./user-layout.component.scss']
 })
 export class UserLayoutComponent {
-
+  userXP: number = 0;
   search: boolean = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
