@@ -91,6 +91,9 @@ export class HomeComponent implements OnInit {
 goToLogin(): void {
     this.router.navigate(['/login']);
   }
+  goToSignup(): void {
+    this.router.navigate(['/signup']);
+  }
   ngOnInit(): void {
     // Check for fragment on initial load
     this.checkAndScrollToAboutUs();

@@ -34,16 +34,14 @@
       <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')">
         Password is required.
       </div>
-    
+    </div>
     <!-- Submit Button -->
     <button type="submit" [disabled]="!loginForm.valid">Login</button>
-    <div class="register-link">
-      Don't have an account? <a href="/register">Sign up</a>
+    <div class="register-link" (click)="goToSignup()">Don't have an account? <a href="/register">Sign up</a>
     </div>
   
   
-  
-
+</form>
 </div>
 <footer class="site-footer">
   <div class="footer-content">

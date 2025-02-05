@@ -1,106 +1,147 @@
-// Variables de couleurs
-$primary-color: #17C3B2;
-$background-color: #F8F9FA;
+
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between; /* Aligns children to the left, right, and center respectively */
+  align-items: center; /* Centers items vertically */
+  padding: 0 10px;
+  margin: 0;
+  width: 100%; /* Ensures the toolbar stretches to full width */
+  box-sizing: border-box; /* Optional: Adjusts the padding for visual spacing */
+}
+
+.toolbar-content {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Ensures the div takes full width of the toolbar */
+  justify-content: space-between; /* Separates site name, navigation, and login button */
+}
+
+.ms-16 {
+  margin-left: 16px;
+}
+
+.fw-medium {
+  font-weight: 500; /* Medium font weight */
+}
+
+.fs-26 {
+  font-size: 26px; /* 26px font size for the site name */
+}
+
+button.mat-raised-button {
+  margin-left: auto; 
+  padding: 6px 12px; /* Adjusted padding to be more typical for buttons */
+  background-color: #fb9678 !important; /* Ensures this color takes precedence */
+  color: #090909; /* Set text color to white for better readability */
+}
+
+.logo {
+  height: 50px; /* Logo size */
+}
+
+.menu-items {
+  display: flex;
+  justify-content: center; /* Centers the navigation links */
+  flex-grow: 1; /* Allows the navigation links to take up any extra space */
+}
+
+.menu-items a {
+  margin: 0 10px; /* Horizontal spacing between links */
+  text-decoration: none; /* Removes underline from links */
+  color: inherit; /* Inherits the text color from the parent element */
+  font-size: 16px; /* Sets a specific font size */
+}
+
+/* Variables de couleurs */
+$primary-color: #fb9678; /* Adjusted to match login button color */
+$background-color: #fff;
 $text-color: #333;
 $input-bg: #FFF;
 $border-color: #ccc;
 
 .signup-container {
-  width: 350px;
+  width: 100%;
+  max-width: 350px; /* Matches the more compact form size */
   margin: auto;
   padding: 20px;
   border: 1px solid $border-color;
   border-radius: 8px;
   background-color: $background-color;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-  h2 {
-    text-align: center;
-    color: $text-color;
-    font-weight: bold;
-  }
-
-  div {
-    margin-bottom: 15px;
-  }
-
-  label {
-    font-weight: bold;
-    color: $text-color;
-    display: block;
-  }
-
-  input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid $border-color;
-    border-radius: 5px;
-    background-color: $input-bg;
-    font-size: 16px;
-    color: $text-color;
-  }
-
-  input:focus {
-    outline: none;
-    border-color: $primary-color;
-    box-shadow: 0 0 5px rgba(23, 195, 178, 0.5);
-  }
-
-  button {
-    width: 100%;
-    padding: 12px;
-    background-color: $primary-color;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-
-  button:hover {
-    background-color: darken($primary-color, 10%);
-  }
-
-  button:disabled {
-    background-color: lighten($primary-color, 20%);
-    cursor: not-allowed;
-  }
-
-  small {
-    color: red;
-    font-size: 12px;
-  }
-}
-
-.photo-upload {
+  box-shadow: 0 4px 8px rgba(178, 27, 27, 0.6);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  position: relative;
+  top: 7%;
+  left: 20px;
+}
+
+div {
   margin-bottom: 15px;
-
-  input[type="file"] {
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    padding: 8px;
-    border-radius: 5px;
-    background-color: #F8F9FA;
-  }
 }
 
-.image-preview {
-  margin-top: 10px;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid #17C3B2;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+label {
+  font-weight: bold;
+  color: $text-color;
+  display: block;
+  margin-bottom: 10px; /* Increased spacing for clarity */
 }
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  background-color: $input-bg;
+  font-size: 16px;
+  color: $text-color;
+}
+
+input:focus {
+  outline: none;
+  border-color: $primary-color;
+  box-shadow: 0 0 5px rgba(251, 150, 120, 0.5);
+}
+
+button {
+  width: 90px;
+  padding: 12px;
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 8px;
+}
+
+button:hover {
+  background-color: darken($primary-color, 10%);
+}
+
+button:disabled {
+  background-color: lighten($primary-color, 20%);
+  cursor: not-allowed;
+}
+
+small {
+  color: red;
+  font-size: 12px;
+}
+
+/* Additional styles for alignment with login form */
+body, html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+  width: 100%;
+}
+
+
+

@@ -22,7 +22,9 @@ export class LoginComponent {
     goToLogin(): void {
       this.router.navigate(['/login']);
     }
-
+    goToSignup(): void {
+      this.router.navigate(['/signup']);
+    }
   onSubmit(): void {
     if (this.loginForm.valid) {
       const email = this.loginForm.get('email')?.value || '';

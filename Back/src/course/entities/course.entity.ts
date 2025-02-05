@@ -21,7 +21,7 @@ export class Course {
     certificate: string; 
     
     @Column({
-        length: 100,
+        length: 1000,
         nullable: true,
     })
     background_image: string;
