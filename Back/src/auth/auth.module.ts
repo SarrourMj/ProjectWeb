@@ -12,7 +12,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     UserModule,
     PassportModule,
     JwtModule.register({
-      secret: 'yourDebugSecretKey', // Directly set the secret key here
+      secret: 'yourDebugSecretKey123456789123456789', // Directly set the secret key here
       signOptions: { expiresIn: '60m' },
     }),
   ],
