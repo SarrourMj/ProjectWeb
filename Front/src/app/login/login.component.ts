@@ -34,8 +34,9 @@ export class LoginComponent {
   
           // Store token & complete user object in session storage
           this.authService.saveUserData(response.access_token, response.user);
-  
-          this.router.navigate(['/dashboard']);
+
+          this.router.navigate(['/user/courses']);
+
         },
         (error) => {
           console.error('Login failed', error);
