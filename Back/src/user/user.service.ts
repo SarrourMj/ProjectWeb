@@ -15,6 +15,7 @@ export class UserService {
     private readonly courseRepository: Repository<Course>,
   ) {}
 
+
   async create(createUserDto: CreateUserDto): Promise<User> {
     const user = this.userRepository.create(createUserDto);
     return this.userRepository.save(user);
@@ -30,6 +31,11 @@ export class UserService {
       throw new Error('User not found');
     }
     return user;
+  }
+
+  async findOneByEmail(email: string): Promise<User  | null> {
+    return this.userRepository.findOne({ where: { email } ,
+      relations: ['role']});
   }
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {

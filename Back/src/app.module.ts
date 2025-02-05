@@ -12,7 +12,7 @@ import { Chapter } from './chapter/entities/chapter.entity';
 import { Category } from './category/entities/category.entity';
 import { CategoryModule } from './category/category.module';
 import { AuthModule } from './auth/auth.module';
-// import { AdminModule } from './admin/admin.module'; // Ensure this module exists or correct the path
+import { ProtectedModule } from './protected/protected.module';
 
 @Module({
   imports: [
@@ -28,7 +28,7 @@ import { AuthModule } from './auth/auth.module';
         username: configService.get<string>('DATABASE_USERNAME'),
         password: configService.get<string>('DATABASE_PASSWORD'),
         database: configService.get<string>('DATABASE_NAME'),
-        entities: [User,Course,Chapter, Category,Role],
+        entities: [User, Course, Chapter, Category, Role],
         synchronize: true,
       }),
       inject: [ConfigService],
@@ -36,9 +36,9 @@ import { AuthModule } from './auth/auth.module';
     CourseModule,
     ChapterModule,
     UserModule,
-    // AdminModule,
     CategoryModule,
     AuthModule,
+    ProtectedModule,
   ],
   controllers: [AppController],
 })
