@@ -53,4 +53,5 @@ export class Course {
       @JoinColumn({ name: 'categoryid' })
     
     category: Category;
+    
 }

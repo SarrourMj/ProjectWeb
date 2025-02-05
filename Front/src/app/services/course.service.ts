@@ -3,6 +3,7 @@ import { Course } from './../models/course.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {CourseForm} from "../models/courseForm.model";
+import { Chapter } from '../models/chapter.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,7 +22,12 @@ export class CourseService {
   enrollUserCourse(userId: number, courseId: number): Observable<Course> {
     return this.http.post<Course>(`${this.apiUrl}/user/${userId}/enroll/${courseId}`, {});
   }
-
+  getCompletedChapters(): Observable<Chapter[]> {
+    return this.http.get<Chapter[]>(`${this.apiUrl}/user/1/chapters`);
+  }
+  completeUserChapter(userId: number, chapterId: number): Observable<Chapter> {
+    return this.http.post<Chapter>(`${this.apiUrl}/user/${userId}/complete/${chapterId}`, {});
+  }
   deleteCourse(id: number): Observable<{ success: boolean }> {
     return this.http.delete<{ success: boolean }>(`${this.apiUrl}/courses/${id}`, {
       withCredentials: true
@@ -35,5 +41,8 @@ export class CourseService {
   }
   createCourse(courseData: Partial<CourseForm>): Observable<CourseForm> {
     return this.http.post<CourseForm>(`${this.apiUrl}/courses`, courseData);
+  }
+  incrementUserScore(userId: number, score: number): Observable<void> {
+    return this.http.patch<void>(`${this.apiUrl}/${userId}/increment-score/${score}`, {});
   }
 }

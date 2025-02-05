@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { Course } from './../course/entities/course.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Chapter } from 'src/chapter/entities/chapter.entity';
 
 @Injectable()
 export class UserService {
@@ -13,6 +14,8 @@ export class UserService {
     private readonly userRepository: Repository<User>,
     @InjectRepository(Course)
     private readonly courseRepository: Repository<Course>,
+    @InjectRepository(Chapter)
+    private readonly chapterRepository: Repository<Chapter>,
   ) {}
 
 
@@ -66,6 +69,22 @@ export class UserService {
     user.courses.push(course);
     return this.userRepository.save(user);
   }
+  async completeChapter(userId: number, chapterId: number): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { id: userId }, relations: ['chapters'] });
+    const chapter = await this.chapterRepository.findOne({ where: { id: chapterId } });
+
+    if (!user || !chapter) {
+      throw new Error('User or chapter not found');
+    }
+
+    if (!user.chapters) {
+      user.chapters = [];
+    }
+
+    user.chapters.push(chapter);
+    return this.userRepository.save(user);
+  }
+
 
   async getUserCourses(userId: number): Promise<Course[]> {
     const user = await this.userRepository.findOne({ where: { id: userId }, relations: ['courses'] });
@@ -76,4 +95,22 @@ export class UserService {
 
     return user.courses || [];
   }
+  async getUserChapters(userId: number): Promise<Chapter[]> {
+    const user = await this.userRepository.findOne({ where: { id: userId }, relations: ['chapters'] });
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    return user.chapters || [];
+  }
+  async incrementUserScore(userId: number, score: number): Promise<void> {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (!user) {
+      throw new NotFoundException(`User with ID ${userId} not found`);
+    }
+    user.score = (user.score || 0) + score;
+    await this.userRepository.save(user);
+  }
+  
 }

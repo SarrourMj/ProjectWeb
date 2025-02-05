@@ -9,4 +9,6 @@ export interface Question {
     content: string;
     questions: Question[] | null;
     score: number;
+    completed?: boolean; // Add this property
+
   }
