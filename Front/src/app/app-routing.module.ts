@@ -10,10 +10,10 @@ import { UserLayoutComponent } from './layouts/user-layout/user-layout.component
 import { CoursesComponent } from './components/courses/courses.component'; 
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { CourseDetailComponent } from './coursedetail/coursedetail.component';
-
+import { SignupComponent } from './components/signup/signup.component';
 
 const routes: Routes = [
-  
+  { path: 'signup', component: SignupComponent },
   { 
     path: "user",
     component: UserLayoutComponent,
@@ -22,7 +22,7 @@ const routes: Routes = [
       {path:"courses", component:CoursesComponent},
       { path:"courses/:id", component: CourseDetailComponent},
       {path:"mycourses", component:MycoursesComponent},
-     
+      
       {path:"toolbar", component:ToolbarComponent},
      
       {path:"tooltip", component:TooltipsComponent},
