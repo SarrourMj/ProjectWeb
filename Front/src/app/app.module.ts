@@ -2,12 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
-<<<<<<< HEAD
 import { FormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router';
-=======
-import { FormsModule  } from '@angular/forms'
->>>>>>> 074191b1ca6a0bdd60e7c9523cfd0cc369796a8e
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
