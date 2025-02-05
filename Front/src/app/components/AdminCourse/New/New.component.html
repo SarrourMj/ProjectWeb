@@ -20,7 +20,7 @@
     <label>Category</label>
     <p-dropdown 
       [options]="categories" 
-      [(ngModel)]="selectedCategoryId" 
+      [(ngModel)]="selectedCategoryID" 
       name="category" 
       optionLabel="title" 
       optionValue="id"
@@ -36,7 +36,7 @@
         </div>
       </ng-template>
     </p-dropdown>
-    <small *ngIf="myForm.submitted && !selectedCategoryId" class="error-message">
+    <small *ngIf="myForm.submitted && !selectedCategoryID" class="error-message">
       Category is required.
     </small>
   </div>

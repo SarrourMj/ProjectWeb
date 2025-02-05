@@ -6,7 +6,6 @@ import { DemoFlexyModule } from '../demo-LearnSphere';
 import { MycoursesComponent } from './mycourses/mycourses.component';
 import { FormsModule } from '@angular/forms';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { TooltipsComponent } from './tooltips/tooltips.component'
 import { MenuComponent } from './menu/menu.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CoursesComponent } from './courses/courses.component';
@@ -20,7 +19,6 @@ import { FooterComponent } from './footer/footer.component';
     ToolbarComponent,
     MycoursesComponent,
     MenuComponent,
-    TooltipsComponent,
     EditProfileComponent,
     FormsModule
   ],

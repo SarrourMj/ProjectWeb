@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { Course } from "src/app/models/course.model";
 import { Category } from "src/app/models/category.model";
 import { Chapter } from "src/app/models/chapter.model";
-
+import {ChapterForm} from "src/app/models/chapterForm.model";
 @Injectable({
   providedIn: 'root'
 })
@@ -65,12 +65,12 @@ export class ApiService {
     return this.http.get<Chapter[]>(`${this.URL}/courses/${courseId}/chapters`);
   }
 
-  createChapter(courseId: number, chapterData: Partial<Chapter>): Observable<Chapter> {
-    return this.http.post<Chapter>(`${this.URL}/courses/${courseId}/chapters`, chapterData);
+  createChapter(courseId: number, chapterData: Partial<ChapterForm>): Observable<ChapterForm> {
+    return this.http.post<ChapterForm>(`${this.URL}/courses/${courseId}/chapters`, chapterData);
   }
 
-  updateChapter(chapterId: number, chapterData: Partial<Chapter>): Observable<Chapter> {
-    return this.http.patch<Chapter>(`${this.URL}/chapters/${chapterId}`, chapterData);
+  updateChapter(chapterId: number, chapterData: Partial<ChapterForm>): Observable<ChapterForm> {
+    return this.http.patch<ChapterForm>(`${this.URL}/chapters/${chapterId}`, chapterData);
   }
 
   deleteChapter(chapterId: number): Observable<{ success: boolean }> {

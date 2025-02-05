@@ -1,25 +1,34 @@
 <div *ngIf="course" class="course-container">
-    
-    
-    <h2>{{ course.title }}</h2>
-    <p>Category :{{ course.category.title }}</p>
+    <div  class="course-header">
+        <h2>{{ course.title }}</h2>
+        <button class="enroll-button" (click)="enrollInCourse()" [disabled]="isEnrolled">
+                {{ isEnrolled ? 'Already Enrolled' : 'Enroll' }}
+        </button>
+    </div>
+    <p>Category: {{ course.category.title }}</p>
     <p>{{ course.content }}</p>
-    
-
-    <button class="enroll-button" (click)="enrollInCourse()">Enroll</button>
+  
+   
   
     <h3>Chapters</h3>
-    
     <div class="chapter-list">
-      <div *ngFor="let chapter of course.chapters" class="chapter-card">
+      <div *ngFor="let chapter of course.chapters" class="chapter-card" id="chapter-{{ chapter.id }}">
+        <!-- Chapter Header with Toggle Button -->
         <div class="chapter-header" (click)="toggleChapter(chapter)">
-          <h4>{{ chapter.title }}</h4>
-          <button class="toggle-button">
-            {{ expandedChapters.has(chapter.id) ? '▲' : '▼' }}
-          </button>
+            <div class="chapter-title-wrapper">
+              <h4>{{ chapter.title }}</h4>
+              <span class="chapter-score" *ngIf="chapter.score !== undefined">
+                Score: {{ chapter.score }}
+              </span>
+            </div>
+            <button class="toggle-button" [class.expanded]="expandedChapters.has(chapter.id)">
+              <i class="fas fa-chevron-down"></i>
+            </button>
         </div>
   
-        <div *ngIf="expandedChapters.has(chapter.id)" class="chapter-content">
+        <!-- Animated Chapter Content -->
+        <div [@slideInOut]="expandedChapters.has(chapter.id) ? 'expanded' : 'collapsed'" 
+             class="chapter-content">
           <p>{{ chapter.content }}</p>
   
           <div *ngIf="chapter.questions && chapter.questions.length > 0">
@@ -31,7 +40,7 @@
                 [(ngModel)]="userAnswers[chapter.id][question.question]"
                 placeholder="Enter your answer"
               />
-              <button (click)="validateAnswer(chapter.id, question)">
+              <button class="question-button" (click)="validateAnswer(chapter.id, question)">
                 Submit
               </button>
               <p *ngIf="feedback[chapter.id][question.question]">
@@ -43,4 +52,3 @@
       </div>
     </div>
   </div>
-  

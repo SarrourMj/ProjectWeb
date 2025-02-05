@@ -17,7 +17,7 @@ export class NewComponent implements OnInit {
   course = { title: '', content: '' };
   submitted = false;
   chapters: ChapterForm[] = [this.createNewChapter()];
-  selectedCategoryId?: number;
+  selectedCategoryID: number=1;
   categories: Category[] = [];
   mainImagePath = '';
   certificateImagePath = '';
@@ -69,7 +69,7 @@ export class NewComponent implements OnInit {
     this.submitted = true;
   
     console.log('Form Valid:', form.valid); // Debugging
-    console.log('Selected Category ID:', this.selectedCategoryId); // Debugging
+    console.log('Selected Category ID:', this.selectedCategoryID); // Debugging
     console.log('Main Image Path:', this.mainImagePath); // Debugging
     console.log('Certificate Image Path:', this.certificateImagePath); // Debugging
     console.log('Chapters:', this.chapters); // Debugging
@@ -92,13 +92,17 @@ export class NewComponent implements OnInit {
   
     const courseData = {
       ...this.course,
-      categoryid: this.selectedCategoryId,
+      category: { id: this.selectedCategoryID, title: this.categories.find(c => c.id === this.selectedCategoryID)?.title || '' } ,
       mainImageUrl: this.mainImagePath,
-      certificateImageUrl: this.certificateImagePath, // Add this line
+      certificate: this.certificateImagePath, // Add this line
       chapters: this.chapters.map(chapter => ({
-        ...chapter,
-        questions: chapter.questions,
-        score: chapter.score || undefined
+        title: chapter.title,
+        content: chapter.content,
+        questions: chapter.questions.map(question => ({
+          question: question.question,
+          answer: question.answer
+        })),
+        score: chapter.score
       }))
     };
   
@@ -128,7 +132,8 @@ export class NewComponent implements OnInit {
   private resetForm(form: NgForm): void {
     form.resetForm();
     this.chapters = [this.createNewChapter()];
-    this.selectedCategoryId = undefined;
+    this.selectedCategoryID =1;
+
     this.mainImagePath = '';
   }
 

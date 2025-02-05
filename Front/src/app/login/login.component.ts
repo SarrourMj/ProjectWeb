@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule here
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   standalone: true,
   imports: [
     ReactiveFormsModule  ,
+    CommonModule,
     MatToolbarModule // Correctly imported here
   ]
 })

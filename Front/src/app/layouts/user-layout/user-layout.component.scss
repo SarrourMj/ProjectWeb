@@ -15,3 +15,28 @@
   top: 0;
   z-index: 1;
 }
+.xp-container {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+.xp-container i-feather {
+  font-size: 16px;
+}
+.header-container {
+  position: absolute;
+  top: 20px; // Ajoute un espace de 20px depuis le haut
+  right: 20px; // Place le bouton à droite avec une marge de 20px
+  z-index: 1000; // Assure qu'il reste au-dessus du contenu
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+}
+.page-wrapper {
+  margin-left: auto;
+  padding: 20px;
+}

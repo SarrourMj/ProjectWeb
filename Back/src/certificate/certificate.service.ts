@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Certificate } from './entities/certificate.entity';
 import { User } from 'src/user/entities/user.entity';
+import { NotFoundException } from '@nestjs/common';
 
 
 
@@ -31,8 +32,14 @@ export class CertificateService {
 
   async getUserCertificates(userId: number): Promise<Certificate[]> {
     const user = await this.userRepo.findOne({ where: { id: userId }, relations: ['certificates'] });
-    return user ? user.certificates : [];
+  
+    if (!user || !user.certificates || user.certificates.length === 0) {
+      throw new NotFoundException('No certificates found for this user');
+    }
+  
+    return user.certificates;
   }
+  
 
   async assignCertificateToUser(userId: number, certificateId: number): Promise<void> {
     const user = await this.userRepo.findOne({ where: { id: userId }, relations: ['certificates'] });

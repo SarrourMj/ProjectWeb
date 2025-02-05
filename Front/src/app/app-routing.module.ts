@@ -3,19 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MycoursesComponent } from './components/mycourses/mycourses.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { TooltipsComponent } from './components/tooltips/tooltips.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { CoursesComponent } from './components/courses/courses.component'; 
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { CourseDetailComponent } from './coursedetail/coursedetail.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { AdminCourseComponent } from './components/AdminCourse/AdminCourse.component';
 import { NewComponent } from './components/AdminCourse/New/New.component';
 import { EditComponent } from './components/AdminCourse/edit/edit.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CategoryComponent } from './components/category/category.component';
+import { MyCertificatesComponent } from './components/mycertificates/mycertificates.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,10 @@ const routes: Routes = [
     path :"login", 
     component : LoginComponent
   },
+  {
+    path :"signup", 
+    component : SignupComponent
+  },
   { 
     path: "user",
     component: UserLayoutComponent,
@@ -36,11 +41,12 @@ const routes: Routes = [
       {path:"courses", component:CoursesComponent},
       { path:"courses/:id", component: CourseDetailComponent},
       {path:"mycourses", component:MycoursesComponent},
-     
+      
       {path:"toolbar", component:ToolbarComponent},
      
-      {path:"tooltip", component:TooltipsComponent},
+      {path:"mycertificates", component:MyCertificatesComponent},
       {path:"editprofile", component:EditProfileComponent}
+
     ]
   },
   {

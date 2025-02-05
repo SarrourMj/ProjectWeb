@@ -8,7 +8,7 @@
         <label for="username">Username:</label>
         <input type="text" id="username" formControlName="username" placeholder="Enter your username" required>
         <!-- Error Message for Username -->
-        <div *ngIf="loginForm.get('username').touched && loginForm.get('username').hasError('required')">
+        <div *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.hasError('required')">
           Username is required.
         </div>
       </div>
@@ -18,7 +18,7 @@
         <label for="password">Password:</label>
         <input type="password" id="password" formControlName="password" placeholder="Enter your password" required>
         <!-- Error Message for Password -->
-        <div *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('required')">
+        <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')">
           Password is required.
         </div>
       </div>
