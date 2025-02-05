@@ -19,6 +19,7 @@ export class CreateCourseDto {
     @IsString()
     @IsOptional()
     certificate?: string; 
+    
     @IsOptional()
     category: Category; 
 
@@ -26,4 +27,5 @@ export class CreateCourseDto {
     @ValidateNested({ each: true }) // Validate each item in the array
     @Type(() => CreateChapterDto) // Transform the array items into CreateChapterDto
     chapters: CreateChapterDto[]; // Array of chapters
+
 }

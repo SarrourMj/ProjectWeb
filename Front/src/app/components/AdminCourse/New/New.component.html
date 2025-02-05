@@ -1,0 +1,239 @@
+<form #myForm="ngForm" (ngSubmit)="createCourse(myForm)" class="course-form">
+  <!-- Title Section -->
+  <div class="form-group">
+    <label>Title</label>
+    <input 
+      type="text" 
+      name="title" 
+      [(ngModel)]="course.title" 
+      [required]="true"
+      class="modern-input"
+      placeholder="Enter course title"
+    >
+    <small *ngIf="myForm.submitted && myForm.controls['title']?.errors?.['required']" class="error-message">
+      Title is required.
+    </small>
+  </div>
+
+  <!-- Category Section -->
+  <div class="form-group category-section">
+    <label>Category</label>
+    <p-dropdown 
+      [options]="categories" 
+      [(ngModel)]="selectedCategoryID" 
+      name="category" 
+      optionLabel="title" 
+      optionValue="id"
+      placeholder="Select a category"
+      class="modern-dropdown"
+      [style]="{ 'background-color': '#f8f9fa', 'border-radius': '10px' }"
+      panelStyleClass="modern-dropdown-panel"
+      [required]="true"
+    >
+      <ng-template let-category pTemplate="item">
+        <div class="category-item">
+          <span>{{ category.title }}</span>
+        </div>
+      </ng-template>
+    </p-dropdown>
+    <small *ngIf="myForm.submitted && !selectedCategoryID" class="error-message">
+      Category is required.
+    </small>
+  </div>
+
+  <!-- Content Section -->
+  <div class="form-group">
+    <label>Content</label>
+    <textarea 
+      name="content" 
+      [(ngModel)]="course.content" 
+      [required]="true"
+      class="modern-input"
+      rows="5"
+      placeholder="Enter course content"
+    ></textarea>
+  </div>
+
+  <!-- Course Image Section -->
+  <div class="form-group">
+    <label>Course Image</label>
+    <p-fileUpload 
+      name="mainImage" 
+      (onSelect)="onFileSelected($event, 'mainImage')"
+      [showUploadButton]="false"
+      [showCancelButton]="false"
+      accept="image/*"
+      chooseLabel="Select Course Image"
+      class="modern-upload blue-upload"
+    ></p-fileUpload>
+  </div>
+
+  <!-- Certificate Image Section -->
+  <div class="form-group">
+    <label>Certificate Image</label>
+    <p-fileUpload 
+      name="certificateImage" 
+      (onSelect)="onFileSelected($event, 'certificateImage')"
+      [showUploadButton]="false"
+      [showCancelButton]="false"
+      accept="image/*"
+      chooseLabel="Select Certificate Image"
+      class="modern-upload orange-upload"
+    ></p-fileUpload>
+  </div>
+
+  <!-- Chapters Section -->
+  <div class="chapters-section">
+    <h3>Chapters</h3>
+    <small *ngIf="myForm.submitted && chapters.length === 0" class="error-message">
+      At least one chapter is required.
+    </small>
+    
+    <!-- Chapter Cards -->
+    <div *ngFor="let chapter of chapters; let i = index" class="chapter-card">
+      <div class="chapter-header">
+        <h4>Chapter {{i + 1}}</h4>
+        <div>
+          <button 
+            pButton 
+            type="button" 
+            class="p-button-secondary cancel-btn"
+            (click)="removeChapter(i)"
+            label="Cancel Chapter"
+          ></button>
+        </div>
+      </div>
+
+      <!-- Chapter Title -->
+      <div class="form-group">
+        <input 
+          type="text" 
+          [name]="'chapterTitle' + i" 
+          [(ngModel)]="chapter.title" 
+          [required]="true"
+          class="modern-input"
+          placeholder="Chapter Title"
+        >
+        <small *ngIf="myForm.submitted && !chapter.title" class="error-message">
+          Chapter title is required.
+        </small>
+      </div>
+
+      <!-- Chapter Content -->
+      <div class="form-group">
+        <textarea 
+          [name]="'chapterContent' + i" 
+          [(ngModel)]="chapter.content" 
+          [required]="true"
+          class="modern-input"
+          rows="3"
+          placeholder="Chapter Content"
+        ></textarea>
+        <small *ngIf="myForm.submitted && !chapter.content" class="error-message">
+          Chapter content is required.
+        </small>
+      </div>
+
+      <!-- Questions Section -->
+      <div class="questions-section">
+        <h5>Questions</h5>
+        <small *ngIf="myForm.submitted && chapter.questions.length === 0" class="error-message">
+          At least one question is required for this chapter.
+        </small>
+        
+        <!-- Question Cards -->
+        <div *ngFor="let question of chapter.questions; let j = index" class="question-card">
+          <div class="form-group">
+            <input 
+              type="text" 
+              [name]="'question' + i + j" 
+              [(ngModel)]="question.question" 
+              [required]="true"
+              class="modern-input"
+              placeholder="Question"
+            >
+            <small *ngIf="myForm.submitted && !question.question" class="error-message">
+              Question is required.
+            </small>
+          </div>
+          
+          <div class="form-group">
+            <input 
+              type="text" 
+              [name]="'answer' + i + j" 
+              [(ngModel)]="question.answer" 
+              [required]="true"
+              class="modern-input"
+              placeholder="Answer"
+            >
+            <small *ngIf="myForm.submitted && !question.answer" class="error-message">
+              Answer is required.
+            </small>
+          </div>
+          
+          <!-- Question Actions -->
+          <div class="question-actions">
+            <button 
+              pButton 
+              type="button" 
+              class="p-button-secondary cancel-btn"
+              (click)="removeQuestion(chapter, j)"
+              label="Cancel Question"
+            ></button>
+          </div>
+        </div>
+        
+        <!-- Add Question Button -->
+        <div class="add-question-actions">
+          <button 
+            pButton 
+            type="button" 
+            icon="pi pi-plus" 
+            class="p-button-primary" 
+            (click)="addQuestion(chapter)"
+            label="Add Question"
+          ></button>
+        </div>
+      </div>
+
+      <!-- Chapter Score -->
+      <div class="form-group">
+        <label>Score</label>
+        <p-inputNumber 
+          [name]="'chapterScore' + i" 
+          [(ngModel)]="chapter.score" 
+          mode="decimal"
+          [min]="0"
+          class="modern-input"
+          [required]="true"
+        ></p-inputNumber>
+        <small *ngIf="myForm.submitted && !chapter.score" class="error-message">
+          Score is required.
+        </small>
+      </div>
+    </div>
+
+    <!-- Add Chapter Button -->
+    <div class="add-chapter-actions">
+      <button 
+        pButton 
+        type="button" 
+        icon="pi pi-plus" 
+        class="p-button-primary" 
+        (click)="addChapter()"
+        label="Add Chapter"
+      ></button>
+    </div>
+  </div>
+
+  <!-- Form Actions -->
+  <div class="form-actions">
+    <button 
+      pButton 
+      type="submit" 
+      class="modern-btn" 
+      label="Create Course"
+      [disabled]="myForm.invalid"
+    ></button>
+  </div>
+</form>

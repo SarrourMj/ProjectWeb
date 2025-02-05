@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Course } from '../models/course.model';
 
 @Injectable({
@@ -11,7 +11,8 @@ export class MycoursesService {
 
   constructor(private http: HttpClient) {}
 
-  getEnrolledCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(`${this.apiUrl}/user/1/courses`);
+  getEnrolledCourses(userId:number): Observable<Course[]> {
+    
+    return this.http.get<Course[]>(`${this.apiUrl}/user/${userId}/courses`);
   }
 }

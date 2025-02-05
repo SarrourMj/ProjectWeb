@@ -1,0 +1,17 @@
+<div class="search-container">
+  <input type="text" [(ngModel)]="searchQuery" (input)="filterCourses()" placeholder="Search courses..." class="search-input" />
+</div>
+
+<div class="course-list">
+  <div *ngFor="let course of filteredCourses" class="course-card">
+    <a [routerLink]="['/user/courses', course.id]" class="course-link">
+      <div class="course-image">
+        <img [src]="course.background_image" [alt]="course.title">
+      </div>
+      <div class="course-content">
+        <h3>{{ course.title }}</h3>
+        <p>{{ course.content }}</p>
+      </div>
+    </a>
+  </div>
+</div>

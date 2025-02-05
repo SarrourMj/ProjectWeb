@@ -1,0 +1,94 @@
+<div class="category-management">
+  <!-- Create Category Card -->
+  <div class="card create-card">
+    <h2>Create New Category</h2>
+    <form #categoryForm="ngForm" (ngSubmit)="createCategory(categoryForm)" class="modern-form">
+      <div class="form-group">
+        <label class="input-label">Category Title</label>
+        <input 
+          type="text" 
+          pInputText 
+          name="title" 
+          [(ngModel)]="category.title" 
+          required
+          class="modern-input"
+          placeholder="Enter category title"
+        >
+        <small 
+          *ngIf="categoryForm.submitted && categoryForm.controls['title']?.errors?.['required']" 
+          class="error-message"
+        >
+          Title is required
+        </small>
+      </div>
+
+      <div class="form-actions">
+        <button 
+          pButton 
+          type="submit" 
+          class="modern-btn submit-btn" 
+          label="Create Category"
+          [disabled]="loading"
+        ></button>
+        <button 
+          pButton 
+          type="button" 
+          class="modern-btn reset-btn" 
+          label="Clear"
+          (click)="resetForm(categoryForm)"
+        ></button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Categories Table -->
+  <div class="card table-card">
+    <h2>Existing Categories</h2>
+    <p-table 
+      [value]="categories" 
+      [loading]="loading"
+      [paginator]="true" 
+      [rows]="10"
+      styleClass="p-datatable-striped modern-table"
+      responsiveLayout="scroll"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="title">Title <p-sortIcon field="title"></p-sortIcon></th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      
+      <ng-template pTemplate="body" let-category>
+        <tr>
+          <td>{{ category.title }}</td>        
+            <td>
+            <div class="action-buttons">
+              <button 
+                pButton 
+                icon="pi pi-trash" 
+                label="Delete Category"
+                align-items-center
+                class="p-button-rounded p-button-danger modern-icon-btn"
+                (click)="confirmDelete(category.id)"
+              ></button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="3" class="empty-message">
+            <i class="pi pi-info-circle"></i>
+            No categories found. Start by creating one!
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <!-- PrimeNG Services -->
+  <p-toast position="top-right"></p-toast>
+  <p-confirmDialog [style]="{width: '500px'}"></p-confirmDialog>
+</div>

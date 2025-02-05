@@ -7,6 +7,7 @@ interface sidebarMenu {
   link: string;
   icon: string;
   menu: string;
+  children?: sidebarMenu[]; // Optional children property
 }
 
 @Component({
@@ -29,31 +30,47 @@ export class AdminLayoutComponent {
   routerActive: string = "activelink";
 
   sidebarMenu: sidebarMenu[] = [
+    {
+      link: "/user/home",
+      icon: "home",
+      menu: "View Website",
+    },
+    
 
     {
-      link: "/admin/dashboard",
-      icon: "home",
-      menu: "Dashboard",
-    },
-    
-    {
       link: "/admin/coursemanagement",
-      icon: "list",
-      menu: "Course management",
+      icon: "star",
+      menu: "All Courses",
     },
     
     {
-      link: "/admin/usermanagement",
-      icon: "star",
-      menu: "User management",
+      link: "/admin/coursemanagement", // Main link (optional)
+      icon: "list", // Icon for the main button
+      menu: "Course Management", // Main button text
+      children: [ // Dropdown options
+        { link: "/admin/coursemanagement/Create", icon: "plus", menu: "Create New Course" },
+        { link: "/admin/coursemanagement/Category", icon: "folder", menu: "Categories" }
+      ]
     },
-  
     {
       link: "/admin/tooltip",
       icon: "bell",
       menu: "Notifications",
     },
   
-  ]
+  ];
+  openDropdown: any = null; 
+
+  toggleDropdown(menuItem: any) {
+    if (this.openDropdown === menuItem) {
+      this.openDropdown = null; 
+    } else {
+      this.openDropdown = menuItem; 
+    }
+  }
+
+  isDropdownOpen(menuItem: any) {
+    return this.openDropdown === menuItem;
+  }
 
 }
