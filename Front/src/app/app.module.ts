@@ -2,7 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
+<<<<<<< HEAD
+import { FormsModule } from '@angular/forms'
+import { RouterModule } from '@angular/router';
+=======
 import { FormsModule  } from '@angular/forms'
+>>>>>>> 074191b1ca6a0bdd60e7c9523cfd0cc369796a8e
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +36,7 @@ import {NewComponent} from './components/AdminCourse/New/New.component';
 import { AdminCourseComponent } from './components/AdminCourse/AdminCourse.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
 import { CategoryComponent } from './components/category/category.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog'; // Import ConfirmDialogModule
 import { MycoursesComponent } from './components/mycourses/mycourses.component';
@@ -60,12 +66,19 @@ import { SignupComponent } from './components/signup/signup.component';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+    AppRoutingModule,
+    RouterModule       ,
     BrowserAnimationsModule,
     FeatherModule.pick(allIcons),
     DemoFlexyModule,
     DashboardModule,
     ComponentsModule,
-    FormsModule,
+    FormsModule, 
+    LoginComponent, 
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+
     TableModule,
     ToastModule,
     InputTextModule,

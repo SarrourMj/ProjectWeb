@@ -5,6 +5,7 @@ import { User } from './entities/user.entity';
 import { Course } from './../course/entities/course.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Role } from './entities/role.entity';
 
 @Injectable()
 export class UserService {
@@ -13,13 +14,28 @@ export class UserService {
     private readonly userRepository: Repository<User>,
     @InjectRepository(Course)
     private readonly courseRepository: Repository<Course>,
+    @InjectRepository(Role) // Inject Role Repository
+    private readonly roleRepository: Repository<Role>,
   ) {}
 
 
   async createUser(createUserDto: CreateUserDto): Promise<User> {
-    const newUser = this.userRepository.create(createUserDto);
+    // Set default role ID to 1
+    const defaultRole = await this.roleRepository.findOne({ where: { id: 1 } });
+    if (!defaultRole) {
+      throw new Error('Default role not found');
+    }
+  
+    // Create new user instance
+    const newUser = this.userRepository.create({
+      ...createUserDto,
+      role: defaultRole, // Assign the default role
+    });
+  
+    // Save user to the database
     return this.userRepository.save(newUser);
   }
+  
 
   async findAll(): Promise<User[]> {
     return this.userRepository.find();

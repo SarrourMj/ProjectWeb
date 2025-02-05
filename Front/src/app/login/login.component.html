@@ -1,33 +1,95 @@
-<div class="login-container">
-    
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <h2>Login</h2>
-  
-      <!-- Username Input -->
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" id="username" formControlName="username" placeholder="Enter your username" required>
-        <!-- Error Message for Username -->
-        <div *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.hasError('required')">
-          Username is required.
-        </div>
-      </div>
-  
-      <!-- Password Input -->
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" formControlName="password" placeholder="Enter your password" required>
-        <!-- Error Message for Password -->
-        <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')">
-          Password is required.
-        </div>
-      </div>
-  
-      <!-- Submit Button -->
-      <button type="submit" [disabled]="!loginForm.valid">Login</button>
-      <div class="register-link">
-        Don't have an account? <a href="/register">Sign up</a>
-      </div>
-    </form>
+<mat-toolbar color="primary">
+  <div class="toolbar-content">
+    <span class="ms-16 fw-medium fs-26" ><a href="/home">CourseQuest</a></span>
+    <span class="menu-items">
+      <a href="/home">Home</a>
+      <a href="#">Learn</a>
+      <a href="#">About us</a>
+    </span>
+    <button mat-raised-button class="login" (click)="goToLogin()" style="background-color: #fb9678; color: white;" >login</button>
   </div>
+</mat-toolbar>
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h2>Login</h2>
+
+    <!-- Email Input -->
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" id="email" formControlName="email" placeholder="Enter your email" required>
+      <!-- Error Message for Email -->
+      <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')">
+        Email is required.
+      </div>
+      <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('email')">
+        Invalid email format.
+      </div>
+    </div>
+
+    <!-- Password Input -->
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password" placeholder="Enter your password" required>
+      <!-- Error Message for Password -->
+      <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')">
+        Password is required.
+      </div>
+    
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="!loginForm.valid">Login</button>
+    <div class="register-link">
+      Don't have an account? <a href="/register">Sign up</a>
+    </div>
+  </form>
+  
+  
+
+</div>
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-block">
+      <span class="ms-16 fw-medium fs-26" ><h2 href="/home" color="primary">CourseQuest</h2></span>
+      <p>Discover software developers and Diversify the global tech sector </p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-column">
+        <h4>For Talent</h4>
+        <ul>
+          <li><a href="#">Sign up for CourseQuest</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>For Companies</h4>
+        <ul>
+          <li><a href="#">Feature your Content</a></li>
+          <li><a href="#">Develop your Team</a></li>
+          <li><a href="#">Other Solutions</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>About CourseQuest</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+      <div class="footer-column">
+          <h4>Social Media</h4>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/yourprofile" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com/yourprofile" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 CourseQuest | <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+  </div>
+</footer>
+
   

@@ -101,13 +101,6 @@
             (click)="removeChapter(i)"
             label="Cancel Chapter"
           ></button>
-          <button 
-            pButton 
-            icon="pi pi-times" 
-            class="p-button-danger" 
-            (click)="removeChapter(i)"
-            *ngIf="chapters.length > 1"
-          ></button>
         </div>
       </div>
 
@@ -186,13 +179,6 @@
               class="p-button-secondary cancel-btn"
               (click)="removeQuestion(chapter, j)"
               label="Cancel Question"
-            ></button>
-            <button 
-              pButton 
-              icon="pi pi-trash" 
-              class="p-button-warning" 
-              (click)="removeQuestion(chapter, j)"
-              *ngIf="chapter.questions.length > 0"
             ></button>
           </div>
         </div>

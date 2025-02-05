@@ -1,0 +1,58 @@
+.site-footer {
+    background-color: #f8f9fa;
+    color: #333;
+    font-size: 16px; /* Increased from 14px for better readability */
+    padding: 40px 0; /* Increased padding for more space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+    background-color: rgb(197 64 23 / 15%) !important;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+  }
+  
+  .footer-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .footer-links {
+    display: flex;
+  }
+  
+  .footer-column {
+    margin-right: 20px;
+  }
+  
+  .footer-column h4 {
+    color: #007bff;
+    font-size: 18px; /* Increased font size for headers */
+  }
+  
+  .footer-column ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px; /* Increased font size for better readability */
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px; /* Increased font size for consistency */
+  }
+  .social-icons a {
+    color: #333; /* Icon color */
+    margin-right: 10px; /* Spacing between icons */
+    font-size: 28px; /* Increased icon size for visibility */
+  }
+  
+  .social-icons a:hover {
+    color: #0056b3; /* Color when hovered over */
+    transform: scale(1.1); /* Slight scale on hover for effect */
+  }
+  
