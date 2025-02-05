@@ -34,6 +34,7 @@ import { LoginComponent } from './login/login.component';
 import { CategoryComponent } from './components/category/category.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog'; // Import ConfirmDialogModule
 import { MycoursesComponent } from './components/mycourses/mycourses.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor'; // Import the interceptor
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './components/signup/signup.component';
@@ -73,7 +74,7 @@ import { SignupComponent } from './components/signup/signup.component';
     LoginComponent
   ],
   
-  providers: [MessageService],
+  providers: [MessageService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
