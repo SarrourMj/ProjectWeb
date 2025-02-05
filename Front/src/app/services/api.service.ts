@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { Course } from "src/app/models/course.model";
 import { Category } from "src/app/models/category.model";
 import { Chapter } from "src/app/models/chapter.model";
-
+import {ChapterForm} from "src/app/models/chapterForm.model";
 @Injectable({
   providedIn: 'root'
 })
@@ -23,21 +23,15 @@ export class ApiService {
   }
 
   createCourse(courseData: Partial<Course>): Observable<Course> {
-    return this.http.post<Course>(`${this.URL}/courses`, courseData, {
-      withCredentials: true
-    });
+    return this.http.post<Course>(`${this.URL}/courses`, courseData);
   }
 
   updateCourse(id: number, courseData: Partial<Course>): Observable<Course> {
-    return this.http.patch<Course>(`${this.URL}/courses/${id}`, courseData, {
-      withCredentials: true
-    });
+    return this.http.patch<Course>(`${this.URL}/courses/${id}`, courseData);
   }
 
   deleteCourse(id: number): Observable<{ success: boolean }> {
-    return this.http.delete<{ success: boolean }>(`${this.URL}/courses/${id}`, {
-      withCredentials: true
-    });
+    return this.http.delete<{ success: boolean }>(`${this.URL}/courses/${id}`);
   }
 
   // CATEGORY METHODS
@@ -46,9 +40,7 @@ export class ApiService {
   }
 
   createCategory(categoryData: Partial<Category>): Observable<Category> {
-    return this.http.post<Category>(`${this.URL}/categories`, categoryData, {
-      withCredentials: true
-    });
+    return this.http.post<Category>(`${this.URL}/categories`, categoryData);
   }
   uploadImage(file: File): Observable<any> {
 
@@ -56,20 +48,16 @@ export class ApiService {
 
     formData.append('file', file);
 
-    return this.http.post<any>('/api/upload', formData);
+    return this.http.post<any>(`${this.URL}/courses/upload`, formData);
 
   }
 
   updateCategory(id: number, categoryData: Partial<Category>): Observable<Category> {
-    return this.http.patch<Category>(`${this.URL}/categories/${id}`, categoryData, {
-      withCredentials: true
-    });
+    return this.http.patch<Category>(`${this.URL}/categories/${id}`, categoryData);
   }
 
   deleteCategory(id: number): Observable<{ success: boolean }> {
-    return this.http.delete<{ success: boolean }>(`${this.URL}/categories/${id}`, {
-      withCredentials: true
-    });
+    return this.http.delete<{ success: boolean }>(`${this.URL}/categories/${id}`);
   }
 
   // CHAPTER METHODS
@@ -77,21 +65,15 @@ export class ApiService {
     return this.http.get<Chapter[]>(`${this.URL}/courses/${courseId}/chapters`);
   }
 
-  createChapter(courseId: number, chapterData: Partial<Chapter>): Observable<Chapter> {
-    return this.http.post<Chapter>(`${this.URL}/courses/${courseId}/chapters`, chapterData, {
-      withCredentials: true
-    });
+  createChapter(courseId: number, chapterData: Partial<ChapterForm>): Observable<ChapterForm> {
+    return this.http.post<ChapterForm>(`${this.URL}/courses/${courseId}/chapters`, chapterData);
   }
 
-  updateChapter(chapterId: number, chapterData: Partial<Chapter>): Observable<Chapter> {
-    return this.http.patch<Chapter>(`${this.URL}/chapters/${chapterId}`, chapterData, {
-      withCredentials: true
-    });
+  updateChapter(chapterId: number, chapterData: Partial<ChapterForm>): Observable<ChapterForm> {
+    return this.http.patch<ChapterForm>(`${this.URL}/chapters/${chapterId}`, chapterData);
   }
 
   deleteChapter(chapterId: number): Observable<{ success: boolean }> {
-    return this.http.delete<{ success: boolean }>(`${this.URL}/chapters/${chapterId}`, {
-      withCredentials: true
-    });
+    return this.http.delete<{ success: boolean }>(`${this.URL}/chapters/${chapterId}`);
   }
 }

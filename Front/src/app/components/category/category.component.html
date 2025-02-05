@@ -1,61 +1,100 @@
-<div class="row">
-    <p-toast position='bottom-center'></p-toast>
-    <div class="col-md-6">
-      <h3>Categories</h3>
-      <p-table [value]="categories" dataKey="id" responsiveLayout="scroll" (onEditComplete)="update($event)">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Actions</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
-          <tr>
-            <td [pEditableColumn]="product" [pEditableColumnField]="'title'" [pEditableColumnRowIndex]="rowIndex">
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                  <input pInputText type="text" [(ngModel)]="product.title">
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{product.title}}
-                </ng-template>
-              </p-cellEditor>
-            </td>
-            <td [pEditableColumn]="product" [pEditableColumnField]="'description'" [pEditableColumnRowIndex]="rowIndex">
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                  <input pInputText type="text" [(ngModel)]="product.description" required>
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{product.description}}
-                </ng-template>
-              </p-cellEditor>
-            </td>
-            <td class="text-center">
-              <i class="pi pi-trash text-danger cursor-pointer" (click)="remove(rowIndex, product.id)"></i>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-  
-    </div>
-    <div class="col-md-4 offset-md-1 my-sm-4">
-      <h3>Create New Category</h3>
-      <form #cat="ngForm" (ngSubmit)="create(cat)">
-        <div class="mb-3">
-          <label for="title">Title</label>
-          <input type="text" class="form-control" placeholder="Title" id="title" name="title" ngModel>
-        </div>
-        <div class="mb-3">
-          <label for="description">Description</label>
-          <input type="text" class="form-control" placeholder="Description" id="description" name="description" ngModel>
-        </div>
-        <div class="my-3">
-          <button class="btn btn-success" type="submit">Create Category</button>
-        </div>
-      </form>
-  
-    </div>
-  
+<div class="category-management">
+  <!-- Create Category Card -->
+  <div class="card create-card">
+    <h2>Create New Category</h2>
+    <form #categoryForm="ngForm" (ngSubmit)="createCategory(categoryForm)">
+      <div class="form-group">
+        <label class="input-label">Category Title</label>
+        <input 
+          type="text" 
+          pInputText 
+          name="title" 
+          [(ngModel)]="category.title" 
+          required
+          class="form-input"
+          placeholder="Enter category title"
+        >
+        <small 
+          *ngIf="categoryForm.submitted && categoryForm.controls['title']?.errors?.['required']" 
+          class="error-message"
+        >
+          Title is required
+        </small>
+      </div>
+
+      <div class="form-actions">
+        <button 
+          pButton 
+          type="submit" 
+          class="submit-btn" 
+          label="Create Category"
+          [disabled]="loading"
+        ></button>
+        <button 
+          pButton 
+          type="button" 
+          class="reset-btn" 
+          label="Clear"
+          (click)="resetForm(categoryForm)"
+        ></button>
+      </div>
+    </form>
   </div>
+
+  <!-- Categories Table -->
+  <div class="card table-card">
+    <h2>Existing Categories</h2>
+    <p-table 
+      [value]="categories" 
+      [loading]="loading"
+      [paginator]="true" 
+      [rows]="10"
+      styleClass="p-datatable-striped"
+      responsiveLayout="scroll"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="title">Title <p-sortIcon field="title"></p-sortIcon></th>
+          <th>Created Date</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      
+      <ng-template pTemplate="body" let-category>
+        <tr>
+          <td>{{ category.title }}</td>
+          <td>{{ category.createdAt | date: 'mediumDate' }}</td>
+          <td>
+            <div class="action-buttons">
+              <button 
+                pButton 
+                icon="pi pi-pencil" 
+                class="p-button-rounded p-button-warning"
+                (click)="startEdit(category)"
+              ></button>
+              <button 
+                pButton 
+                icon="pi pi-trash" 
+                class="p-button-rounded p-button-danger"
+                (click)="confirmDelete(category.id)"
+              ></button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="3" class="empty-message">
+            <i class="pi pi-info-circle"></i>
+            No categories found. Start by creating one!
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <!-- PrimeNG Services -->
+  <p-toast position="top-right"></p-toast>
+  <p-confirmDialog [style]="{width: '500px'}"></p-confirmDialog>
+</div>

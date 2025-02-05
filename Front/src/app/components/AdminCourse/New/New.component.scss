@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
 /* General Styles */
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #f4f6f9;
+  margin: 0;
+  padding: 0;
 }
 
 .course-form {
@@ -39,57 +43,96 @@ body {
   box-shadow: 0px 0px 12px rgba(52, 152, 219, 0.3);
 }
 
-/* Category Dropdown */
+/* Dropdown Styling */
 .category-section {
   margin-bottom: 2.5rem; /* Added spacing */
 }
 
 .modern-dropdown {
-
   .p-dropdown {
     width: 100%;
     border-radius: 10px;
     border: 1px solid #ddd;
     background-color: #f8f9fa;
     transition: all 0.3s ease;
-    
+
     .p-dropdown-label {
       padding: 0.75rem;
       color: #444;
+      font-weight: 500;
     }
-    
+
     .p-dropdown-trigger {
       color: #3498db;
     }
   }
-  
+
   .p-dropdown-panel {
     border-radius: 10px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: #a2c5e8; /* Added background */
+    background-color: white; /* White background */
     animation: slideDown 0.3s ease-out;
     border: none !important;
     margin-top: 5px;
+
     .p-dropdown-items {
-          padding: 0.5rem 0;
+      padding: 0.5rem 0;
 
       .p-dropdown-item {
         padding: 0.75rem 1rem;
         transition: all 0.2s ease;
         background-color: white; /* White background for items */
+        color: #444;
+        font-weight: 400;
 
         &:hover {
           background-color: #3498db !important;
-          color: white;
+          color: white !important;
           transform: translateX(5px);
+          border-radius: 8px;
         }
-        
+
         &.p-highlight {
           background-color: #3498db;
           color: white;
+          font-weight: 500;
         }
       }
     }
+  }
+}
+
+/* Additional Styling for Category Items */
+.category-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin: 0.25rem 0;
+
+  &:hover {
+    background-color: #3498db !important;
+    color: white !important;
+    transform: translateX(5px);
+  }
+
+  span {
+    font-weight: 400;
+    color: inherit;
+  }
+}
+
+/* Dropdown Animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -99,7 +142,7 @@ body {
     border-radius: 10px;
     padding: 1rem;
     transition: all 0.3s ease;
-    
+
     .p-button {
       color: white;
       background: transparent;
@@ -120,32 +163,31 @@ body {
 /* Button Styling */
 .p-button {
   transition: all 0.3s ease;
-  
+
   &.p-button-primary {
     background-color: #3498db;
     border-color: #3498db;
-    
+
     &:hover {
-      background-color: #3498db !important;
-      color: white;
-      transform: translateX(5px);
+      background-color: #2980b9;
+      border-color: #2980b9;
     }
   }
-  
+
   &.p-button-secondary {
     background-color: #fb9678; /* Orange */
     border-color: #fb9678;
-    
+
     &:hover {
       background-color: #fa8565;
       border-color: #fa8565;
     }
   }
-  
+
   &.p-button-danger {
     background-color: #e74c3c;
     border-color: #e74c3c;
-    
+
     &:hover {
       background-color: #c0392b;
       border-color: #c0392b;
@@ -174,7 +216,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
-  
+
   h4 {
     margin: 0;
     color: #444;
@@ -207,7 +249,7 @@ body {
 .cancel-btn {
   background-color: #fb9678 !important; /* Orange */
   border-color: #fb9678 !important;
-  
+
   &:hover {
     background-color: #fa8565 !important;
     border-color: #fa8565 !important;
@@ -225,10 +267,45 @@ body {
   border-radius: 10px;
   transition: 0.3s ease;
   margin-top: 2rem;
-  
+
   &:hover {
     background: linear-gradient(135deg, #2980b9, #3498db);
     transform: translateY(-2px);
     box-shadow: 0px 4px 12px rgba(52, 152, 219, 0.3);
+  }
+}
+
+/* Error Messages */
+.error-message {
+  color: #e74c3c; 
+  font-size: 0.999rem;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* Dropdown Animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .course-form {
+    padding: 1.5rem;
+  }
+
+  .chapter-card {
+    padding: 1rem;
+  }
+
+  .question-card {
+    padding: 0.8rem;
   }
 }
