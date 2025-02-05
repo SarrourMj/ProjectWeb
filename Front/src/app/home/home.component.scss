@@ -1,72 +1,83 @@
+
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between; /* Aligns children to the left, right, and center respectively */
+  align-items: center; /* Centers items vertically */
+  padding: 0 10px;
+  margin: 0;
+  width: 100%; /* Ensures the toolbar stretches to full width */
+  box-sizing: border-box; /* Optional: Adjusts the padding for visual spacing */
+}
+
+.toolbar-content {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Ensures the div takes full width of the toolbar */
+  justify-content: space-between; /* Separates site name, navigation, and login button */
+}
+
+
+.ms-16 {
+  margin-left: 16px;
+}
+
+.fw-medium {
+  font-weight: 500; /* Medium font weight */
+}
+
+.fs-26 {
+  font-size: 26px; /* 26px font size for the site name */
+}
+
+button.mat-raised-button {
+  margin-left: auto; 
+  padding: 6px 12px; /* Adjusted padding to be more typical for buttons */
+  background-color: #fb9678 !important; /* Ensures this color takes precedence */
+  color: #090909; /* Set text color to white for better readability */
+}
+
+.logo {
+  height: 50px; /* Logo size */
+}
+
+.menu-items {
+  display: flex;
+  justify-content: center; /* Centers the navigation links */
+  flex-grow: 1; /* Allows the navigation links to take up any extra space */
+}
+
+.menu-items a {
+  margin: 0 10px; /* Horizontal spacing between links */
+  text-decoration: none; /* Removes underline from links */
+  color: inherit; /* Inherits the text color from the parent element */
+  font-size: 16px; /* Sets a specific font size */
+}
+
 .toolbar-container {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-  }
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
   
+}
+p {
+  color: #666;
+  line-height: 1.6;
+}
   .logo {
     height: 50px;
-    /* Adjust size as necessary */
+    
   }
   
   .spacer {
     flex: 1;
   }
   .hero-section {
-    background-color: #fafafa; /* Light peach background */
+    background-color: #fafafa; /* Light peach background, consider adding an image */
     color: #333;
     text-align: center;
-    height: 35rem;
-  
-  }
-  
-  .mat-toolbar {
-    display: flex;
-    justify-content: space-between; /* Aligns children to the left, right, and center respectively */
-    align-items: center; /* Centers items vertically */
-    padding: 0 10px;
-    margin: 0;
-    width: 100%; /* Ensures the toolbar stretches to full width */
-    box-sizing: border-box; /* Optional: Adjusts the padding for visual spacing */
-  }
-  
-  .toolbar-content {
-    display: flex;
-    align-items: center;
-    width: 100%; /* Ensures the div takes full width of the toolbar */
-    justify-content: space-between; /* Separates site name, navigation, and login button */
-  }
-  .ms-16 {
-    margin-left: 16px; }
-  
-  .fw-medium {
-    font-weight: 500; /* Medium font weight */
-  }
-  
-  .fs-26 {
-    font-size: 26px; /* 26px font size for the site name */
-  }
-  
-  button.mat-raised-button {
-    margin-left: auto; /* Pushes the button to the right */
-  }
-  
-  .logo {
-    height: 50px; /* Logo size */
-  }
-  
-  .menu-items {
-    display: flex;
-    justify-content: center; /* Centers the navigation links */
-    flex-grow: 1; /* Allows the navigation links to take up any extra space */
-  }
-  
-  .menu-items a {
-    margin: 0 10px; /* Horizontal spacing between links */
-    text-decoration: none; /* Removes underline from links */
-    color: inherit; /* Inherits the text color from the parent element */
-    font-size: 16px; /* Sets a specific font size */
+    padding: 4rem 0;
+    background-color: rgb(197 64 23 / 15%) !important;
   }
   
   .hero-content h1 {
@@ -79,11 +90,13 @@
     margin-top: 10px;
     color: #666;
   }
-  .hero-content{
-    height: 30rem;
+  .hero-content {
+    max-width: 960px;
+    margin: auto;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
   }
   
   .hero-buttons button {
@@ -107,8 +120,25 @@
     border-radius: 8px;
   
   }
+  .cta-signup {
+    background-color: #fb9678; /* Reused your chosen button color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 18px;
+    font-weight: bold;
+    display: var(--mat-filled-button-touch-target-display, block);
+  }
+  .cta-signup:hover {
+    background-color: darken(#fb9678, 10%); /* Slightly darken on hover */
+  }
   
   
+  
+  button.mat-raised-button{
+    background-color: #fb9678;
+  }
   .hero {
     background-color: #0a0a0a;
     padding: 50px;
@@ -121,7 +151,8 @@
     padding: 20px;
     background-color: #f5f5f5;
     align-items: center;
-  
+    text-align: center;
+    margin: 0 auto; 
   }
   
   .info-section img {
@@ -151,70 +182,26 @@
     color: #fff;
   }
   
-  
-  .site-footer {
-    background-color: #f8f9fa;
-    color: #333;
-    font-size: 14px;
-    padding: 20px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-  }
-  
-  .footer-block {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .footer-logo {
-    width: 50px;
-    margin-bottom: 10px;
-  }
-  
-  .footer-links {
-    display: flex;
-  }
-  
-  .footer-column {
-    margin-right: 20px;
-  }
-  
-  .footer-column h4 {
-    color: #007bff;
-  }
-  
-  .footer-column ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-column ul li a {
-    color: #333;
-    text-decoration: none;
-  }
-  
-  .footer-bottom {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .social-icons a {
-    color: #333;
-    margin-right: 10px;
-  }
-  
-  .social-icons i {
-    font-size: 16px;
-    /* Adjust size as needed */
-  }
+  .learn-section {
+    padding: 40px 10%;  /* Reduce padding on the sides if needed */
+    width: 100%;  
+   
+     margin: auto;       /* Center the section on the page */
+    background-color: #f4f4f4; /* Light grey background */
+    text-align: center; 
+    }
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .start-button {
+        background-color: #fb9678; // Style to match other buttons
+        color: white;
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
   
   .team-section {
     display: flex;
@@ -223,6 +210,7 @@
     gap: 20px;
     align-items: center;
     margin:2rem;
+    text-align: center;
   
   }
   
@@ -230,7 +218,7 @@
     width: 200px;
     /* Adjust based on your design preference */
     background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(39, 21, 242, 0.1);
     border-radius: 10px;
     overflow: hidden;
     text-align: center;
@@ -238,7 +226,7 @@
   }
   
   .card-header {
-    background-color: #6a5acd;
+    background-color: #f9ac94;
     /* Adjust the color as needed */
     padding: 20px;
   }
@@ -283,21 +271,30 @@
     text-align: center;
     padding: 40px 20px;
     background-color: #f9f9f9;
+    background-color: rgb(197 64 23 / 15%) !important;
   }
   
   .testimonials-section h2 {
     font-size: 24px;
-    color: #333;
+    color: #fb9678;
     margin-bottom: 20px;
   }
   
-  .testimonial-card {
+  .testimonial-card, .team-card {
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    max-width: 400px;
+    margin: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .testimonial-card:hover, .team-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  h1, h2, h3 {
+    color: #333;
+    margin-bottom: 1rem;
   }
   
   .testimonial-photo {
@@ -323,3 +320,67 @@
     color: #666;
     font-size: 14px;
   }
+  @media (max-width: 768px) {
+    .hero-content, .teste-cards {
+      flex-direction: column;
+    }
+  }
+  
+  .site-footer {
+    background-color: #f8f9fa;
+    color: #333;
+    font-size: 16px; /* Increased from 14px for better readability */
+    padding: 40px 0; /* Increased padding for more space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+    background-color: rgb(197 64 23 / 15%) !important;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+  }
+  
+  .footer-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .footer-links {
+    display: flex;
+  }
+  
+  .footer-column {
+    margin-right: 20px;
+  }
+  
+  .footer-column h4 {
+    color: #74899f;
+    font-size: 18px; /* Increased font size for headers */
+  }
+  
+  .footer-column ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px; /* Increased font size for better readability */
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px; /* Increased font size for consistency */
+  }
+  .social-icons a {
+    color: #333; /* Icon color */
+    margin-right: 10px; /* Spacing between icons */
+    font-size: 28px; /* Increased icon size for visibility */
+  }
+  
+  .social-icons a:hover {
+    color: #0056b3; /* Color when hovered over */
+    transform: scale(1.1); /* Slight scale on hover for effect */
+  }
+  
