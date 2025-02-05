@@ -4,13 +4,13 @@ import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 import { FormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { DemoFlexyModule } from './demo-LearnSphere'
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 // Modules
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -20,7 +20,6 @@ import {  HttpClientModule } from '@angular/common/http'; // Import HttpClientMo
 
 import { CoursesComponent } from './components/courses/courses.component';
 import { CourseDetailComponent } from './coursedetail/coursedetail.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { InputNumberModule } from 'primeng/inputnumber'; // Import InputNumberModule
 import { DropdownModule } from 'primeng/dropdown'; // Import DropdownModule
 import { FileUploadModule } from 'primeng/fileupload'; // Import FileUploadModule
@@ -35,9 +34,9 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { CategoryComponent } from './components/category/category.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog'; // Import ConfirmDialogModule
-
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './components/signup/signup.component';
+
 
 @NgModule({
   declarations: [
@@ -64,10 +63,10 @@ import { SignupComponent } from './components/signup/signup.component';
     BrowserAnimationsModule,
     FeatherModule.pick(allIcons),
     DemoFlexyModule,
-    MatToolbarModule,
     DashboardModule,
     ComponentsModule,
     FormsModule, 
+    MatToolbarModule,
     LoginComponent, 
     HomeComponent,
     HeaderComponent,
