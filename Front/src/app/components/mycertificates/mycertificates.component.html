@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>My Certificates</h2>
+  
+  <div *ngIf="!noCertificates; else noCertificatesTemplate">
+    <div class="certificates-container">
+      <div *ngFor="let certificate of certificates" class="certificate-card">
+        <img [src]="certificate.imageUrl" [alt]="certificate.name">
+        <h4>{{ certificate.name }}</h4>
+        <p>{{ certificate.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noCertificatesTemplate>
+    <p class="no-certificates-message">You have not earned any badges yet. Start learning to earn your first badge!</p>
+  </ng-template>
+</div>

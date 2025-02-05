@@ -3,13 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MycoursesComponent } from './components/mycourses/mycourses.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { TooltipsComponent } from './components/tooltips/tooltips.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { CoursesComponent } from './components/courses/courses.component'; 
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { CourseDetailComponent } from './coursedetail/coursedetail.component';
+import { MyCertificatesComponent } from './components/mycertificates/mycertificates.component';
 
 
 const routes: Routes = [
@@ -25,8 +25,9 @@ const routes: Routes = [
      
       {path:"toolbar", component:ToolbarComponent},
      
-      {path:"tooltip", component:TooltipsComponent},
+      {path:"mycertificates", component:MyCertificatesComponent},
       {path:"editprofile", component:EditProfileComponent}
+
     ]
   },
   {

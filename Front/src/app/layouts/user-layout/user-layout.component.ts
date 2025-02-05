@@ -43,7 +43,7 @@ export class UserLayoutComponent {
     },
     
     {
-      link: "/user/toolbar",
+      link: "/user/mycertificates",
       icon: "star",
       menu: "My badges",
     },
