@@ -33,7 +33,8 @@ export class UserLayoutComponent {
   ) {}
 
   ngOnInit(): void {
-    this.user = this.authService.getUser(); // Get user from session storage
+    this.user = this.authService.getUser();
+    console.log(this.user) // Get user from session storage
   }
 
   routerActive: string = "activelink";

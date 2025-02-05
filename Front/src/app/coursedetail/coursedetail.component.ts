@@ -6,6 +6,7 @@ import { Course } from '../models/course.model';
 import { Chapter } from '../models/chapter.model';
 import { Question } from '../models/chapter.model';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -103,16 +104,15 @@ export class CourseDetailComponent implements OnInit {
       // Provide feedback for correct answer
       this.feedback[chapterId][question.question] = '✅ Correct!';
   
-      // Mark the chapter as completed for the user
-      const userId = 1; // Replace with the actual user ID (e.g., from authentication)
-      this.courseService.completeUserChapter(userId, chapterId).subscribe(
+      
+      this.courseService.completeUserChapter(this.userId!, chapterId).subscribe(
         () => {
           console.log('User completed this chapter successfully');
           // Optionally, update the UI to reflect the completed chapter
           this.updateChapterCompletionStatus([{ id: chapterId } as Chapter]);
           const chapter = this.course?.chapters.find(chap => chap.id === chapterId);
           if (chapter) {
-            this.courseService.incrementUserScore(userId, chapter.score).subscribe(
+            this.courseService.incrementUserScore(this.userId!, chapter.score).subscribe(
               () => {
                 console.log('User score incremented successfully');
               },
@@ -155,8 +155,9 @@ export class CourseDetailComponent implements OnInit {
   }
 
   checkEnrollmentStatus(): void {
+    const userId = this.userId!; // Replace with the actual user ID
     if (this.course) {
-      this.mycoursesService.getEnrolledCourses(this.userId!).subscribe((courses) => {
+      this.mycoursesService.getEnrolledCourses(userId).subscribe((courses) => {
         // Check if the current course is in the list of enrolled courses
         this.isEnrolled = courses.some((course) => course.id === this.course!.id);
       }, (error) => {
@@ -164,4 +165,4 @@ export class CourseDetailComponent implements OnInit {
       });
     }
   }
-}
+  }

@@ -9,7 +9,7 @@ import { Chapter } from 'src/chapter/entities/chapter.entity';
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
-  @Patch(':userId/increment-score/:score')
+  @Post(':userId/increment-score/:score')
   async incrementUserScore(
     @Param('userId') userId: number,
     @Param('score') score: number

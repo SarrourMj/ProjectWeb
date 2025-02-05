@@ -38,7 +38,7 @@ export class User {
   })
   chapters?: Chapter[];
   // Student-specific properties
-  @Column({ nullable: true })
+  @Column({ nullable: true ,type: 'int',default:0})
   score?: number;
 
   @ManyToMany(() => Course, { nullable: true })

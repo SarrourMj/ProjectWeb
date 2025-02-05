@@ -125,7 +125,10 @@ export class UserService {
     if (!user) {
       throw new NotFoundException(`User with ID ${userId} not found`);
     }
-    user.score = (user.score || 0) + score;
+  
+    console.log('new score :',Number(user.score)+Number(score)); // Check the value
+
+    user.score = Number(user.score) + Number(score); 
     await this.userRepository.save(user);
   }
   

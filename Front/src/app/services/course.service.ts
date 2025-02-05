@@ -43,6 +43,6 @@ export class CourseService {
     return this.http.post<CourseForm>(`${this.apiUrl}/courses`, courseData);
   }
   incrementUserScore(userId: number, score: number): Observable<void> {
-    return this.http.patch<void>(`${this.apiUrl}/${userId}/increment-score/${score}`, {});
+    return this.http.patch<void>(`${this.apiUrl}/user/${userId}/increment-score/${score}`, {});
   }
 }

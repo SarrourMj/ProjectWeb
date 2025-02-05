@@ -16,7 +16,10 @@
         <div class="chapter-header" (click)="toggleChapter(chapter)">
           <div class="chapter-title-wrapper">
             <h4>{{ chapter.title }}</h4>
+            <span class="chapter-score">{{ chapter.score }} points</span> <!-- Add chapter score here -->
+
             <span *ngIf="chapter.completed" class="completion-indicator">✅</span>
+
           </div>
           <button class="toggle-button" [class.expanded]="expandedChapters.has(chapter.id)">
             <i class="fas fa-chevron-down"></i>
