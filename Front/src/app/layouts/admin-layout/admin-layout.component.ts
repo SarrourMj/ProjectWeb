@@ -35,16 +35,19 @@ export class AdminLayoutComponent {
       icon: "home",
       menu: "View Website",
     },
+    
+
     {
       link: "/admin/coursemanagement",
       icon: "star",
       menu: "All Courses",
     },
+    
     {
-      link: "#", // Use placeholder for parent items with children
-      icon: "list",
-      menu: "Course Management",
-      children: [
+      link: "/admin/coursemanagement", // Main link (optional)
+      icon: "list", // Icon for the main button
+      menu: "Course Management", // Main button text
+      children: [ // Dropdown options
         { link: "/admin/coursemanagement/Create", icon: "plus", menu: "Create New Course" },
         { link: "/admin/coursemanagement/Category", icon: "folder", menu: "Categories" }
       ]
@@ -54,6 +57,7 @@ export class AdminLayoutComponent {
       icon: "bell",
       menu: "Notifications",
     },
+  
   ];
   openDropdown: any = null; 
 
