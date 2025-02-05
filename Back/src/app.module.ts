@@ -12,6 +12,7 @@ import { Chapter } from './chapter/entities/chapter.entity';
 import { Category } from './category/entities/category.entity';
 import { CategoryModule } from './category/category.module';
 import { AuthModule } from './auth/auth.module';
+import { ProtectedModule } from './protected/protected.module';
 // import { AdminModule } from './admin/admin.module'; // Ensure this module exists or correct the path
 import { CertificateModule } from './certificate/certificate.module';
 import { Certificate } from './certificate/entities/certificate.entity';
@@ -38,9 +39,9 @@ import { Certificate } from './certificate/entities/certificate.entity';
     CourseModule,
     ChapterModule,
     UserModule,
-    // AdminModule,
     CategoryModule,
     AuthModule,
+    ProtectedModule,
     CertificateModule,
   ],
   controllers: [AppController],
