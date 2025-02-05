@@ -59,7 +59,7 @@ export class CourseDetailComponent implements OnInit {
       this.checkEnrollmentStatus();
 
       // Fetch completed chapters and update isComplete
-      this.courseService.getCompletedChapters().subscribe(
+      this.courseService.getCompletedChapters(user.id).subscribe(
         (completedChapters) => {
           this.updateChapterCompletionStatus(completedChapters);
         },

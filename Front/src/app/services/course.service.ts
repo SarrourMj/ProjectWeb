@@ -22,8 +22,8 @@ export class CourseService {
   enrollUserCourse(userId: number, courseId: number): Observable<Course> {
     return this.http.post<Course>(`${this.apiUrl}/user/${userId}/enroll/${courseId}`, {});
   }
-  getCompletedChapters(): Observable<Chapter[]> {
-    return this.http.get<Chapter[]>(`${this.apiUrl}/user/1/chapters`);
+  getCompletedChapters(userId: number): Observable<Chapter[]> {
+    return this.http.get<Chapter[]>(`${this.apiUrl}/user/${userId}/chapters`);
   }
   completeUserChapter(userId: number, chapterId: number): Observable<Chapter> {
     return this.http.post<Chapter>(`${this.apiUrl}/user/${userId}/complete/${chapterId}`, {});
@@ -43,6 +43,6 @@ export class CourseService {
     return this.http.post<CourseForm>(`${this.apiUrl}/courses`, courseData);
   }
   incrementUserScore(userId: number, score: number): Observable<void> {
-    return this.http.patch<void>(`${this.apiUrl}/user/${userId}/increment-score/${score}`, {});
+    return this.http.post<void>(`${this.apiUrl}/user/${userId}/increment-score/${score}`, {});
   }
 }

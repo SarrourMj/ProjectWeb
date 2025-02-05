@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { UserService } from 'src/app/services/user.service';
 interface SidebarMenu {
   link: string;
   icon: string;
@@ -17,7 +17,7 @@ interface SidebarMenu {
 
 })
 export class UserLayoutComponent {
-  userXP: number = 0;
+  userScore: number = 0;
   search: boolean = false;
   user: any = null; // Store user data here
 
@@ -29,12 +29,26 @@ export class UserLayoutComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private authService: AuthService // Inject AuthService here
+    private authService: AuthService, // Inject AuthService here
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     this.user = this.authService.getUser();
-    console.log(this.user) // Get user from session storage
+    if (this.user?.id) {
+      // Fetch only the score
+      this.userService.getUserScore(this.user.id).subscribe(
+        (score) => {
+          this.userScore = score;
+          console.log('Fetched score:', this.userScore);
+        },
+        (error) => {
+          console.error('Error fetching score:', error);
+          // Fallback to stored score if API fails
+          this.userScore = this.user?.score || 0;
+        }
+      );
+    }
   }
 
   routerActive: string = "activelink";

@@ -20,7 +20,11 @@ export class UserController {
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.createUser(createUserDto);
   }
-
+  @Get(':id/score')
+  async getScore(@Param('id') id: number) {
+  const user = await this.userService.findOne(id);
+  return user.score; // Return only the score
+  }
   @Get()
   findAll() {
     return this.userService.findAll();
