@@ -2,13 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
-<<<<<<< HEAD
 import { FormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router';
-=======
-import { FormsModule  } from '@angular/forms'
->>>>>>> 074191b1ca6a0bdd60e7c9523cfd0cc369796a8e
-
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,7 +16,7 @@ import { DemoFlexyModule } from './demo-LearnSphere'
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ComponentsModule } from './components/components.module';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+import {  HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 
 import { CoursesComponent } from './components/courses/courses.component';
 import { CourseDetailComponent } from './coursedetail/coursedetail.component';
@@ -39,7 +35,6 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { CategoryComponent } from './components/category/category.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog'; // Import ConfirmDialogModule
-import { MycoursesComponent } from './components/mycourses/mycourses.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './components/signup/signup.component';
@@ -52,8 +47,7 @@ import { SignupComponent } from './components/signup/signup.component';
     AdminLayoutComponent,
     CoursesComponent,
     CourseDetailComponent,
-    FooterComponent,
-    AdminCourseComponent,
+      AdminCourseComponent,
     NewComponent,
     CategoryComponent,
    
@@ -66,24 +60,24 @@ import { SignupComponent } from './components/signup/signup.component';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    AppRoutingModule,
     RouterModule       ,
     BrowserAnimationsModule,
     FeatherModule.pick(allIcons),
     DemoFlexyModule,
+    MatToolbarModule,
     DashboardModule,
     ComponentsModule,
     FormsModule, 
     LoginComponent, 
     HomeComponent,
     HeaderComponent,
-    FooterComponent,
+    
 
     TableModule,
     ToastModule,
     InputTextModule,
     ReactiveFormsModule,
-    LoginComponent
+    
   ],
   
   providers: [MessageService],
