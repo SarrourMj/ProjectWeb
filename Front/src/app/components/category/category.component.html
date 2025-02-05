@@ -2,7 +2,7 @@
   <!-- Create Category Card -->
   <div class="card create-card">
     <h2>Create New Category</h2>
-    <form #categoryForm="ngForm" (ngSubmit)="createCategory(categoryForm)">
+    <form #categoryForm="ngForm" (ngSubmit)="createCategory(categoryForm)" class="modern-form">
       <div class="form-group">
         <label class="input-label">Category Title</label>
         <input 
@@ -11,7 +11,7 @@
           name="title" 
           [(ngModel)]="category.title" 
           required
-          class="form-input"
+          class="modern-input"
           placeholder="Enter category title"
         >
         <small 
@@ -26,14 +26,14 @@
         <button 
           pButton 
           type="submit" 
-          class="submit-btn" 
+          class="modern-btn submit-btn" 
           label="Create Category"
           [disabled]="loading"
         ></button>
         <button 
           pButton 
           type="button" 
-          class="reset-btn" 
+          class="modern-btn reset-btn" 
           label="Clear"
           (click)="resetForm(categoryForm)"
         ></button>
@@ -49,33 +49,27 @@
       [loading]="loading"
       [paginator]="true" 
       [rows]="10"
-      styleClass="p-datatable-striped"
+      styleClass="p-datatable-striped modern-table"
       responsiveLayout="scroll"
     >
       <ng-template pTemplate="header">
         <tr>
           <th pSortableColumn="title">Title <p-sortIcon field="title"></p-sortIcon></th>
-          <th>Created Date</th>
           <th>Actions</th>
         </tr>
       </ng-template>
       
       <ng-template pTemplate="body" let-category>
         <tr>
-          <td>{{ category.title }}</td>
-          <td>{{ category.createdAt | date: 'mediumDate' }}</td>
-          <td>
+          <td>{{ category.title }}</td>        
+            <td>
             <div class="action-buttons">
               <button 
                 pButton 
-                icon="pi pi-pencil" 
-                class="p-button-rounded p-button-warning"
-                (click)="startEdit(category)"
-              ></button>
-              <button 
-                pButton 
                 icon="pi pi-trash" 
-                class="p-button-rounded p-button-danger"
+                label="Delete Category"
+                align-items-center
+                class="p-button-rounded p-button-danger modern-icon-btn"
                 (click)="confirmDelete(category.id)"
               ></button>
             </div>

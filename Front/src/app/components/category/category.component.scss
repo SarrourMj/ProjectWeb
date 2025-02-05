@@ -21,6 +21,15 @@
       margin-bottom: 1.5rem;
       
       .input-label {
+        width: 100%;
+       padding: 14px;
+        border-radius: 10px;
+       border: 1px solid #ddd;
+        font-size: 16px;
+         transition: all 0.3s ease;
+      background-color: #f8f9fa;
+
+
         display: block;
         margin-bottom: 0.5rem;
         color: #34495e;
@@ -39,6 +48,19 @@
           box-shadow: 0 0 0 2px rgba(52,152,219,0.2);
           outline: none;
         }
+      }
+      .modern-input {
+        width: 100%;
+        padding: 14px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        background-color: #f8f9fa;
+      }
+      .modern-input:focus {
+        border-color: #3498db;
+        box-shadow: 0px 0px 12px rgba(52, 152, 219, 0.3);
       }
   
       .error-message {
@@ -98,3 +120,33 @@
       gap: 0.5rem;
     }
   }
+  .p-button {
+    width:80%;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: 0.3s ease;
+    margin-top: 0rem;
+  
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 4px 12px rgba(52, 152, 219, 0.3);
+    }
+
+    }
+    .p-button-danger {
+      width: 40%;
+      font-size: 13px;
+      margin-top: 1rem;
+
+      background-color: #e74c3c;
+      border-color: #e74c3c;
+  
+      &:hover {
+        background-color: linear-gradient(135deg, #c0392b, #c0392b);
+        border-color: #c0392b;
+      }
+    }
