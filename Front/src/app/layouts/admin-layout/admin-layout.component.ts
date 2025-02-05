@@ -49,7 +49,7 @@ export class AdminLayoutComponent {
       menu: "Course Management", // Main button text
       children: [ // Dropdown options
         { link: "/admin/coursemanagement/Create", icon: "plus", menu: "Create New Course" },
-        { link: "/admin/coursemanagement/categories", icon: "folder", menu: "Categories" }
+        { link: "/admin/coursemanagement/Category", icon: "folder", menu: "Categories" }
       ]
     },
     {

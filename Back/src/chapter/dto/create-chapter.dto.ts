@@ -27,6 +27,6 @@ export class CreateChapterDto {
     questions?: QuestionAnswerDto[]; // Optional array of questions and answers
 
     @IsNumber()
-    @IsOptional()
-    score?: number; // Optional score attribute
+    @IsNotEmpty()
+    score: number; // Optional score attribute
 }
