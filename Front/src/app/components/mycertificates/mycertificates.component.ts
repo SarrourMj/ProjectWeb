@@ -3,6 +3,7 @@ import { CertificatesService } from '../../services/certificate.service';
 import { Certificate } from '../../models/certificate.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import{CommonModule} from '@angular/common';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-mycertificates',
@@ -12,18 +13,24 @@ import{CommonModule} from '@angular/common';
   imports: [CommonModule]
 })
 export class MyCertificatesComponent implements OnInit {
+  userId: number | null = null; // Store user ID
   certificates: Certificate[] = [];
   noCertificates = false; // Flag to show "No Badges" message
-  userId = 1; // Replace with actual logged-in user ID
 
-  constructor(private certificatesService: CertificatesService) {}
+  constructor(private certificatesService: CertificatesService,private authService :AuthService ) {}
 
   ngOnInit(): void {
-    this.loadCertificates();
+    const user = this.authService.getUser(); // Get user from AuthService
+    if (user && user.id) {
+      this.userId = user.id;
+      this.loadCertificates();
+    } else {
+      console.error('User not found or not logged in');
+    }
   }
 
   loadCertificates() {
-    this.certificatesService.getUserCertificates(this.userId).subscribe({
+    this.certificatesService.getUserCertificates(this.userId!).subscribe({
       next: (data) => {
         if (data.length === 0) {
           this.noCertificates = true;

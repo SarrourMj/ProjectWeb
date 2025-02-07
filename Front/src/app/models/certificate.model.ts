@@ -1,7 +1,7 @@
 export interface Certificate {
     id: number;
-    name: string;
+    name: string|null;
     imageUrl: string;
-    description: string;
+    description: string|null;
   }
   

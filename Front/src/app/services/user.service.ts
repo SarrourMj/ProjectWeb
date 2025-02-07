@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Course } from "src/app/models/course.model";
-import { Category } from "src/app/models/category.model";
-import { Chapter } from "src/app/models/chapter.model";
-import {ChapterForm} from "src/app/models/chapterForm.model";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,5 +11,15 @@ export class UserService {
 
     getUserScore(userId: number): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/user/${userId}/score`);
+}
+
+
+    getCompletedCourses(userId: number): Observable<number[]> {
+     return this.http.get<number[]>(`${this.apiUrl}/user/completed-courses/${userId}`);
+}
+
+    changePassword(userId: number, currentPassword: string, newPassword: string): Observable<any> {
+    const body = { currentPassword, newPassword };
+    return this.http.post(`${this.apiUrl}/user/${userId}/change-password`, body);
 }
 }

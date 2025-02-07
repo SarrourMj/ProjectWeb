@@ -36,13 +36,21 @@
             <div *ngFor="let question of chapter.questions" class="question-box">
               <p><strong>{{ question.question }}</strong></p>
               <input
-                type="text"
-                [(ngModel)]="userAnswers[chapter.id][question.question]"
-                placeholder="Enter your answer"
-              />
-              <button class="question-button" (click)="validateAnswer(chapter.id, question)">
-                Submit
-              </button>
+  type="text"
+  [(ngModel)]="userAnswers[chapter.id][question.question]"
+  placeholder="Enter your answer"
+  [value]="chapter.completed ? question.answer : userAnswers[chapter.id][question.question]"
+  [disabled]="!!chapter.completed"
+  [ngClass]="{'correct-answer': chapter.completed}"
+/>
+<button 
+  class="question-button" 
+  (click)="validateAnswer(chapter.id, question)"
+  [disabled]="!!chapter.completed">
+  Submit
+</button>
+
+            
               <p *ngIf="feedback[chapter.id][question.question]">
                 {{ feedback[chapter.id][question.question] }}
               </p>

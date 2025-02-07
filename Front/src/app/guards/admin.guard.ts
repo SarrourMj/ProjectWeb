@@ -11,11 +11,14 @@ export class AdminGuard implements CanActivate {
   canActivate(): boolean {
     const user = this.authService.getUser();
 
-    if (user && user.role === 'admin') {
+    if (user.role.name === 'admin') {
+      console.log(' UserGuard Passed ');
       return true;
     }
 
-    this.router.navigate(['/home']);
+    this.router.navigate(['/user']);
+    console.log(' UserGuard denied ');
+
     return false;
   }
 }

@@ -58,9 +58,21 @@ export class UserLayoutComponent {
   routerActive: string = "activelink";
 
   sidebarMenu: SidebarMenu[] = [
-    { link: "/user/courses", icon: "home", menu: "Courses" },
-    { link: "/user/mycourses", icon: "list", menu: "My courses" },
-    { link: "/user/mycertificates", icon: "star", menu: "My badges" },
-    { link: "/user/tooltip", icon: "bell", menu: "Notifications" },
+    {
+      link: "/user/courses",
+      icon: "home",
+      menu: "Courses",
+    },
+    {
+      link: "/user/mycourses",
+      icon: "list",
+      menu: "My courses",
+    },
+    {
+      link: "/user/mycertificates",
+      icon: "star",
+      menu: "My badges",
+    },
+    
   ];
 }

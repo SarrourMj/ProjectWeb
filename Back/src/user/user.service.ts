@@ -17,28 +17,23 @@ export class UserService {
     private readonly courseRepository: Repository<Course>,
     @InjectRepository(Chapter)
     private readonly chapterRepository: Repository<Chapter>,
-    @InjectRepository(Role) // Inject Role Repository
+    @InjectRepository(Role)
     private readonly roleRepository: Repository<Role>,
   ) {}
 
-
   async createUser(createUserDto: CreateUserDto): Promise<User> {
-    // Set default role ID to 1
     const defaultRole = await this.roleRepository.findOne({ where: { id: 1 } });
     if (!defaultRole) {
       throw new Error('Default role not found');
     }
-  
-    // Create new user instance
+
     const newUser = this.userRepository.create({
       ...createUserDto,
-      role: defaultRole, // Assign the default role
+      role: defaultRole,
     });
-  
-    // Save user to the database
+
     return this.userRepository.save(newUser);
   }
-  
 
   async findAll(): Promise<User[]> {
     return this.userRepository.find();
@@ -47,21 +42,20 @@ export class UserService {
   async findOne(id: number): Promise<User> {
     const user = await this.userRepository.findOne({ where: { id }, relations: ['courses'] });
     if (!user) {
-      throw new Error('User not found');
+      throw new NotFoundException('User not found');
     }
     return user;
   }
 
-  async findOneByEmail(email: string): Promise<User  | null> {
-    return this.userRepository.findOne({ where: { email } ,
-      relations: ['role']});
+  async findOneByEmail(email: string): Promise<User | null> {
+    return this.userRepository.findOne({ where: { email }, relations: ['role'] });
   }
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     await this.userRepository.update(id, updateUserDto);
     const user = await this.userRepository.findOne({ where: { id }, relations: ['courses'] });
     if (!user) {
-      throw new Error('User not found');
+      throw new NotFoundException('User not found');
     }
     return user;
   }
@@ -75,7 +69,7 @@ export class UserService {
     const course = await this.courseRepository.findOne({ where: { id: courseId } });
 
     if (!user || !course) {
-      throw new Error('User or Course not found');
+      throw new NotFoundException('User or Course not found');
     }
 
     if (!user.courses) {
@@ -85,12 +79,13 @@ export class UserService {
     user.courses.push(course);
     return this.userRepository.save(user);
   }
+
   async completeChapter(userId: number, chapterId: number): Promise<User> {
     const user = await this.userRepository.findOne({ where: { id: userId }, relations: ['chapters'] });
     const chapter = await this.chapterRepository.findOne({ where: { id: chapterId } });
 
     if (!user || !chapter) {
-      throw new Error('User or chapter not found');
+      throw new NotFoundException('User or chapter not found');
     }
 
     if (!user.chapters) {
@@ -101,35 +96,48 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
-
   async getUserCourses(userId: number): Promise<Course[]> {
     const user = await this.userRepository.findOne({ where: { id: userId }, relations: ['courses'] });
 
     if (!user) {
-      throw new Error('User not found');
+      throw new NotFoundException('User not found');
     }
 
     return user.courses || [];
   }
+
   async getUserChapters(userId: number): Promise<Chapter[]> {
     const user = await this.userRepository.findOne({ where: { id: userId }, relations: ['chapters'] });
 
     if (!user) {
-      throw new Error('User not found');
+      throw new NotFoundException('User not found');
     }
 
     return user.chapters || [];
   }
+
   async incrementUserScore(userId: number, score: number): Promise<void> {
     const user = await this.userRepository.findOne({ where: { id: userId } });
     if (!user) {
       throw new NotFoundException(`User with ID ${userId} not found`);
     }
-  
-    console.log('new score :',Number(user.score)+Number(score)); // Check the value
 
-    user.score = Number(user.score) + Number(score); 
+    console.log('new score :', Number(user.score) + Number(score)); // Check the value
+
+    user.score = Number(user.score) + Number(score);
     await this.userRepository.save(user);
   }
-  
+
+  /**
+   * ✅ Change le mot de passe de l'utilisateur après vérification du mot de passe actuel
+   */
+  async changePassword(userId: number, newPassword: string): Promise<void> {
+    const user = await this.findOne(userId);
+
+    // Modification du mot de passe
+    user.password = newPassword
+
+    // Sauvegarde du nouveau mot de passe
+    await this.userRepository.save(user);
+  }
 }

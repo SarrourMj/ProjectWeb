@@ -6,7 +6,7 @@ import { Course } from '../models/course.model';
 import { Chapter } from '../models/chapter.model';
 import { Question } from '../models/chapter.model';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-
+import { CertificatesService } from '../services/certificate.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -41,7 +41,8 @@ export class CourseDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private courseService: CourseService,
     private mycoursesService: MycoursesService, // Inject the service
-    private authService: AuthService // Inject AuthService
+    private authService: AuthService, // Inject AuthService
+    private certificatesService: CertificatesService // Inject the service
 
   ) {}
 
@@ -97,40 +98,53 @@ export class CourseDetailComponent implements OnInit {
   }
 
   validateAnswer(chapterId: number, question: Question): void {
+    const chapter = this.course?.chapters.find(chap => chap.id === chapterId);
+  
+    if (chapter?.completed) {
+      console.log('This chapter is already completed. Answers are locked.');
+      return; // Exit early if the chapter is completed
+    }
+  
     const userAnswer = this.userAnswers[chapterId][question.question].trim().toLowerCase();
     const correctAnswer = question.answer.trim().toLowerCase();
   
     if (userAnswer === correctAnswer) {
-      // Provide feedback for correct answer
       this.feedback[chapterId][question.question] = '✅ Correct!';
   
-      
-      this.courseService.completeUserChapter(this.userId!, chapterId).subscribe(
-        () => {
-          console.log('User completed this chapter successfully');
-          // Optionally, update the UI to reflect the completed chapter
-          this.updateChapterCompletionStatus([{ id: chapterId } as Chapter]);
-          const chapter = this.course?.chapters.find(chap => chap.id === chapterId);
-          if (chapter) {
-            this.courseService.incrementUserScore(this.userId!, chapter.score).subscribe(
-              () => {
-                console.log('User score incremented successfully');
-              },
-              (error) => {
-                console.error('Error incrementing user score:', error);
-              }
-            );
-          }
-        },
-        (error) => {
-          console.error('Error completing chapter:', error);
+      this.courseService.completeUserChapter(this.userId!, chapterId).subscribe(() => {
+        console.log('User completed this chapter successfully');
+        this.updateChapterCompletionStatus([{ id: chapterId } as Chapter]);
+  
+        if (chapter) {
+          this.courseService.incrementUserScore(this.userId!, chapter.score).subscribe(
+            () => console.log('User score incremented successfully'),
+            error => console.error('Error incrementing user score:', error)
+          );
         }
-      );
+  
+        if (this.areAllChaptersCompleted()) {
+          this.assignCertificateToUser();
+        }
+  
+      }, error => console.error('Error completing chapter:', error));
     } else {
-      // Provide feedback for incorrect answer
       this.feedback[chapterId][question.question] = '❌ Incorrect. Try again.';
     }
   }
+  
+  private areAllChaptersCompleted(): boolean {
+    return this.course?.chapters.every(chapter => chapter.completed) ?? false;
+  }
+  
+  private assignCertificateToUser(): void {
+    if (this.course) {
+      this.certificatesService.assignCertificate(this.userId!, this.course.id).subscribe(
+        () => console.log('Certificate assigned successfully'),
+        error => console.error('Error assigning certificate:', error)
+      );
+    }
+  }
+  
 
   updateChapterCompletionStatus(completedChapters: Chapter[]): void {
     if (this.course) {

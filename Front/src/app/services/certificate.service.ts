@@ -14,4 +14,9 @@ export class CertificatesService {
   getUserCertificates(userId: number): Observable<Certificate[]> {
     return this.http.get<Certificate[]>(`${this.apiUrl}/user/${userId}`);
   }
+
+  assignCertificate(userId: number, courseId: number) {
+    return this.http.post(`${this.apiUrl}/assign/${userId}/${courseId }`, {});
+  }
+  
 }

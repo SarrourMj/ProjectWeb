@@ -5,7 +5,6 @@ import { MessageService } from 'primeng/api';
 import { ApiService } from 'src/app/services/api.service';
 import { CourseService } from 'src/app/services/course.service';
 import { Category } from 'src/app/models/category.model';
-
 import { ChapterForm, QuestionForm } from './../../../models/chapterForm.model';
 
 @Component({
@@ -19,8 +18,8 @@ export class NewComponent implements OnInit {
   chapters: ChapterForm[] = [this.createNewChapter()];
   selectedCategoryID: number=1;
   categories: Category[] = [];
-  mainImagePath = '';
-  certificateImagePath = '';
+  mainImageFile : File | null=null;
+  certificateImageFile : File | null=null;
 
   constructor(
     private apiService: ApiService,
@@ -70,15 +69,25 @@ export class NewComponent implements OnInit {
   
     console.log('Form Valid:', form.valid); // Debugging
     console.log('Selected Category ID:', this.selectedCategoryID); // Debugging
-    console.log('Main Image Path:', this.mainImagePath); // Debugging
-    console.log('Certificate Image Path:', this.certificateImagePath); // Debugging
+    console.log('Main Image Path:', this.mainImageFile); // Debugging
+    console.log('Certificate Image Path:', this.certificateImageFile); // Debugging
     console.log('Chapters:', this.chapters); // Debugging
   
     /*if (
+
+
+    console.log('Form Valid:', form.valid); 
+    console.log('Selected Category ID:', this.selectedCategoryID);
+    console.log('Main Image Path:', this.mainImagePath);
+    console.log('Certificate Image Path:', this.certificateImagePath);
+    console.log('Chapters:', this.chapters);
+/*
+    if (
+>>>>>>> d4d5582898d02d9f4750369fdc898e55740137f3
       form.invalid ||
       !this.selectedCategoryId ||
-      !this.mainImagePath ||
-      !this.certificateImagePath ||
+      !this.mainImageFile ||
+      !this.certificateImageFile ||
       this.chapters.length === 0 ||
       this.chapters.some(chapter => !chapter.title || !chapter.content || chapter.questions.length === 0 || !chapter.score)
     ) {
@@ -89,12 +98,12 @@ export class NewComponent implements OnInit {
       });
       return;
     }*/
-  
+
     const courseData = {
       ...this.course,
       category: { id: this.selectedCategoryID, title: this.categories.find(c => c.id === this.selectedCategoryID)?.title || '' } ,
-      mainImageUrl: this.mainImagePath,
-      certificate: this.certificateImagePath, // Add this line
+      mainimageurl:'./assets/uploads/course/' + this.mainImageFile!.name,
+      certificateImageUrl:'./assets/uploads/certificates/' + this.certificateImageFile!.name,
       chapters: this.chapters.map(chapter => ({
         title: chapter.title,
         content: chapter.content,
@@ -133,45 +142,23 @@ export class NewComponent implements OnInit {
     form.resetForm();
     this.chapters = [this.createNewChapter()];
     this.selectedCategoryID =1;
-
-    this.mainImagePath = '';
+    this.mainImageFile = null;
+    this.certificateImageFile = null;
   }
 
   onFileSelected(event: any, type: 'mainImage' | 'certificateImage'): void {
-    const file: File = event.files[0];
-    console.log('event:', event); // Debugging
-    console.log('File selected:', file); // Debugging
+    const file: File = event.currentFiles[0];
+    if (type === 'mainImage') {this.mainImageFile = file;}
+    else if (type === 'certificateImage') {this.certificateImageFile = file;}
+    console.log(file);
+    console.log("type",type);
     if (file) {
-      this.apiService.uploadImage(file).subscribe({
-        next: (response: any) => {
-          if (response && response.path) {
-            if (type === 'mainImage') {
-              console.log('Main Image uploaded:', response); // Debugging
-              this.mainImagePath = response.path;
-            } else {
-              this.certificateImagePath = response.path;
-            }
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: 'Image uploaded successfully'
-            });
-          } else {
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: 'Image upload failed: Invalid response'
-            });
-          }
-        },
-        error: () => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Image upload failed'
-          });
-        }
-      });
+      this.apiService.uploadFile(file, type).subscribe(
+        response => console.log('Upload successful:', response),
+        error => console.error('Upload failed:', error)
+      );
     }
   }
+   
+
 }

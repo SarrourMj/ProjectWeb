@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 interface sidebarMenu {
   link: string;
@@ -18,24 +19,22 @@ interface sidebarMenu {
 export class AdminLayoutComponent {
 
   search: boolean = false;
-
+  admin: any = null;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
-
+  constructor(private breakpointObserver: BreakpointObserver, 
+    private authService: AuthService) { }
+  ngOnInit(): void {
+    this.admin = this.authService.getUser();
+  }
   routerActive: string = "activelink";
 
   sidebarMenu: sidebarMenu[] = [
-    {
-      link: "/user/home",
-      icon: "home",
-      menu: "View Website",
-    },
-    
+  
 
     {
       link: "/admin/coursemanagement",
@@ -52,11 +51,7 @@ export class AdminLayoutComponent {
         { link: "/admin/coursemanagement/Category", icon: "folder", menu: "Categories" }
       ]
     },
-    {
-      link: "/admin/tooltip",
-      icon: "bell",
-      menu: "Notifications",
-    },
+    
   
   ];
   openDropdown: any = null; 

@@ -4,29 +4,70 @@
 
     <!-- Tabs Navigation -->
     <div class="profile-tabs">
-      <button class="tab-btn" [class.active]="activeTab === 'account'" (click)="setActiveTab('account')">Account</button>
-      <button class="tab-btn" [class.active]="activeTab === 'password'" (click)="setActiveTab('password')">Change Password</button>
-      <button class="tab-btn" [class.active]="activeTab === 'settings'" (click)="setActiveTab('settings')">My Settings</button>
+      <button class="tab-btn" [class.active]="activeTab === 'account'"
+        (click)="setActiveTab('account')">Account</button>
+      <button class="tab-btn" [class.active]="activeTab === 'password'" (click)="setActiveTab('password')">Change
+        Password</button>
+      <button class="tab-btn" [class.active]="activeTab === 'settings'" (click)="setActiveTab('settings')">My
+        Settings</button>
     </div>
 
-    <!-- Tab Content -->
+    <!-- Change Password Form -->
+    <div *ngIf="activeTab === 'password'">
+      <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+        <table>
+          <tr>
+           
+            <td>
+              <div>
+                <label>Old Password</label>
+
+                <input id="currentPassword" placeholder="Old Password" class="modern-input" formControlName="currentPassword" type="password" required />
+                <small
+                  *ngIf="passwordForm.get('currentPassword')?.invalid && passwordForm.get('currentPassword')?.touched">
+                  Password Required (min. 6 characters)
+                </small>
+              </div>
+            </td>
+          
+          </tr>
+          <tr>
+          
+            <td><div>
+              <label>New Password</label>
+
+              <input id="newPassword" placeholder="new Password" class="modern-input" formControlName="newPassword" type="password" required />
+              <small *ngIf="passwordForm.get('newPassword')?.invalid && passwordForm.get('newPassword')?.touched">
+                New Password Required (min. 6 characters)
+              </small>
+            </div></td>
+            
+          </tr>
+
+          <tr> <button class="modern-btn" type="submit" [disabled]="passwordForm.invalid || loading">
+            {{ loading ? 'Changing Password...' : 'Change Password' }}
+          </button></tr>
+        </table>
+
+      
+
+       
+      </form>
+
+      <!-- Success & Error Messages -->
+      <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+    </div>
+
     <div *ngIf="activeTab === 'account'">
       <label>Full Name</label>
       <input type="text" class="modern-input" placeholder="John Doe">
-      
+
       <label>Email</label>
       <input type="email" class="modern-input" placeholder="john@example.com">
 
       <label>Edit Profile Picture</label>
       <input type="file" class="modern-input" accept="image/*">
-    </div>
-
-    <div *ngIf="activeTab === 'password'">
-      <label>Current Password</label>
-      <input type="password" class="modern-input">
-
-      <label>New Password</label>
-      <input type="password" class="modern-input">
     </div>
 
     <div *ngIf="activeTab === 'settings'">

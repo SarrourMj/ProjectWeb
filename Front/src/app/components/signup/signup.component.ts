@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
   signupForm: FormGroup;
+  successMessage: string = '';
+  showMessage: boolean = false;
+  showForm: boolean = true;
 goToLogin(): void {
   this.router.navigate(['/login']);
 }
@@ -24,10 +27,27 @@ goToLogin(): void {
   onSubmit() {
     if (this.signupForm.valid) {
       this.signupService.signup(this.signupForm.value).subscribe({
-        next: (response) => {console.log('Signup successful', response);
-          this.router.navigate(['/login']);
+        next: (response) => {
+          console.log('Signup successful', response);
+          this.successMessage = 'Successfully signed up! Redirecting...';
+          this.showMessage = true;
+          this.showForm = false;  // Hide the form
+
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 3000);  // Redirect after 3 seconds
         },
-        error: (err) => console.error('Signup error', err),
+        error: (err) => {
+          console.error('Signup error', err);
+          this.successMessage = 'Signup failed, please try again.';
+          this.showMessage = true;
+          this.showForm = false;  // Optionally hide form on error too
+
+          setTimeout(() => {
+            this.showForm = true;  // Show form again to allow retry
+            this.showMessage = false;  // Hide message after 3 seconds
+          }, 3000);
+        },
       });
     }
   }

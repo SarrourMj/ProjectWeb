@@ -4,11 +4,12 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { Course } from '../../models/course.model';
 import { MycoursesService } from '../../services/mycourses.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-tabs',
   standalone: true,
-  imports: [ MatTabsModule, NgFor, NgIf, AsyncPipe],
+  imports: [ MatTabsModule, NgFor, NgIf, AsyncPipe,RouterModule],
   templateUrl: './mycourses.component.html',
   styleUrls: ['./mycourses.component.scss']
 })

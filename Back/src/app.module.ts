@@ -14,6 +14,7 @@ import { CategoryModule } from './category/category.module';
 import { AuthModule } from './auth/auth.module';
 import { ProtectedModule } from './protected/protected.module';
 // import { AdminModule } from './admin/admin.module'; // Ensure this module exists or correct the path
+import { FileUploadModule } from './upload/upload.module';
 import { CertificateModule } from './certificate/certificate.module';
 import { Certificate } from './certificate/entities/certificate.entity';
 @Module({
@@ -43,6 +44,7 @@ import { Certificate } from './certificate/entities/certificate.entity';
     AuthModule,
     ProtectedModule,
     CertificateModule,
+    FileUploadModule,
   ],
   controllers: [AppController],
   providers: [],
