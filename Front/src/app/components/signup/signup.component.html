@@ -10,8 +10,9 @@
   </div>
 </mat-toolbar>
 <div class="signup-container">
-    <div><b>Welcome to CourseQuest!</b></div>
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="showForm; else successMessageTemplate"><b>Welcome to CourseQuest!</b></div>
+    <form *ngIf="showForm" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
       <div>
         <label for="name">Username</label>
         <input id="username" formControlName="username" type="text" required />
@@ -32,4 +33,11 @@
 
       <button type="submit" [disabled]="signupForm.invalid">Sign-Up</button>
     </form>
+    <ng-template #successMessageTemplate>
+      <div class="full-page-message">
+        <span class="success-icon">&#10003;</span>
+
+        <h1>{{ successMessage }}</h1>
+      </div>
+    </ng-template>
 </div>

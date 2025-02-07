@@ -69,10 +69,6 @@ export class UserLayoutComponent {
       icon: "star",
       menu: "My badges",
     },
-    {
-      link: "/user/tooltip",
-      icon: "bell",
-      menu: "Notifications",
-    },
+    
   ];
 }

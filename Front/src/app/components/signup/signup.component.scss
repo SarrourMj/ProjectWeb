@@ -143,5 +143,21 @@ body, html {
   width: 100%;
 }
 
-
+.full-page-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  text-align: center;
+  font-size: 9px;
+  font-weight: bold;
+  top: 7%;
+  background-color: #e6efe8; // Light green background
+  color: #155724;
+}
+.success-icon {
+  color: #28a745; // Darker shade of green for the icon
+  margin-right: 10px; // Space between icon and text
+  font-size: 32px; // Larger icon size
+}
 
