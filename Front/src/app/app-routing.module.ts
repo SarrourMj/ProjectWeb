@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MycoursesComponent } from './components/mycourses/mycourses.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
@@ -45,7 +44,6 @@ const routes: Routes = [
       { path: "courses", component: CoursesComponent },
       { path: "courses/:id", component: CourseDetailComponent },
       { path: "mycourses", component: MycoursesComponent },
-      { path: "toolbar", component: ToolbarComponent },
       { path: "mycertificates", component: MyCertificatesComponent },
       { path: "editprofile", component: EditProfileComponent }
     ]
@@ -63,7 +61,6 @@ const routes: Routes = [
         { path: "Category", component: CategoryComponent },
         { path: "Edit", component: EditComponent },
       ]},
-      { path: "tooltip", component: ToolbarComponent },
       { path: "editprofile", component: EditProfileComponent }
     ]
   },
