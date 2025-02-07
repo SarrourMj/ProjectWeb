@@ -1,49 +1,55 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, ManyToOne,JoinColumn, OneToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, ManyToOne, JoinColumn, OneToOne } from 'typeorm';
 import { Category } from '../../category/entities/category.entity';
 import { Chapter } from '../../chapter/entities/chapter.entity';
 import { User } from './../../user/entities/user.entity';
-import { Certificate } from '../../certificate/entities/certificate.entity';
+import { Certificate } from './../../certificate/entities/certificate.entity';
+
 @Entity('course')
 export class Course {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column({
-        length: 50,
-        unique: true,
-    })
-    title: string;
-    @OneToOne(() => Certificate, certificate => certificate.course)
-    @JoinColumn()
-    certificate: Certificate;
-    
+  @Column({
+    length: 50,
+    unique: true,
+  })
+  title: string;
 
+  @OneToOne(() => Certificate, { cascade: true, nullable: true, eager: true }) 
+  @JoinColumn({ name: 'certificate_id' }) // This will store the certificate ID as a foreign key
+  certificate: Certificate; // Now this is a proper relation instead of a string
 
-    @OneToMany(() => Chapter, chapter => chapter.course, {
-        cascade: true, // Automatically save/update chapters when the course is saved/updated
-        onDelete: 'CASCADE', // Delete chapters when the course is deleted
+  @Column({
+    length: 1000,
+    nullable: true,
+  })
+  background_image: string;
 
-    })       chapters: Chapter[];
+  @OneToMany(() => Chapter, (chapter) => chapter.course, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
+  chapters: Chapter[];
 
-    @Column()
-    content: string;
-    @Column()
-    slug: string;
-    @Column({type:'timestamp', default: () =>'CURRENT_TIMESTAMP'})
-    createdon: Date;
-    @Column({type:'timestamp', default: () =>'CURRENT_TIMESTAMP'})
-    modifiedOn: Date;
-    @Column({nullable:true})
-    mainimageurl: string;
+  @Column()
+  content: string;
 
+  @Column()
+  slug: string;
 
-    @ManyToMany(() => User, user => user.courses)
-    
-    users: User[];
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdon: Date;
 
-    @ManyToOne(() => Category, category => category.course, { eager: true} )
-      @JoinColumn({ name: 'categoryid' })
-    
-    category: Category;
-    
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  modifiedOn: Date;
+
+  @Column({ nullable: true })
+  mainimageurl: string;
+
+  @ManyToMany(() => User, (user) => user.courses)
+  users: User[];
+
+  @ManyToOne(() => Category, (category) => category.course, { eager: true })
+  @JoinColumn({ name: 'categoryid' })
+  category: Category;
 }

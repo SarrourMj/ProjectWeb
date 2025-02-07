@@ -30,8 +30,8 @@ export class CertificateController {
     return this.certificateService.getUserCertificates(userId);
   }
 
-  @Post('assign/:userId/:certificateId')
-  assignCertificate(@Param('userId') userId: number, @Param('certificateId') certificateId: number) {
-    return this.certificateService.assignCertificateToUser(userId, certificateId);
+  @Post('assign/:userId/:courseId')
+  assignCertificate(@Param('userId') userId: number, @Param('courseId') courseId: number) {
+    return this.certificateService.assignCertificateToUser(userId, courseId);
   }
 }
