@@ -42,15 +42,16 @@ export class ApiService {
   createCategory(categoryData: Partial<Category>): Observable<Category> {
     return this.http.post<Category>(`${this.URL}/categories`, categoryData);
   }
-  uploadImage(file: File): Observable<any> {
-
-    const formData = new FormData();
-
+  uploadFile(file: File, type: 'mainImage' | 'certificateImage'): Observable<any> {
+    console.log("service file",file);
+    console.log("service type",type);
+    let formData = new FormData();
     formData.append('file', file);
-
-    return this.http.post<any>(`${this.URL}/courses/upload`, formData);
-
+    formData.append('type', type);
+    console.log("service formdata",formData);
+    return this.http.post('http://localhost:3000/upload', formData);
   }
+  
 
   updateCategory(id: number, categoryData: Partial<Category>): Observable<Category> {
     return this.http.patch<Category>(`${this.URL}/categories/${id}`, categoryData);

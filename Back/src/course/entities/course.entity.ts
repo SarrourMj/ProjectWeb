@@ -15,7 +15,7 @@ export class Course {
   })
   title: string;
 
-  @OneToOne(() => Certificate, { cascade: true, nullable: false, eager: true }) 
+  @OneToOne(() => Certificate, { cascade: true, nullable: true, eager: true }) 
   @JoinColumn({ name: 'certificate_id' }) // This will store the certificate ID as a foreign key
   certificate: Certificate; // Now this is a proper relation instead of a string
 

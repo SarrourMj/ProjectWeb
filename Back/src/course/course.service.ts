@@ -22,6 +22,7 @@ export class CourseService {
     if (!createCourseDto || !createCourseDto.title) {
       throw new BadRequestException('Invalid course data');
     }
+    console.log('Create Course DTO:', createCourseDto);
   
     // Generate a slug
     const slug = createCourseDto.title.split(' ').join('_').toLowerCase();
@@ -38,6 +39,7 @@ export class CourseService {
     // Create the course entity with the new certificate
     const course = this.courseRepo.create({
       ...createCourseDto,
+      mainimageurl: createCourseDto.mainimageurl,
       slug,
       certificate: savedCertificate, // Link certificate to course
       chapters: [],

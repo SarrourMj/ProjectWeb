@@ -64,7 +64,7 @@ export class CertificateService {
     }
   
     const certificate = course.certificate;
-  
+  console.log("certificate assigned: ",certificate);
     // Check if user already has this certificate
     if (user.certificates.some(cert => cert.id === certificate.id)) {
       throw new ConflictException('User already has this certificate');
