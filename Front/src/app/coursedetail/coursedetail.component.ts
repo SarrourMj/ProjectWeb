@@ -98,6 +98,13 @@ export class CourseDetailComponent implements OnInit {
   }
 
   validateAnswer(chapterId: number, question: Question): void {
+    const chapter = this.course?.chapters.find(chap => chap.id === chapterId);
+  
+    if (chapter?.completed) {
+      console.log('This chapter is already completed. Answers are locked.');
+      return; // Exit early if the chapter is completed
+    }
+  
     const userAnswer = this.userAnswers[chapterId][question.question].trim().toLowerCase();
     const correctAnswer = question.answer.trim().toLowerCase();
   
@@ -108,7 +115,6 @@ export class CourseDetailComponent implements OnInit {
         console.log('User completed this chapter successfully');
         this.updateChapterCompletionStatus([{ id: chapterId } as Chapter]);
   
-        const chapter = this.course?.chapters.find(chap => chap.id === chapterId);
         if (chapter) {
           this.courseService.incrementUserScore(this.userId!, chapter.score).subscribe(
             () => console.log('User score incremented successfully'),
@@ -116,7 +122,6 @@ export class CourseDetailComponent implements OnInit {
           );
         }
   
-        // Check if all chapters are completed
         if (this.areAllChaptersCompleted()) {
           this.assignCertificateToUser();
         }
