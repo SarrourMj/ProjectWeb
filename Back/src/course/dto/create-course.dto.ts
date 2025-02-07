@@ -3,6 +3,7 @@ import { Type } from 'class-transformer';
 import { CreateChapterDto } from './../../chapter/dto/create-chapter.dto';
 import { Category } from 'src/category/entities/category.entity'; // Import Category type
 
+
 export class CreateCourseDto {
   @IsString()
   @IsNotEmpty()
@@ -14,7 +15,8 @@ export class CreateCourseDto {
 
   @IsOptional()
   @IsString()
-  mainImageUrl: string;
+  mainimageurl: string;
+
 
 
   @IsOptional()

@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToOne } from 'typeorm';
 import { User } from 'src/user/entities/user.entity';
+import { Course } from 'src/course/entities/course.entity';
 
 @Entity()
 export class Certificate {
@@ -14,7 +15,8 @@ export class Certificate {
 
   @Column({ default: '' })
   description: string;
-
+  @OneToOne(()=>Course,course=>course.certificate)
+  course: Course;
   @ManyToMany(() => User, (user) => user.certificates)
   users: User[];
 }

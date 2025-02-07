@@ -1,3 +1,4 @@
+// new-course.component.ts
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MessageService } from 'primeng/api';
@@ -15,14 +16,14 @@ export class NewComponent implements OnInit {
   course = { title: '', content: '' };
   submitted = false;
   chapters: ChapterForm[] = [this.createNewChapter()];
-  selectedCategoryID: number = 1;
+  selectedCategoryID: number=1;
   categories: Category[] = [];
-  mainImagePath = '';
-  certificateImagePath = '';
+  mainImageFile : File | null=null;
+  certificateImageFile : File | null=null;
 
   constructor(
     private apiService: ApiService,
-    private courseService: CourseService,
+    private CourseService: CourseService,
     private messageService: MessageService
   ) {}
 
@@ -62,8 +63,19 @@ export class NewComponent implements OnInit {
     chapter.questions.splice(index, 1);
   }
 
+
   createCourse(form: NgForm): void {
     this.submitted = true;
+<<<<<<< HEAD
+  
+    console.log('Form Valid:', form.valid); // Debugging
+    console.log('Selected Category ID:', this.selectedCategoryID); // Debugging
+    console.log('Main Image Path:', this.mainImageFile); // Debugging
+    console.log('Certificate Image Path:', this.certificateImageFile); // Debugging
+    console.log('Chapters:', this.chapters); // Debugging
+  
+    /*if (
+=======
 
     console.log('Form Valid:', form.valid); 
     console.log('Selected Category ID:', this.selectedCategoryID);
@@ -72,10 +84,11 @@ export class NewComponent implements OnInit {
     console.log('Chapters:', this.chapters);
 /*
     if (
+>>>>>>> d4d5582898d02d9f4750369fdc898e55740137f3
       form.invalid ||
-      !this.selectedCategoryID ||
-      !this.mainImagePath ||
-      !this.certificateImagePath ||
+      !this.selectedCategoryId ||
+      !this.mainImageFile ||
+      !this.certificateImageFile ||
       this.chapters.length === 0 ||
       this.chapters.some(chapter => !chapter.title || !chapter.content || chapter.questions.length === 0 || !chapter.score)
     ) {
@@ -86,15 +99,16 @@ export class NewComponent implements OnInit {
       });
       return;
     }*/
+<<<<<<< HEAD
+  
+=======
 
+>>>>>>> d4d5582898d02d9f4750369fdc898e55740137f3
     const courseData = {
       ...this.course,
-      category: { 
-        id: this.selectedCategoryID, 
-        title: this.categories.find(c => c.id === this.selectedCategoryID)?.title || '' 
-      },
-      mainImageUrl: this.mainImagePath,
-      certificateImageUrl: this.certificateImagePath, // Ensure correct property name
+      category: { id: this.selectedCategoryID, title: this.categories.find(c => c.id === this.selectedCategoryID)?.title || '' } ,
+      mainimageurl:'./assets/uploads/course/' + this.mainImageFile!.name,
+      certificateImageUrl:'./assets/uploads/certificates/' + this.certificateImageFile!.name,
       chapters: this.chapters.map(chapter => ({
         title: chapter.title,
         content: chapter.content,
@@ -105,12 +119,12 @@ export class NewComponent implements OnInit {
         score: chapter.score
       }))
     };
-
-    console.log('Course Data:', courseData); 
-
-    this.courseService.createCourse(courseData).subscribe({
+  
+    console.log('Course Data:', courseData); // Debugging
+  
+    this.CourseService.createCourse(courseData).subscribe({
       next: (response) => {
-        console.log('Course created successfully:', response);
+        console.log('Course created successfully:', response); // Debugging
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
@@ -119,7 +133,7 @@ export class NewComponent implements OnInit {
         this.resetForm(form);
       },
       error: (error) => {
-        console.error('Error creating course:', error);
+        console.error('Error creating course:', error); // Debugging
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
@@ -132,45 +146,24 @@ export class NewComponent implements OnInit {
   private resetForm(form: NgForm): void {
     form.resetForm();
     this.chapters = [this.createNewChapter()];
-    this.selectedCategoryID = 1;
-    this.mainImagePath = '';
-    this.certificateImagePath = ''; 
+    this.selectedCategoryID =1;
+    this.mainImageFile = null;
+    this.certificateImageFile = null;
   }
 
   onFileSelected(event: any, type: 'mainImage' | 'certificateImage'): void {
-    const file: File = event.files[0];
-    console.log('File selected:', file);
-
+    const file: File = event.currentFiles[0];
+    if (type === 'mainImage') {this.mainImageFile = file;}
+    else if (type === 'certificateImage') {this.certificateImageFile = file;}
+    console.log(file);
+    console.log("type",type);
     if (file) {
-      this.apiService.uploadImage(file).subscribe({
-        next: (response: any) => {
-          if (response && response.path) {
-            if (type === 'mainImage') {
-              this.mainImagePath = response.path;
-            } else {
-              this.certificateImagePath = response.path;
-            }
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: 'Image uploaded successfully'
-            });
-          } else {
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: 'Image upload failed: Invalid response'
-            });
-          }
-        },
-        error: () => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Image upload failed'
-          });
-        }
-      });
+      this.apiService.uploadFile(file, type).subscribe(
+        response => console.log('Upload successful:', response),
+        error => console.error('Upload failed:', error)
+      );
     }
   }
+   
+
 }

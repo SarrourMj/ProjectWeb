@@ -1,15 +1,15 @@
 import { Category } from './category.model';
 import { Chapter } from './chapter.model';
+import { Certificate} from './certificate.model';
 export interface Course {
   id: number;
   title: string;
-  certificate: string | null;
-  background_image: string | null;
+  certificate: Certificate| null;
   category: Category;
   content: string;
   slug: string;
   createdOn: string;
   modifiedOn: string;
-  mainImageUrl: string;
+  mainimageurl: string;
   chapters: Chapter[];
 }
