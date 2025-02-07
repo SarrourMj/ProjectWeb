@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put, BadRequestException } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { Course } from 'src/course/entities/course.entity';
 import { Chapter } from 'src/chapter/entities/chapter.entity';
+import * as bcrypt from 'bcrypt';
 
 @Controller('user')
 export class UserController {
@@ -66,5 +67,22 @@ export class UserController {
   @Get(':userId/chapters')
   async getUserChapters(@Param('userId') userId: number): Promise<Chapter[]> {
     return this.userService.getUserChapters(userId);
+  }
+
+  @Put(':userId/change-password')
+  async changePassword(@Param('userId') userId: number, @Body() body) {
+    const { currentPassword, newPassword } = body;
+    const user = await this.userService.findOne(userId);
+    if(!user) {
+      throw new BadRequestException('User not found');
+    }
+    console.log(await bcrypt.compare(currentPassword, user.password));
+    if ( !(await bcrypt.compare(currentPassword, user.password))) {
+      
+      throw new BadRequestException('Current password is incorrect');
+    }
+
+    await this.userService.changePassword(user.id, newPassword);
+    return { message: 'Password updated successfully' };
   }
 }
