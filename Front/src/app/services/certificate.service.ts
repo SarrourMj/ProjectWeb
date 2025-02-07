@@ -16,7 +16,7 @@ export class CertificatesService {
   }
 
   assignCertificate(userId: number, courseId: number) {
-    return this.http.post(`${this.apiUrl}/assign`, { userId, courseId });
+    return this.http.post(`${this.apiUrl}/assign/${userId}/${courseId }`, {});
   }
   
 }

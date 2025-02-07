@@ -70,7 +70,7 @@ export class NewComponent implements OnInit {
     console.log('Main Image Path:', this.mainImagePath);
     console.log('Certificate Image Path:', this.certificateImagePath);
     console.log('Chapters:', this.chapters);
-
+/*
     if (
       form.invalid ||
       !this.selectedCategoryID ||
@@ -85,7 +85,7 @@ export class NewComponent implements OnInit {
         detail: 'Please fill all required fields.'
       });
       return;
-    }
+    }*/
 
     const courseData = {
       ...this.course,
