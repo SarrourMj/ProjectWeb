@@ -6,7 +6,6 @@
       <a href="#">Learn</a>
       <a href="#">About us</a>
     </span>
-    <button mat-raised-button class="login" (click)="goToLogin()" style="background-color: #fb9678; color: white;" >login</button>
   </div>
 </mat-toolbar>
 <div class="login-container">
@@ -37,7 +36,7 @@
     </div>
     <!-- Submit Button -->
     <button type="submit" [disabled]="!loginForm.valid">Login</button>
-    <div class="register-link" (click)="goToSignup()">Don't have an account? <a href="/register">Sign up</a>
+    <div class="register-link" (click)="goToSignup()">Don't have an account? <button (click)="goToSignup()" >Sign up</button>
     </div>
   
   

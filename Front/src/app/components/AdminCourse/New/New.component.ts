@@ -1,11 +1,9 @@
-// new-course.component.ts
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ApiService } from 'src/app/services/api.service';
 import { CourseService } from 'src/app/services/course.service';
 import { Category } from 'src/app/models/category.model';
-
 import { ChapterForm, QuestionForm } from './../../../models/chapterForm.model';
 
 @Component({
@@ -17,14 +15,14 @@ export class NewComponent implements OnInit {
   course = { title: '', content: '' };
   submitted = false;
   chapters: ChapterForm[] = [this.createNewChapter()];
-  selectedCategoryID: number=1;
+  selectedCategoryID: number = 1;
   categories: Category[] = [];
   mainImagePath = '';
   certificateImagePath = '';
 
   constructor(
     private apiService: ApiService,
-    private CourseService: CourseService,
+    private courseService: CourseService,
     private messageService: MessageService
   ) {}
 
@@ -64,19 +62,18 @@ export class NewComponent implements OnInit {
     chapter.questions.splice(index, 1);
   }
 
-
   createCourse(form: NgForm): void {
     this.submitted = true;
-  
-    console.log('Form Valid:', form.valid); // Debugging
-    console.log('Selected Category ID:', this.selectedCategoryID); // Debugging
-    console.log('Main Image Path:', this.mainImagePath); // Debugging
-    console.log('Certificate Image Path:', this.certificateImagePath); // Debugging
-    console.log('Chapters:', this.chapters); // Debugging
-  
-    /*if (
+
+    console.log('Form Valid:', form.valid); 
+    console.log('Selected Category ID:', this.selectedCategoryID);
+    console.log('Main Image Path:', this.mainImagePath);
+    console.log('Certificate Image Path:', this.certificateImagePath);
+    console.log('Chapters:', this.chapters);
+/*
+    if (
       form.invalid ||
-      !this.selectedCategoryId ||
+      !this.selectedCategoryID ||
       !this.mainImagePath ||
       !this.certificateImagePath ||
       this.chapters.length === 0 ||
@@ -89,12 +86,15 @@ export class NewComponent implements OnInit {
       });
       return;
     }*/
-  
+
     const courseData = {
       ...this.course,
-      category: { id: this.selectedCategoryID, title: this.categories.find(c => c.id === this.selectedCategoryID)?.title || '' } ,
+      category: { 
+        id: this.selectedCategoryID, 
+        title: this.categories.find(c => c.id === this.selectedCategoryID)?.title || '' 
+      },
       mainImageUrl: this.mainImagePath,
-      certificate: this.certificateImagePath, // Add this line
+      certificateImageUrl: this.certificateImagePath, // Ensure correct property name
       chapters: this.chapters.map(chapter => ({
         title: chapter.title,
         content: chapter.content,
@@ -105,12 +105,12 @@ export class NewComponent implements OnInit {
         score: chapter.score
       }))
     };
-  
-    console.log('Course Data:', courseData); // Debugging
-  
-    this.CourseService.createCourse(courseData).subscribe({
+
+    console.log('Course Data:', courseData); 
+
+    this.courseService.createCourse(courseData).subscribe({
       next: (response) => {
-        console.log('Course created successfully:', response); // Debugging
+        console.log('Course created successfully:', response);
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
@@ -119,7 +119,7 @@ export class NewComponent implements OnInit {
         this.resetForm(form);
       },
       error: (error) => {
-        console.error('Error creating course:', error); // Debugging
+        console.error('Error creating course:', error);
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
@@ -132,21 +132,20 @@ export class NewComponent implements OnInit {
   private resetForm(form: NgForm): void {
     form.resetForm();
     this.chapters = [this.createNewChapter()];
-    this.selectedCategoryID =1;
-
+    this.selectedCategoryID = 1;
     this.mainImagePath = '';
+    this.certificateImagePath = ''; 
   }
 
   onFileSelected(event: any, type: 'mainImage' | 'certificateImage'): void {
     const file: File = event.files[0];
-    console.log('event:', event); // Debugging
-    console.log('File selected:', file); // Debugging
+    console.log('File selected:', file);
+
     if (file) {
       this.apiService.uploadImage(file).subscribe({
         next: (response: any) => {
           if (response && response.path) {
             if (type === 'mainImage') {
-              console.log('Main Image uploaded:', response); // Debugging
               this.mainImagePath = response.path;
             } else {
               this.certificateImagePath = response.path;

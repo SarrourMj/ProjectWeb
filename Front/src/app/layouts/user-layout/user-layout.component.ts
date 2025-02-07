@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
+
 interface SidebarMenu {
   link: string;
   icon: string;
@@ -14,12 +16,11 @@ interface SidebarMenu {
   selector: 'app-full',
   templateUrl: './user-layout.component.html',
   styleUrls: ['./user-layout.component.scss'],
-
 })
 export class UserLayoutComponent {
   userScore: number = 0;
   search: boolean = false;
-  user: any = null; // Store user data here
+  user: any = null;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -29,26 +30,29 @@ export class UserLayoutComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private authService: AuthService, // Inject AuthService here
-    private userService: UserService
+    private authService: AuthService,
+    private userService: UserService,
+    private router: Router // Inject Router for navigation
   ) {}
 
   ngOnInit(): void {
     this.user = this.authService.getUser();
     if (this.user?.id) {
-      // Fetch only the score
       this.userService.getUserScore(this.user.id).subscribe(
         (score) => {
           this.userScore = score;
-          console.log('Fetched score:', this.userScore);
         },
         (error) => {
           console.error('Error fetching score:', error);
-          // Fallback to stored score if API fails
           this.userScore = this.user?.score || 0;
         }
       );
     }
+  }
+
+  logout(): void {
+    this.authService.logout(); // Clear session
+    this.router.navigate(['/login']); // Redirect to login
   }
 
   routerActive: string = "activelink";

@@ -15,4 +15,10 @@ export class UserService {
     getUserScore(userId: number): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/user/${userId}/score`);
 }
+
+
+    getCompletedCourses(userId: number): Observable<number[]> {
+     return this.http.get<number[]>(`${this.apiUrl}/user/completed-courses/${userId}`);
+}
+
 }

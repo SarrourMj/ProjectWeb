@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
-import { DemoFlexyModule } from './demo-LearnSphere'
+import { DemoFlexyModule } from './demo-CourseQuest'
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HTTP_INTERCEPTORS } from '@angular/common/http'; // Import the HTTP_INTERCEPTORS token
 

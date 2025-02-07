@@ -1,15 +1,15 @@
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
-import { DemoFlexyModule } from 'src/app/demo-LearnSphere';
 import { Course } from '../../models/course.model';
 import { MycoursesService } from '../../services/mycourses.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-tabs',
   standalone: true,
-  imports: [DemoFlexyModule, MatTabsModule, NgFor, NgIf, AsyncPipe],
+  imports: [ MatTabsModule, NgFor, NgIf, AsyncPipe,RouterModule],
   templateUrl: './mycourses.component.html',
   styleUrls: ['./mycourses.component.scss']
 })
