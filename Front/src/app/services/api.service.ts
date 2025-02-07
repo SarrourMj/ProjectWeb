@@ -42,13 +42,10 @@ export class ApiService {
   createCategory(categoryData: Partial<Category>): Observable<Category> {
     return this.http.post<Category>(`${this.URL}/categories`, categoryData);
   }
-  uploadImage(file: File): Observable<any> {
+  uploadFile(file: File): Observable<any> {
 
-    const formData = new FormData();
-
-    formData.append('file', file);
-
-    return this.http.post<any>(`${this.URL}/courses/upload`, formData);
+    return this.http.post('http://localhost:3000/upload-file', File);
+  
 
   }
 
