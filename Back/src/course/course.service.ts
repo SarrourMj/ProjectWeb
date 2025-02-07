@@ -6,7 +6,7 @@ import { Course } from './entities/course.entity';
 import { Chapter } from '../chapter/entities/chapter.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Certificate } from '../certificate/entities/certificate.entity';
+
 @Injectable()
 export class CourseService {
 
@@ -15,8 +15,6 @@ export class CourseService {
     private readonly courseRepo: Repository<Course>,
     @InjectRepository(Chapter)
     private readonly chapterRepo: Repository<Chapter>, // Ensure this is injected
-    @InjectRepository(Certificate)
-    private readonly certificateRepo: Repository<Certificate>, // Ensure this is injected
   ) {}
 
   async create(createCourseDto: CreateCourseDto) {
@@ -27,18 +25,10 @@ export class CourseService {
 
     // Generate a slug from the title
     const slug = createCourseDto.title.split(' ').join('_').toLowerCase();
-    // Create and save the certificate
-    const certificate = this.certificateRepo.create({
-      name: createCourseDto.title + ' Certificate',
-      imageurl: createCourseDto.certificate.imageurl,
-      description: 'Certificate for ' + createCourseDto.title,
-    });
-    const savedCertificate = await this.certificateRepo.save(certificate);
-
+    
     // Create the course entity
     const course = this.courseRepo.create({
       ...createCourseDto,
-      certificate: savedCertificate,
       slug,
       chapters: [], // Initialize an empty array for chapters
     });

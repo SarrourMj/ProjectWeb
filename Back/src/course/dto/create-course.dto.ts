@@ -2,7 +2,7 @@ import { IsString, IsNotEmpty, IsOptional, IsArray, ValidateNested } from 'class
 import { Type } from 'class-transformer';
 import { CreateChapterDto } from './../../chapter/dto/create-chapter.dto';
 import { Category } from 'src/category/entities/category.entity'; // Import Category type
-import { CreateCertificateDto } from 'src/certificate/dto/create-certificate.dto';
+import { Certificate } from '../../certificate/entities/certificate.entity'; // Import Certificate type
 
 export class CreateCourseDto {
     @IsString()
@@ -17,8 +17,9 @@ export class CreateCourseDto {
     @IsString() 
     mainImageUrl: string;
 
+    @IsString()
     @IsOptional()
-    certificate: CreateCertificateDto; 
+    certificate?: Certificate; 
     
     @IsOptional()
     category: Category; 
