@@ -66,7 +66,6 @@ export class NewComponent implements OnInit {
 
   createCourse(form: NgForm): void {
     this.submitted = true;
-<<<<<<< HEAD
   
     console.log('Form Valid:', form.valid); // Debugging
     console.log('Selected Category ID:', this.selectedCategoryID); // Debugging
@@ -75,7 +74,7 @@ export class NewComponent implements OnInit {
     console.log('Chapters:', this.chapters); // Debugging
   
     /*if (
-=======
+
 
     console.log('Form Valid:', form.valid); 
     console.log('Selected Category ID:', this.selectedCategoryID);
@@ -99,11 +98,7 @@ export class NewComponent implements OnInit {
       });
       return;
     }*/
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> d4d5582898d02d9f4750369fdc898e55740137f3
     const courseData = {
       ...this.course,
       category: { id: this.selectedCategoryID, title: this.categories.find(c => c.id === this.selectedCategoryID)?.title || '' } ,
