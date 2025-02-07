@@ -53,9 +53,9 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     canActivate: [AuthGuard], // ✅ Protect admin routes
     children: [
-      { path: "", redirectTo: "/admin/dashboard", pathMatch: "full" },
-      { path: "dashboard", component: DashboardComponent },
-      { path: "coursemanagement", children: [
+      { path: "", redirectTo: "/admin/coursemanagement", pathMatch: "full" },
+      { path: "coursemanagement", 
+        children: [
         { path: "", component: AdminCourseComponent },
         { path: "Create", component: NewComponent },
         { path: "Category", component: CategoryComponent },

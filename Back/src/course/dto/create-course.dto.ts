@@ -22,7 +22,7 @@ export class CreateCourseDto {
   @IsOptional()
   category: Category; // Assuming this is the correct way to handle the category relation
 
-  
+
   @IsOptional()
 @IsString()
 certificateImageUrl: string;

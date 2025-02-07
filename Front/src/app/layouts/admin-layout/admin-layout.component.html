@@ -18,7 +18,7 @@
             <a matRipple [matRippleColor]="'#f7f8f443'" (click)="toggleDropdown(sidenav)"
               class="sidebar-menu fs-16 w-100 d-flex align-items-center" [ngClass]="{'active': isDropdownOpen(sidenav)} ">
               <i-feather name="{{ sidenav.icon }}" class="feather-base me-16"></i-feather>
-              <span class="ps-4">{{ sidenav.menu }}</span>
+              <span class="ps-4" style="cursor: pointer" routerLink="{{ sidenav.link }}" >{{ sidenav.menu }}</span>
               <!-- Dropdown Arrow -->
               <span *ngIf="sidenav.children" class="ms-auto">
                 <i-feather [name]="isDropdownOpen(sidenav) ? 'chevron-up' : 'chevron-down'" class="feather-base"></i-feather>
@@ -42,18 +42,43 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <!-- Header -->
-    <mat-toolbar class="header ps-24 pe-24">
-      <button type="button" class="ms-4" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <i-feather name="menu" class="text-light-muted feather-base mt-n3"></i-feather>
-      </button>
-      <button mat-icon-button class="ms-4 me-4" (click)="search=!search">
-        <i-feather name="search" class="mt-n3 text-light-muted feather-base text-dark"></i-feather>
-      </button>
- 
-    </mat-toolbar>
+    <!-- Header avec bouton utilisateur -->
+    <div class="header-container">
+      <div class="user-menu">
+        <button mat-button class="fs-16 pt-4 pb-4 ps-8 pe-8 text-light-muted d-flex align-items-center" [matMenuTriggerFor]="menu">
+          <div class="d-flex align-items-center">
+            <img src="assets/images/user2.webp" class="rounded-circle" alt="">
+            <span class="fw-light ms-8 text-secondary">Hi,</span>
+            <span class="fw-bold ms-8">{{admin.username}}</span>
 
+            <!-- XP affiché à côté de Julia -->
+            
+
+            <i-feather name="chevron-down" class="feather-base ms-8"></i-feather>
+          </div>
+        </button>
+
+        <mat-menu #menu="matMenu" class="profile-dropdown">
+          <div class="p-16 mb-4">
+            <button mat-menu-item class="fs-16" [routerLink]="['/admin/editprofile']" [queryParams]="{ tab: 'account' }">
+              Account
+            </button>
+            <button mat-menu-item class="fs-16" [routerLink]="['/admin/editprofile']" [queryParams]="{ tab: 'password' }">
+              Change Password
+            </button>
+            <button mat-menu-item class="fs-16" [routerLink]="['/admin/editprofile']" [queryParams]="{ tab: 'settings' }">
+              My Settings
+            </button>
+          </div>
+
+          <hr>
+
+          <div class="p-16">
+            <button mat-flat-button color="accent" class="w-100 text-white">Logout</button>
+          </div>
+        </mat-menu>
+      </div>
+    </div>
     <!-- Content -->
     <div class="body-wrapper">
       <div class="page-wrapper">
