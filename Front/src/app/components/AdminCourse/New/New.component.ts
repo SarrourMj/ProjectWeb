@@ -74,6 +74,19 @@ export class NewComponent implements OnInit {
     console.log('Chapters:', this.chapters); // Debugging
   
     /*if (
+<<<<<<< HEAD
+=======
+
+
+    console.log('Form Valid:', form.valid); 
+    console.log('Selected Category ID:', this.selectedCategoryID);
+    console.log('Main Image Path:', this.mainImagePath);
+    console.log('Certificate Image Path:', this.certificateImagePath);
+    console.log('Chapters:', this.chapters);
+/*
+    if (
+>>>>>>> d4d5582898d02d9f4750369fdc898e55740137f3
+>>>>>>> b19b386be4909bf7518f2434e7f8e6501cd5bd63
       form.invalid ||
       !this.selectedCategoryId ||
       !this.mainImageFile ||
@@ -88,6 +101,7 @@ export class NewComponent implements OnInit {
       });
       return;
     }*/
+
     const courseData = {
       ...this.course,
       category: { id: this.selectedCategoryID, title: this.categories.find(c => c.id === this.selectedCategoryID)?.title || '' } ,

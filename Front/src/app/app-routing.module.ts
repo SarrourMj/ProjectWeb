@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { MycoursesComponent } from './components/mycourses/mycourses.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { CoursesComponent } from './components/courses/courses.component'; 
@@ -17,8 +15,9 @@ import { LoginComponent } from './login/login.component';
 import { CategoryComponent } from './components/category/category.component';
 import { MyCertificatesComponent } from './components/mycertificates/mycertificates.component';
 import { AuthGuard } from './guards/auth.guard';
-import { AdminGuard } from './guards/admin.guard';
+import { AuthRedirectGuard } from './guards/auth-redirect.guard';
 import { UserGuard } from './guards/user.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 
 
@@ -27,18 +26,20 @@ const routes: Routes = [
     path: "home",
     component: HomeComponent
   },
-  {
+  { 
     path: "login", 
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [AuthRedirectGuard] 
   },
   {
     path: "signup", 
-    component: SignupComponent
+    component: SignupComponent,
+    canActivate: [AuthRedirectGuard],
   },
   { 
     path: "user",
     component: UserLayoutComponent,
-    canActivate: [AuthGuard], // ✅ Protect user routes
+    canActivate: [AuthGuard,UserGuard], 
     children: [
       { path: "", redirectTo: "/user/courses", pathMatch: "full" },
       { path: "courses", component: CoursesComponent },
@@ -51,7 +52,7 @@ const routes: Routes = [
   {
     path: "admin",
     component: AdminLayoutComponent,
-    canActivate: [AuthGuard], // ✅ Protect admin routes
+    canActivate: [AuthGuard,AdminGuard], 
     children: [
       { path: "", redirectTo: "/admin/coursemanagement", pathMatch: "full" },
       { path: "coursemanagement", 

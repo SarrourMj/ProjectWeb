@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/auth/login'; // Backend login endpoint
+  private apiUrl = 'http://localhost:3000/auth'; // Backend auth endpoint
 
   constructor(private http: HttpClient) {}
 
   login(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post(this.apiUrl, credentials);
+    return this.http.post(`${this.apiUrl}/login`, credentials);
   }
 
   saveUserData(token: string, user: any): void {
@@ -35,4 +35,5 @@ export class AuthService {
   logout(): void {
     sessionStorage.clear(); // Clears all stored data
   }
+
 }

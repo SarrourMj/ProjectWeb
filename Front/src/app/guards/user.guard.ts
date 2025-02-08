@@ -11,15 +11,15 @@ export class UserGuard implements CanActivate {
   canActivate(): boolean {
     console.log('🔍 Checking UserGuard...');
     const user = this.authService.getUser();
-    console.log('User Data:', user);
+    console.log('User Data:', user.role);
 
-    if (user && user.role === 'normal user') {
+    if (user.role.name === 'user') {
       console.log('✅ UserGuard Passed - User is a normal user');
       return true;
     }
 
     console.log('❌ UserGuard Failed - Redirecting to /home');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/admin']);
     return false;
   }
 }
