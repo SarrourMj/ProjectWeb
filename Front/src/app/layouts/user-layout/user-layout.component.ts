@@ -5,7 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-
+import { UserStateService } from 'src/app/services/user-state.service';
 interface SidebarMenu {
   link: string;
   icon: string;
@@ -32,15 +32,28 @@ export class UserLayoutComponent {
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService,
     private userService: UserService,
-    private router: Router // Inject Router for navigation
+    private router: Router, // Inject Router for navigation
+    private userStateService: UserStateService
+
   ) {}
 
   ngOnInit(): void {
     this.user = this.authService.getUser();
     if (this.user?.id) {
+      this.loadUserScore();
+
+    // Subscribe to score updates
+      this.userStateService.currentScore.subscribe(score => {
+      this.userScore = score;
+    });
+    }
+  }
+  private loadUserScore() {
+    if (this.user?.id) {
       this.userService.getUserScore(this.user.id).subscribe(
         (score) => {
           this.userScore = score;
+          this.userStateService.updateScore(score);
         },
         (error) => {
           console.error('Error fetching score:', error);

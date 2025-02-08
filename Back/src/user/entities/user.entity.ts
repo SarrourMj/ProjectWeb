@@ -41,7 +41,7 @@ export class User {
   @Column({ nullable: true ,type: 'int',default:0})
   score?: number;
 
-  @ManyToMany(() => Course, { nullable: true })
+  @ManyToMany(() => Course, (course) => course.users, { nullable: true, onDelete: 'CASCADE' })
 @JoinTable({ // Custom join table name
     joinColumn: {
         name: 'userid', // Column name for the user ID

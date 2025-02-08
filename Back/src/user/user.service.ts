@@ -115,17 +115,23 @@ export class UserService {
 
     return user.chapters || [];
   }
-
-  async incrementUserScore(userId: number, score: number): Promise<void> {
-    const user = await this.userRepository.findOne({ where: { id: userId } });
-    if (!user) {
-      throw new NotFoundException(`User with ID ${userId} not found`);
+  async incrementUserScore(userId: number, score: number): Promise<User> {
+    await this.userRepository.update(
+      { id: userId },
+      { score: () => `score + ${score}` } // Raw SQL increment
+    );
+  
+    // 2. Fetch and return the updated user
+    const updatedUser = await this.userRepository.findOne({
+      where: { id: userId },
+      select: ['id', 'username', 'score'] // Explicitly include score
+    });
+  
+    if (!updatedUser) {
+      throw new NotFoundException('User not found');
     }
-
-    console.log('new score :', Number(user.score) + Number(score)); // Check the value
-
-    user.score = Number(user.score) + Number(score);
-    await this.userRepository.save(user);
+  
+    return updatedUser;
   }
 
   /**

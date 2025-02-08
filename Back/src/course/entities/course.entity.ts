@@ -15,7 +15,7 @@ export class Course {
   })
   title: string;
 
-  @OneToOne(() => Certificate, { cascade: true, nullable: true, eager: true }) 
+  @OneToOne(() => Certificate, { nullable: true, eager: true,onDelete: 'CASCADE',cascade:true }) 
   @JoinColumn({ name: 'certificate_id' }) // This will store the certificate ID as a foreign key
   certificate: Certificate; // Now this is a proper relation instead of a string
 
@@ -46,7 +46,7 @@ export class Course {
   @Column({ nullable: true })
   mainimageurl: string;
 
-  @ManyToMany(() => User, (user) => user.courses)
+  @ManyToMany(() => User, (user) => user.courses,{ cascade: true, onDelete: 'CASCADE' })
   users: User[];
 
   @ManyToOne(() => Category, (category) => category.course, { eager: true })

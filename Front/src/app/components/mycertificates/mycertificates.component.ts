@@ -36,6 +36,8 @@ export class MyCertificatesComponent implements OnInit {
           this.noCertificates = true;
         } else {
           this.certificates = data;
+          console.log(this.certificates);
+
         }
       },
       error: (error: HttpErrorResponse) => {

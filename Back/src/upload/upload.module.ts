@@ -11,13 +11,11 @@ import * as fs from 'fs';
     MulterModule.register({
       storage: diskStorage({
         destination: (_req, _file, cb) => {
-          // Temporary directory for initial upload
           const tempDir = '../Front/src/assets/uploads/temp';
           fs.mkdirSync(tempDir, { recursive: true });
           cb(null, tempDir);
         },
         filename: (_req, file, cb) => {
-          // Unique filename with timestamp
           const filename = `${file.originalname}`;
           cb(null, filename);
         },

@@ -4,7 +4,7 @@
   <div *ngIf="!noCertificates; else noCertificatesTemplate">
     <div class="certificates-container">
       <div *ngFor="let certificate of certificates" class="certificate-card">
-        <img [src]="certificate.imageUrl" [alt]="certificate.name">
+        <img [src]="certificate.imageurl" [alt]="certificate.name">
         <h4>{{ certificate.name }}</h4>
         <p>{{ certificate.description }}</p>
       </div>

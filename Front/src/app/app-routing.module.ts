@@ -5,9 +5,9 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { CoursesComponent } from './components/courses/courses.component'; 
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
-import { CourseDetailComponent } from './coursedetail/coursedetail.component';
+import { CourseDetailComponent } from './components/coursedetail/coursedetail.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { AdminCourseComponent } from './components/AdminCourse/AdminCourse.component';
+import { AdminCourseComponent } from './components/AdminCourse/admincourses/AdminCourse.component';
 import { NewComponent } from './components/AdminCourse/New/New.component';
 import { EditComponent } from './components/AdminCourse/edit/edit.component';
 import { HomeComponent } from './home/home.component';
