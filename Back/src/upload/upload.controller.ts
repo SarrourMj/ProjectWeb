@@ -5,11 +5,15 @@ import {
     UseInterceptors,
     UploadedFile,
     Body,
+    UseGuards,
   } from '@nestjs/common';
   import { FileInterceptor } from '@nestjs/platform-express';
   import * as fs from 'fs';
   import { Express } from 'express';
-  
+  import { Roles } from '../auth/assets/roles.decorator';
+  import { RolesGuard } from '../auth/guards/roles.guard';
+  @UseGuards(RolesGuard)
+  @Roles('admin')
   @Controller('upload')
   export class FileUploadController {
     constructor() {}

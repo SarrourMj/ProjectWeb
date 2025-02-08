@@ -15,7 +15,6 @@ export class CourseController {
   @Roles('admin')
   @Post()
   @UsePipes(new ValidationPipe())
-  
   create(@Body() createCourseDto: CreateCourseDto /*, @Req() req: Request*/) {
     return this.courseService.create(createCourseDto /*, req.user as User*/);
   }
@@ -31,6 +30,9 @@ export class CourseController {
     return this.courseService.findOne(+id);
   }
 
+  @UseGuards(RolesGuard)
+  @Roles('admin')
+  @Delete(':id')
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto) {
     return this.courseService.update(+id, updateCourseDto);

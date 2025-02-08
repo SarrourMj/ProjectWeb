@@ -10,6 +10,7 @@ import { Roles } from '../auth/assets/roles.decorator';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import * as bcrypt from 'bcrypt';
 
+
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
@@ -89,6 +90,7 @@ export class UserController {
     return this.userService.getUserChapters(userId);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put(':userId/change-password')
   async changePassword(@Param('userId') userId: number, @Body() body) {
     const { currentPassword, newPassword } = body;
