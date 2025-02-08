@@ -17,6 +17,8 @@ export class AuthService {
   saveUserData(token: string, user: any): void {
     sessionStorage.setItem('access_token', token);
     sessionStorage.setItem('user', JSON.stringify(user)); // Store entire user object
+    console.log('Updated User:', user);
+
   }
 
   getToken(): string | null {

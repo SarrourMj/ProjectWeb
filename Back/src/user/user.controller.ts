@@ -27,7 +27,23 @@ export class UserController {
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.createUser(createUserDto);
   }
+  @UseGuards(JwtAuthGuard)
+  @Put(':userId')
+async updateProfile(@Param('userId') userId: number, @Body() body) {
+  const { username, email } = body;
+  let user = await this.userService.findOne(userId);  // ✅ Ensure 'role' is included
+
+  if (!user) {
+    throw new BadRequestException('User not found');
+  }
+
+  await this.userService.update(userId, { username, email });
+
+  user = await this.userService.findOne(userId);  // ✅ Re-fetch with 'role'
   
+  return { message: 'Profile updated successfully', user };
+}
+
   @UseGuards(JwtAuthGuard)
   @Get(':id/score')
   async getScore(@Param('id') id: number) {

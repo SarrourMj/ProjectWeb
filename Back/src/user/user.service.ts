@@ -40,12 +40,13 @@ export class UserService {
   }
 
   async findOne(id: number): Promise<User> {
-    const user = await this.userRepository.findOne({ where: { id }, relations: ['courses'] });
+    const user = await this.userRepository.findOne({ where: { id }, relations: ['courses', 'role'] }); // ✅ Added 'role'
     if (!user) {
       throw new NotFoundException('User not found');
     }
     return user;
   }
+  
 
   async findOneByEmail(email: string): Promise<User | null> {
     return this.userRepository.findOne({ where: { email }, relations: ['role'] });
@@ -53,13 +54,13 @@ export class UserService {
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     await this.userRepository.update(id, updateUserDto);
-    const user = await this.userRepository.findOne({ where: { id }, relations: ['courses'] });
+    const user = await this.userRepository.findOne({ where: { id }, relations: ['courses'] });  // ❌ Missing 'role'
     if (!user) {
       throw new NotFoundException('User not found');
     }
     return user;
   }
-
+  
   async remove(id: number): Promise<void> {
     await this.userRepository.delete(id);
   }

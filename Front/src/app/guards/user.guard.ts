@@ -11,7 +11,7 @@ export class UserGuard implements CanActivate {
   canActivate(): boolean {
     console.log('🔍 Checking UserGuard...');
     const user = this.authService.getUser();
-    console.log('User Data:', user.role);
+    console.log('User Data:', user);
 
     if (user.role.name === 'user') {
       console.log('✅ UserGuard Passed - User is a normal user');
