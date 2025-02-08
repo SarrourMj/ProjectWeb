@@ -32,7 +32,6 @@ export class CourseController {
 
   @UseGuards(RolesGuard)
   @Roles('admin')
-  @Delete(':id')
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto) {
     return this.courseService.update(+id, updateCourseDto);
