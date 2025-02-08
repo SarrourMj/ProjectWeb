@@ -35,7 +35,8 @@ export class UserController {
   return user.score; // Return only the score
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(RolesGuard)
+  @Roles('admin')
   @Get()
   findAll() {
     return this.userService.findAll();
