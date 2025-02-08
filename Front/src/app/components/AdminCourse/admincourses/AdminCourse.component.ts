@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ApiService } from "src/app/services/api.service";
 import { CourseService } from "src/app/services/course.service";
 import { Course } from "src/app/models/course.model";
 import { Table } from "primeng/table";
@@ -63,7 +62,8 @@ clear(table: Table) {
   removeCourse(id: number) {
     this.courseService.deleteCourse(id).subscribe(res => {
       if (res.success) {
-        this.courses = this.courses.filter(p => p.id !== id);
+        this.courses = this.courses.filter(course => course.id !== id);
+        this.filteredCourses = this.filteredCourses.filter(course => course.id !== id);
         this.message.add({
           severity: 'success',
           summary: 'Successful',

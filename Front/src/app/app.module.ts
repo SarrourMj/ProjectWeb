@@ -19,7 +19,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import {  HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 
 import { CoursesComponent } from './components/courses/courses.component';
-import { CourseDetailComponent } from './coursedetail/coursedetail.component';
+import { CourseDetailComponent } from './components/coursedetail/coursedetail.component';
 import { InputNumberModule } from 'primeng/inputnumber'; // Import InputNumberModule
 import { DropdownModule } from 'primeng/dropdown'; // Import DropdownModule
 import { FileUploadModule } from 'primeng/fileupload'; // Import FileUploadModule
@@ -28,7 +28,7 @@ import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageService } from 'primeng/api';
 import {NewComponent} from './components/AdminCourse/New/New.component';
-import { AdminCourseComponent } from './components/AdminCourse/AdminCourse.component';
+import { AdminCourseComponent } from './components/AdminCourse/admincourses/AdminCourse.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
@@ -46,9 +46,10 @@ import { SignupComponent } from './components/signup/signup.component';
     AppComponent,
     UserLayoutComponent,
     AdminLayoutComponent,
+    AdminCourseComponent,
     CoursesComponent,
     CourseDetailComponent,
-      AdminCourseComponent,
+    
     NewComponent,
     CategoryComponent,
    

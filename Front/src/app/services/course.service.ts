@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {CourseForm} from "../models/courseForm.model";
 import { Chapter } from '../models/chapter.model';
+import { User } from '../models/User.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,7 +31,7 @@ export class CourseService {
   }
   deleteCourse(id: number): Observable<{ success: boolean }> {
     return this.http.delete<{ success: boolean }>(`${this.apiUrl}/courses/${id}`, {
-      withCredentials: true
+     
     });
   }
   
@@ -42,7 +43,10 @@ export class CourseService {
   createCourse(courseData: Partial<CourseForm>): Observable<CourseForm> {
     return this.http.post<CourseForm>(`${this.apiUrl}/courses`, courseData);
   }
-  incrementUserScore(userId: number, score: number): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/user/${userId}/increment-score/${score}`, {});
+  incrementUserScore(userId: number, score: number): Observable<User> {
+    return this.http.post<User>(
+      `${this.apiUrl}/user/${userId}/increment-score/${score}`,
+      {}
+    );
   }
 }

@@ -13,7 +13,7 @@ export class UserController {
   async incrementUserScore(
     @Param('userId') userId: number,
     @Param('score') score: number
-  ): Promise<void> {
+  ): Promise<User> {
     return this.userService.incrementUserScore(userId, score);
   }
   @Post('signup')

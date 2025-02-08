@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CourseService } from '../services/course.service';
-import { MycoursesService } from '../services/mycourses.service'; // Import the service
-import { Course } from '../models/course.model';
-import { Chapter } from '../models/chapter.model';
-import { Question } from '../models/chapter.model';
+import { CourseService } from '../../services/course.service';
+import { MycoursesService } from '../../services/mycourses.service'; // Import the service
+import { Course } from '../../models/course.model';
+import { Chapter } from '../../models/chapter.model';
+import { Question } from '../../models/chapter.model';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { CertificatesService } from '../services/certificate.service';
-import { AuthService } from '../services/auth.service';
-
+import { CertificatesService } from '../../services/certificate.service';
+import { AuthService } from '../../services/auth.service';
+import { UserStateService } from '../../services/user-state.service';
 @Component({
   selector: 'app-course-detail',
   templateUrl: './coursedetail.component.html',
@@ -42,7 +42,8 @@ export class CourseDetailComponent implements OnInit {
     private courseService: CourseService,
     private mycoursesService: MycoursesService, // Inject the service
     private authService: AuthService, // Inject AuthService
-    private certificatesService: CertificatesService // Inject the service
+    private certificatesService: CertificatesService,
+    private userStateService: UserStateService // Inject the service
 
   ) {}
 
@@ -110,10 +111,13 @@ export class CourseDetailComponent implements OnInit {
   
         const chapter = this.course?.chapters.find(chap => chap.id === chapterId);
         if (chapter) {
-          this.courseService.incrementUserScore(this.userId!, chapter.score).subscribe(
-            () => console.log('User score incremented successfully'),
-            error => console.error('Error incrementing user score:', error)
-          );
+          this.courseService.incrementUserScore(this.userId!, chapter.score).subscribe({
+            next: (updatedUser) => {
+              console.log('New score:', updatedUser);
+              this.userStateService.updateScore(updatedUser.score!);
+            },
+            error: (err) => console.error('Error:', err)
+          });
         }
   
         // Check if all chapters are completed

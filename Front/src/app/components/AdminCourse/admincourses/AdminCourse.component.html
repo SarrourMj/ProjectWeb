@@ -1,10 +1,6 @@
-<div class="search-container">
-  <input type="text" [(ngModel)]="searchQuery" (input)="filterCourses()" placeholder="Search courses..." class="search-input" />
-</div>
-
 <div class="course-list">
   <div *ngFor="let course of filteredCourses" class="course-card">
-    <a [routerLink]="['/user/courses', course.id]" class="course-link">
+    <a  class="course-link">
       <div class="course-image">
         <img [src]="course.mainimageurl" [alt]="course.title">
       </div>
@@ -12,6 +8,7 @@
         <h3>{{ course.title }}</h3>
         <p>{{ course.content }}</p>
       </div>
+      <button class="delete-button" (click)="removeCourse(course.id)">Delete</button>
     </a>
   </div>
 </div>
