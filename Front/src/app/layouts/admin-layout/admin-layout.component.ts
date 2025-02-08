@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { Router } from '@angular/router';
 interface sidebarMenu {
   link: string;
   icon: string;
@@ -27,9 +27,16 @@ export class AdminLayoutComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver, 
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router // Inject Router for navigation
+  ) { }
   ngOnInit(): void {
     this.admin = this.authService.getUser();
+  }
+
+  logout(): void {
+    this.authService.logout(); // Clear session
+    this.router.navigate(['/login']); // Redirect to login
   }
   routerActive: string = "activelink";
 

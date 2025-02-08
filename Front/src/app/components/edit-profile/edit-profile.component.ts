@@ -87,4 +87,38 @@ export class EditProfileComponent implements OnInit {
       this.errorMessage = 'Please fill in all fields correctly.';
     }
   }
+
+  saveChanges() {
+    if (this.activeTab === 'password') {
+      // Handle password change
+      if (this.passwordForm.valid) {
+        this.loading = true;
+        this.successMessage = '';
+        this.errorMessage = '';
+  
+        const { currentPassword, newPassword } = this.passwordForm.value;
+  
+        this.editProfileService.changePassword(this.userId!, currentPassword, newPassword).subscribe({
+          next: () => {
+            this.successMessage = 'Password updated successfully!';
+            this.passwordForm.reset();
+          },
+          error: (error) => {
+            this.errorMessage = error.error.message || 'Error updating password.';
+          },
+          complete: () => {
+            this.loading = false;
+          }
+        });
+      } else {
+        this.errorMessage = 'Please fill in all fields correctly.';
+      }
+    } else {
+      // Handle saving general profile settings
+      this.successMessage = 'Profile updated successfully!';
+    }
+  }
+  
+
+
 }

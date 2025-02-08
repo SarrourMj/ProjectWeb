@@ -44,9 +44,7 @@
             
           </tr>
 
-          <tr> <button class="modern-btn" type="submit" [disabled]="passwordForm.invalid || loading">
-            {{ loading ? 'Changing Password...' : 'Change Password' }}
-          </button></tr>
+         
         </table>
 
       
@@ -79,6 +77,6 @@
       </select>
     </div>
 
-    <button class="modern-btn">Save Changes</button>
+    <button class="modern-btn" (click)="saveChanges()">Save Changes</button>
   </div>
 </div>
